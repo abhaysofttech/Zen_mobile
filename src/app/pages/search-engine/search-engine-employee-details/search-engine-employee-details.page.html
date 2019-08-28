@@ -1,0 +1,299 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Employee Details</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="search-by-associate"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background">
+  <ion-grid>
+    <ion-row style="width: 100%; justify-content: center;">
+      <img class="profile-pic-style" [src]="profilePicPath" onerror="this.src='../../../../assets/icon/favicon.png'" />
+    </ion-row>
+    <ion-row class="employee-name-style">
+      {{ empName | uppercase }}
+    </ion-row>
+    <div *ngIf="associateRated">
+      <ion-row style="margin-top: 40px">
+        <ion-col size="6" class="row-key-style">
+          Staff ID
+        </ion-col>
+        <ion-col size="6" class="row-value-style">
+          {{ staffID }}
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top: 5px">
+        <ion-col size="6" class="row-key-style">
+          Reporting Manager
+        </ion-col>
+        <ion-col size="6" class="row-value-style">
+          {{ reportingManager | uppercase }}
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top: 5px">
+        <ion-col size="6" class="row-key-style">
+          Program Manager
+        </ion-col>
+        <ion-col size="6" class="row-value-style">
+          {{ programManager | uppercase }}
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top: 5px">
+        <ion-col size="6" class="row-key-style">
+          Total Experience
+        </ion-col>
+        <ion-col size="6" class="row-value-style">
+          {{ totalExperience | uppercase }}
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top: 5px">
+        <ion-col size="6" class="row-key-style">
+          Band
+        </ion-col>
+        <ion-col size="6" class="row-value-style">
+          {{ band | uppercase }}
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top: 5px">
+        <ion-col size="6" class="row-key-style">
+          Technical Rating
+        </ion-col>
+        <ion-col size="6" class="row-value-style">
+          {{ technicalRating | uppercase }}
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top: 5px">
+        <ion-col size="6" class="row-key-style">
+          Technical Expertise
+        </ion-col>
+        <ion-col size="6" class="row-value-style">
+          {{ technicalExpertise | uppercase }}
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top: 5px">
+        <ion-col size="6" class="row-key-style">
+          Solution Rating
+        </ion-col>
+        <ion-col size="6" class="row-value-style">
+          {{ solutionRating | uppercase }}
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top: 5px">
+        <ion-col size="6" class="row-key-style">
+          Solution Expertise
+        </ion-col>
+        <ion-col size="6" class="row-value-style">
+          {{ solutionExpertise | uppercase }}
+        </ion-col>
+      </ion-row>
+      <ion-button class="more-info-btn-style" expand="block" (click)="moreInformation()">More Information</ion-button>
+    </div>
+    <ion-row *ngIf="!associateRated" style="height: 50px; align-items: center;padding: 10px; background: #FFFFFF;">
+      Associate {{ searchKeyword | uppercase }} is not evaluated.
+    </ion-row>
+    <ion-item style="margin-top: 10px" (click)="alloationDetailsItemClick()">
+      <ion-row style="width: 100%">
+        <ion-col size="1" class="plus-symbol-style">
+          +
+        </ion-col>
+        <ion-col size="11" class="tile-header-style">
+          ALLOCATION DETAILS
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <div style="background: #d9d9d9" *ngIf="allocationDetailsSubMenu">
+      <ion-row>
+        <ion-col size='6' class="row-key-style" style="padding-right: 10px; padding-left: 10px;">
+          Project Name
+          (Project Code):
+        </ion-col>
+        <ion-col size='6' class="row-value-style" style="padding-right: 10px; padding-left: 10px;">
+          {{ projectName }} ({{ projectCode }})
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size='6' class="row-key-style" style="padding-right: 10px; padding-left: 10px;">
+          Project Manager:
+        </ion-col>
+        <ion-col size='6' class="row-value-style" style="padding-right: 10px; padding-left: 10px;">
+          {{ projectManager }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size='6' class="row-key-style" style="padding-right: 10px; padding-left: 10px;">
+          Program Manager:
+        </ion-col>
+        <ion-col size='6' class="row-value-style" style="padding-right: 10px; padding-left: 10px;">
+          {{ programManager }}
+        </ion-col>
+      </ion-row>
+    </div>
+    <ion-item (click)="visaDetailsItemClick()">
+      <ion-row style="width: 100%">
+        <ion-col size="1" class="plus-symbol-style">
+          +
+        </ion-col>
+        <ion-col size="11" class="tile-header-style">
+          VISA DETAILS
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <div style="background: #d9d9d9" *ngIf="visaDetailsSubMenu">
+      <ion-row>
+        <ion-col size='6' class="row-key-style" style="padding-right: 10px; padding-left: 10px;">
+          Visa Type
+        </ion-col>
+        <ion-col size='6' class="row-value-style" style="padding-right: 10px; padding-left: 10px;">
+          {{ visaType }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size='6' class="row-key-style" style="padding-right: 10px; padding-left: 10px;">
+          Visa Status
+        </ion-col>
+        <ion-col size='6' class="row-value-style" style="padding-right: 10px; padding-left: 10px;">
+          {{ visaStatus }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size='6' class="row-key-style" style="padding-right: 10px; padding-left: 10px;">
+          Visa Validity
+        </ion-col>
+        <ion-col size='6' class="row-value-style" style="padding-right: 10px; padding-left: 10px;">
+          {{ visaValidity }}
+        </ion-col>
+      </ion-row>
+    </div>
+    <ion-item (click)="technicalExpertiseItemClick()">
+      <ion-row style="width: 100%">
+        <ion-col size="1" class="plus-symbol-style">
+          +
+        </ion-col>
+        <ion-col size="11" class="tile-header-style">
+          PROJECT RATED SKILLS
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <div style="background: #d9d9d9" *ngIf="technicalExpertiseSubMenu">
+      <ion-row>
+        <ion-item style="width: 100%; --background: #d9d9d9; font-size: 12px;">
+          {{ technicalExpertiseAccordian }}
+        </ion-item>
+      </ion-row>
+    </div>
+    <ion-item (click)="solutionAreasKnownItemClick()">
+      <ion-row style="width: 100%">
+        <ion-col size="1" class="plus-symbol-style">
+          +
+        </ion-col>
+        <ion-col size="11" class="tile-header-style">
+          SOLUTION AREAS KNOWN
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <div style="background: #d9d9d9" *ngIf="solutionAreasKnownSubMenu">
+      <ion-row>
+        <ion-item style="width: 100%; --background: #d9d9d9; font-size: 12px;">
+          {{ solutionAreasKnown }}
+        </ion-item>
+      </ion-row>
+    </div>
+    <ion-item (click)="nicheSkillsItemClick()">
+      <ion-row style="width: 100%">
+        <ion-col size="1" class="plus-symbol-style">
+          +
+        </ion-col>
+        <ion-col size="11" class="tile-header-style">
+          NICHE SKILLS
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <div style="background: #d9d9d9" *ngIf="nicheSkillsSubMenu">
+      <ion-row>
+        <ion-item style="width: 100%; --background: #d9d9d9; font-size: 12px;">
+          {{ nicheSkills }}
+        </ion-item>
+      </ion-row>
+    </div>
+    <ion-item (click)="certificationsItemClick()">
+      <ion-row style="width: 100%">
+        <ion-col size="1" class="plus-symbol-style">
+          +
+        </ion-col>
+        <ion-col size="11" class="tile-header-style">
+          CERTIFICATIONS
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <div style="background: #d9d9d9" *ngIf="certificatesSubMenu">
+      <ion-row>
+        <ion-item style="width: 100%; --background: #d9d9d9; font-size: 12px;">
+          {{ certificates }}
+        </ion-item>
+      </ion-row>
+    </div>
+    <ion-item (click)="awardsItemClick()">
+      <ion-row style="width: 100%">
+        <ion-col size="1" class="plus-symbol-style">
+          +
+        </ion-col>
+        <ion-col size="11" class="tile-header-style">
+          AWARDS
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <div style="background: #d9d9d9" *ngIf="awardsSubMenu">
+      <ion-row>
+        <ion-item style="width: 100%; --background: #d9d9d9; font-size: 12px;">
+          {{ awards }}
+        </ion-item>
+      </ion-row>
+    </div>
+    <ion-item (click)="skillsFromHrmsItemClick()">
+      <ion-row style="width: 100%">
+        <ion-col size="1" class="plus-symbol-style">
+          +
+        </ion-col>
+        <ion-col size="11" class="tile-header-style">
+          SKILL FROM HRMS
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <div style="background: #d9d9d9" *ngIf="skillsFromHrmsSubMenu">
+      <ion-row>
+        <ion-col size='6' class="row-key-style" style="padding-right: 10px; padding-left: 10px;">
+          Primary Skill
+        </ion-col>
+        <ion-col size='6' class="row-value-style" style="padding-right: 10px; padding-left: 10px;">
+          {{ hrmsSkillPrimary }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size='6' class="row-key-style" style="padding-right: 10px; padding-left: 10px;">
+          Secondary Skill
+        </ion-col>
+        <ion-col size='6' class="row-value-style" style="padding-right: 10px; padding-left: 10px;">
+          {{ hrmsSkillSecondary }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size='6' class="row-key-style" style="padding-right: 10px; padding-left: 10px;">
+          Tertiary Skill
+        </ion-col>
+        <ion-col size='6' class="row-value-style" style="padding-right: 10px; padding-left: 10px;">
+          {{ hrmsSkillTertionary }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size='6' class="row-key-style" style="padding-right: 10px; padding-left: 10px;">
+          Others
+        </ion-col>
+        <ion-col size='6' class="row-value-style" style="padding-right: 10px; padding-left: 10px;">
+          {{ hrmsSkillOthers }}
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+</ion-content>

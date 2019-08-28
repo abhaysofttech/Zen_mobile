@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Details</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="twenty-five-window"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="details-page-background">
+  <ion-row class="page-header-style">
+    <ion-col size="4" class="column-style" style="margin-left: 20px;">
+      Staff Name
+    </ion-col>
+    <ion-col size="1">
+    </ion-col>
+    <ion-col size="3" class="column-style">
+      <ion-row style="justify-content: center">
+        Technical
+      </ion-row>
+    </ion-col>
+    <ion-col size="3" class="column-style">
+      <ion-row style="justify-content: center">
+        Solution
+      </ion-row>
+    </ion-col>
+  </ion-row>
+  <ion-list class="list-style">
+    <ion-item *ngFor="let data of listData" class="list-item-style">
+      <ion-row style="width: 100%">
+        <ion-col size="6" (click)="getEmployeeDetails(data)">
+          {{ data.staff_Name | uppercase}}
+        </ion-col>
+        <ion-col size="3">
+          <ion-row style="justify-content: center; font-weight: 100">
+            {{ data.technical_rating }}
+          </ion-row>
+        </ion-col>
+        <ion-col size="3">
+          <ion-row style="justify-content: center;  font-weight: 100">
+            {{ data.functional_rating }}
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-list>
+</ion-content>

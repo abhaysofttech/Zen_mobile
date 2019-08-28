@@ -1,0 +1,187 @@
+.twenty-five-window-background{
+    --background: linear-gradient(to top left, #99d6ff, #b3e0ff, #ccebff, white);
+}
+
+.twenty-five-window-headers-style{
+    width: 100%;
+    justify-content: center;
+}
+
+.heaers-text-style{
+    font-size: 14px;
+}
+
+.slides-style{
+    --bullet-background-active: black;
+    --bullet-background: black;
+}
+
+.heading_25W{
+    margin-top: 25px;
+    color: #000;
+    font-weight: 500;
+    font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+    line-height: 1.2;
+    font-size: 16px;
+    width: 100%;
+    align-items: center;
+}
+
+.row{
+    display: flex;
+    padding: 5px;
+    width: 100%;
+}
+
+.btn_25W_header {
+    font-size: 8px;
+    line-height: 90%;
+    transform: rotate(0deg);
+    padding-top: 12px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.btn_25W_value{
+    padding-top: 15px;
+    background: white;
+    border-radius: 5px;
+}
+
+.twenty-five-window-grid-style{
+    height: 500px;
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.grey {
+    background-color: rgb(217, 217, 217);
+    border-radius: 5px;
+}
+
+.btn-grey{
+    --background: rgb(217, 217, 217);
+}
+
+.purple{
+    background-color: rgb(204, 192, 218);
+    border-radius: 5px;
+}
+
+.btn-purple{
+    --background: rgb(204, 192, 218);
+}
+
+.btn-light-green{
+    --background: rgb(102, 255, 102);
+}
+
+.btn-light-yellow{
+    --background: rgb(255, 255, 0);
+}
+
+.orange{
+    background-color: rgb(250, 191, 143);
+    border-radius: 5px;
+}
+
+.btn-orange{
+    --background: rgb(250, 191, 143);
+}
+
+.white{
+    background-color: rgba(250, 250, 250, 1);
+    border-radius: 5px;
+}
+
+.btn-white{
+    --background: rgba(250, 250, 250, 1);
+}
+
+.dark-green{
+    background-color: #92D050;
+    border-radius: 5px;
+}
+
+.btn-dark-green{
+    --background: #92D050;
+}
+
+.dark-yellow{
+    background-color: rgb(255, 192, 0);
+    border-radius: 5px;
+}
+
+.btn-dark-yellow{
+    --background: rgb(255, 192, 0);
+}
+
+.col-width-height{
+    width: 50px;
+    height: 50px;
+}
+
+.btn-25-window-width-height{
+    width: 100%;
+    height: 50px;
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.btn-25-window-style{
+    margin-right: 0px;
+    margin-left: 0px;
+    width: 100%;
+    height: 50px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    --border-width: 0px;
+    --box-shadow: 0px;
+    --opacity: 1;
+    --color: #444;
+    font-size: 16px;
+    --color-activated: black;
+}
+
+.alignTechnicalExp {
+    background: linear-gradient(to top, rgba(255, 0, 0, 0), white);
+    margin-top: -100%;
+    margin-left: -4.8%;
+    margin-bottom: 75px;
+    border: 0px;
+    border-radius: 5px;
+    height: 250px;
+    width: 23px;
+}
+
+.alignSolutionExp {
+    background: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(255, 255, 255, 1));
+    margin-bottom: 45%;
+    margin-left: 15%;
+    border: 0px;
+    border-radius: 5px;
+    margin-top: 5px;
+    width: 200px;
+    height: 20px;
+}
+
+.suppositive {
+    font-size: 9px;
+    vertical-align: top;
+    line-height: 2;
+    color: green;
+    padding-right: 5%;
+    margin-top: -15px;
+}
+
+.supnegative {
+    font-size: 9px;
+    vertical-align: top;
+    line-height: 2;
+    color: red;
+    padding-right: 5%;
+    margin-top: -15px;
+}

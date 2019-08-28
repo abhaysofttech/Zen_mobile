@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title class="opensansfontregular">Add Certificate</ion-title>
+    <ion-buttons slot="end">
+        <ion-col (click)="dismisModal()" style="padding-right: 15px;"><i class="lni-close"></i></ion-col>
+      <ion-col (click)="submitCertificateDetails()" style="padding-right: 15px;"><i class="lni-save"></i>
+      </ion-col>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content no-padding class="background opensansfontregular">
+  <ion-grid class="textfontsize">
+    <ion-row no-padding>
+      <ion-col size='12' no-padding>
+        <ion-item (click)="toggleItem(1)">
+          <ion-label size='4'>Category :{{selectedCategory}}</ion-label>
+          <!-- <ion-select placeholder="Select Category" (ionChange)="selectCategory($event.target.value);" okText="OK" cancelText="Close">
+            <ion-select-option *ngFor="let key of objectKeys(certificateData)" [value]="key">{{key}}</ion-select-option>
+          </ion-select> -->
+        </ion-item>
+        <!-- <ion-item *ngFor="let key of objectKeys(certificateData)">{{key}}</ion-item> -->
+        <ion-list *ngIf="showGroup1" class="opensansfontregular">
+            <ion-radio-group>
+              <ion-item *ngFor="let key of objectKeys(certificateData)" (click)="selectCategory($event.target.value)" (click)="toggleItem(1)">
+                <ion-label>{{key}}</ion-label>
+                <ion-radio slot="start" [value]="key" checked></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
+          
+      </ion-col>
+    </ion-row>
+    <ion-row no-padding>
+      <ion-col size='12' no-padding>
+        <ion-item (click)="toggleItem(2)" class="opensansfontregular">
+            <ion-label>Certification Name :{{selectedsubCategory}}</ion-label>
+        </ion-item>
+        <ion-list *ngIf="showGroup2">
+            <ion-radio-group>
+              <ion-item  *ngFor="let cert of shortlistedCerts" (click)="selectsubCategory($event.target.value)" (click)="toggleItem(2)">
+                <ion-label>{{cert}}</ion-label>
+                <ion-radio slot="start" [value]="cert" checked></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
+
+        <!-- <ion-item (ionChange)="selectsubCategory($event.target.value);" >
+         
+        </ion-item> -->
+      </ion-col>
+    </ion-row>
+    <ion-row no-padding>
+      <ion-col size='12' no-padding>
+          <ion-item>
+          <ion-label>Date</ion-label>
+        <ion-datetime placeholder="Select Date" display-format="MMM DD, YYYY" [(ngModel)]="selectedDate" (ionChange)="selectDate(selectedDate);"></ion-datetime>
+        </ion-item>   
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col offset="8" size="4" style="height:32px;font-size: 16px;text-align: right;" (click)="addCertificate()">
+        <u>+Add Certificate</u>
+      </ion-col>
+    </ion-row>
+    <ion-row class="page-header-style">
+      <ion-col size='4' class="column-style">Category</ion-col>
+      <ion-col size='4' class="column-style">Certification Name</ion-col>
+      <ion-col size='4' class="column-style">Date</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let certs of certificateDetails">
+      <ion-col size='4'>
+        {{certs.category}}
+      </ion-col>
+      <ion-col size='4'>
+        {{certs.certification_name}}
+      </ion-col>
+      <ion-col size='4' class="centeralign">
+        {{certs.completion_date}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

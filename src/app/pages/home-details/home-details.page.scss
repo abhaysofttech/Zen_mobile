@@ -1,0 +1,64 @@
+.background{
+    --background : linear-gradient(to top left, #99d6ff, #b3e0ff, #ccebff, white);
+}
+
+.dark-blue-left-tile-title{
+    background: #146397;
+    border-radius: 5px;
+    margin-right: 7.5px;
+    padding-top: 20px;
+    padding-bottom: 20px;  
+    color: white; 
+}
+
+.light-blue-left-tile-title{
+    background: #0099ff;
+    border-radius: 5px;
+    margin-right: 7.5px;
+    padding-top: 20px;
+    padding-bottom: 20px;  
+    color: white; 
+}
+
+.green-left-tile-title{
+    background: #2BC18A;
+    border-radius: 5px;
+    margin-right: 7.5px;
+    padding-top: 20px;
+    padding-bottom: 20px;  
+    color: white; 
+}
+
+.dark-blue-right-tile-title{
+    background: #146397;
+    border-radius: 5px;
+    margin-left: 7.5px;
+    padding-top: 20px;
+    padding-bottom: 20px;  
+    color: white; 
+}
+
+.light-blue-right-tile-title{
+    background: #0099ff;
+    border-radius: 5px;
+    margin-left: 7.5px;
+    padding-top: 20px;
+    padding-bottom: 20px;  
+    color: white; 
+}
+
+.green-right-tile-title{
+    background: #2BC18A;
+    border-radius: 5px;
+    margin-left: 7.5px;
+    padding-top: 20px;
+    padding-bottom: 20px;  
+    color: white; 
+}
+
+.value-style{
+    justify-content: center; 
+    padding-top: 20px;
+}
+
+

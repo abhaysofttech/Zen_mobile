@@ -1,0 +1,118 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Ratings</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background">
+  <ion-row>
+    <ion-col size="6" class="row-key-style">
+      Staff Id
+    </ion-col>
+    <ion-col size="6" class="row-value-style">
+      {{ apiResponse.staffNo }}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="row-key-style">
+      Staff Name
+    </ion-col>
+    <ion-col size="6" class="row-value-style">
+      {{ apiResponse.staffName }}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="row-key-style">
+      Project Name
+    </ion-col>
+    <ion-col size="6" class="row-value-style">
+      {{ apiResponse.projectName }}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="row-key-style">
+      Track Name
+    </ion-col>
+    <ion-col size="6" class="row-value-style">
+      {{ apiResponse.trackname }}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="row-key-style">
+      SME Score
+    </ion-col>
+    <ion-col size="6" class="row-value-style">
+      {{ apiResponse.updatedBy.rating }}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="row-key-style">
+      Evaluated by
+    </ion-col>
+    <ion-col size="6" class="row-value-style">
+      {{ apiResponse.updatedBy.manager }}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="row-key-style">
+      Evaluated on
+    </ion-col>
+    <ion-col size="6" class="row-value-style">
+      {{ apiResponse.updatedBy.timeStamp }}
+    </ion-col>
+  </ion-row>
+  <ion-row class="row-key-style" style="margin-top: 20px;">
+    Technical Evaluation
+  </ion-row>
+  <ion-row *ngFor="let techData of technicalEvalutionData">
+    <ion-col size="4" class="row-value-style">
+      {{ techData.porjectAreaName }}
+    </ion-col>
+    <ion-col size="7" class="row-value-style">
+      <ion-row *ngFor="let technology of techData.projectAreaValuePOList">
+        {{ technology.porjectAreaValueName }}
+      </ion-row>
+    </ion-col>
+    <ion-col size="1" class="row-value-style">
+      <ion-row *ngFor="let technology of techData.projectAreaValuePOList">
+        {{ technology.rating | number:'1.1-1' }}
+      </ion-row>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row-key-style" style="margin-top: 20px;">
+    Functional Evaluation
+  </ion-row>
+  <ion-row *ngFor="let funcData of functionalEvalutionData1">
+    <ion-col size="4" class="row-value-style">
+      {{ funcData.processAreaDomainName }}
+    </ion-col>
+    <ion-col size="7" class="row-value-style">
+      <ion-row *ngFor="let domain of funcData.weightedAreaDomainValuePOList">
+        {{ domain.processAreaDomainValueName }}
+      </ion-row>
+    </ion-col>
+    <ion-col size="1" class="row-value-style">
+      <ion-row *ngFor="let domain of funcData.weightedAreaDomainValuePOList">
+        {{ domain.score | number:'1.1-1' }}
+      </ion-row>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngFor="let funcData of functionalEvalutionData2">
+    <ion-col size="4" class="row-value-style">
+      {{ funcData.processAreaDomainName }}
+    </ion-col>
+    <ion-col size="7" class="row-value-style">
+      <ion-row *ngFor="let domain of funcData.weightedAreaDomainValuePOList">
+        {{ domain.processAreaDomainValueName }}
+      </ion-row>
+    </ion-col>
+    <ion-col size="1" class="row-value-style">
+      <ion-row *ngFor="let domain of funcData.weightedAreaDomainValuePOList">
+        {{ domain.score | number:'1.1-1' }}
+      </ion-row>
+    </ion-col>
+  </ion-row>
+</ion-content>

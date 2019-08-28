@@ -1,0 +1,120 @@
+<ion-content class="padding loginback" style="padding-top:15%">
+  <div class="list" style="opacity: 1.0;border-radius: 10px;border-width:0px;background-color: rgba(0,0,0,0);margin-left: 40px;margin-right: 40px;margin-top: 40px;
+        margin-bottom: 0px;">
+    <!-- <div class="item padding text-center "
+      style="height: 50px; background-color: rgb(0, 0, 0);border-width:0px;;border-top-left-radius: 10px;border-top-right-radius: 10px;border-top-right-radius: 10px;">
+      <span class="text-center" style="color: white">
+        <ion-icon name="lock" style="margin-top: 17px;"></ion-icon> Login
+      </span>
+    </div> -->
+
+    <form (ngSubmit)="doLogin()">
+      <div class="list">
+        <div ng-animate="'animate'" class="item padding"
+          style="border-width:0px;background-color: rgb(211,211,211); padding-top: 10px; padding-bottom: 10px;">
+          <label class="item item-input"
+            style="opacity: 1.0;border-radius: 50px;background-color: rgb(255, 255, 255);border-width: 0px ;margin: 10px ">
+            <span class="input-label">Username</span>
+            <input name="username" style="border-color: transparent; margin-right: 10px;
+            border-color: transparent; width: 100%; outline: none" type="text" [(ngModel)]="loginData.username"
+              capitalize required placeholder='AB12345'>
+          </label>
+          <label class="item item-input"
+            style="opacity: 1.0;border-radius: 50px;background-color: rgb(255, 255, 255);;border-width: 0px;margin: 10px ">
+            <span class="input-label">Password</span>
+            <input name="password" autocomplete="off" style="border-color: transparent;    margin-right: 10px;
+            border-color: transparent; width: 100%; outline: none" name="pass" type="password"
+              [(ngModel)]="loginData.password" required placeholder='Password'>
+          </label>
+        </div>
+        <!-- <div style="text-align: center">
+          <button *ngIf="loginData.username.length > 0 && loginData.password.length > 0" class="button button-block button-dark"
+            type="submit">Login</button>
+        </div> -->
+      </div>
+    </form>
+  </div>
+
+  
+  <ion-row class = "emoji-style" [style.padding-left.px] = defaultPaddingLeft *ngIf="loginData.username.length > 0 && loginData.password.length > 0">
+    <img [src]="smilyImageSrc" class="emotion-icon-style">
+  </ion-row>
+
+
+  <ion-row style="margin-left: 40px; margin-right: 40px; border-radius: 25px; background: #464646;"
+    *ngIf="loginData.username.length > 0 && loginData.password.length > 0">
+
+    <ion-icon name="ios-arrow-back" class="arrow-style" style="left: 8em; opacity: 1;" *ngIf="sadArrowsShowFlag">
+    </ion-icon>
+    <ion-icon name="ios-arrow-back" class="arrow-style" style="left: 7em; opacity: 0.75;" *ngIf="sadArrowsShowFlag">
+    </ion-icon>
+    <ion-icon name="ios-arrow-back" class="arrow-style" style="left: 6em; opacity: 0.5;" *ngIf="sadArrowsShowFlag">
+    </ion-icon>
+
+    <ion-range [(ngModel)]="happinessSliderValue" step="1" snaps="true" class="login-slider-style" mode="md"
+      (ionChange)="loginSliderValueChange($event)" (touchend)="onProgressTouchEnd()">
+    </ion-range>
+
+    <ion-icon name="ios-arrow-forward" class="arrow-style" style="right: 8em; opacity: 1;" *ngIf="happyArrowShowFlag">
+    </ion-icon>
+    <ion-icon name="ios-arrow-forward" class="arrow-style" style="right: 7em; opacity: 0.75;"
+      *ngIf="happyArrowShowFlag">
+    </ion-icon>
+    <ion-icon name="ios-arrow-forward" class="arrow-style" style="right: 6em; opacity: 0.5;" *ngIf="happyArrowShowFlag">
+    </ion-icon>
+
+  </ion-row>
+
+  <!-- Happiness index phase 2 code 
+  <ion-row style="margin-left: 40px; margin-right: 40px; border-radius: 25px; background: #464646;"
+    *ngIf="loginData.username.length > 0 && loginData.password.length > 0">
+    
+    <ion-icon name="ios-arrow-back" class="arrow-style" style="left: 8em; opacity: 1;" *ngIf="sadArrowsShowFlag">
+    </ion-icon>
+    <ion-icon name="ios-arrow-back" class="arrow-style" style="left: 7em; opacity: 0.75;" *ngIf="sadArrowsShowFlag">
+    </ion-icon>
+    <ion-icon name="ios-arrow-back" class="arrow-style" style="left: 6em; opacity: 0.5;" *ngIf="sadArrowsShowFlag">
+    </ion-icon>
+
+    <ion-range [(ngModel)]="happinessSliderValue" step="1" snaps="true" class="login-slider-style" mode="md"
+      (ionChange)="loginSliderValueChange($event)" (touchend)="onProgressTouchEnd()">
+    </ion-range>
+
+    <ion-icon name="ios-arrow-forward" class="arrow-style" style="right: 8em; opacity: 1;" *ngIf="happyArrowShowFlag">
+    </ion-icon>
+    <ion-icon name="ios-arrow-forward" class="arrow-style" style="right: 7em; opacity: 0.75;"
+      *ngIf="happyArrowShowFlag">
+    </ion-icon>
+    <ion-icon name="ios-arrow-forward" class="arrow-style" style="right: 6em; opacity: 0.5;" *ngIf="happyArrowShowFlag">
+    </ion-icon>
+    
+  </ion-row>
+-->
+
+  <!-- Happiness index phase 1 code
+  <ion-row style="margin-left: 40px; margin-right: 40px; border-radius: 25px; background: #464646;"
+    *ngIf="loginData.username.length > 0 && loginData.password.length > 0">
+    <img src="../../../assets/imgs/sad.svg" style="position: absolute;" *ngIf="sadImageShowFlag">
+    <ion-icon name="ios-arrow-back" class="arrow-style" style="left: 8em; opacity: 1;" *ngIf="sadArrowsShowFlag">
+    </ion-icon>
+    <ion-icon name="ios-arrow-back" class="arrow-style" style="left: 7em; opacity: 0.75;" *ngIf="sadArrowsShowFlag">
+    </ion-icon>
+    <ion-icon name="ios-arrow-back" class="arrow-style" style="left: 6em; opacity: 0.5;" *ngIf="sadArrowsShowFlag">
+    </ion-icon>
+
+    <ion-range [(ngModel)]="happinessSliderValue" step="1" snaps="true" class="login-slider-style" mode="md"
+      (ionChange)="loginSliderValueChange($event)">
+    </ion-range>
+
+    <ion-icon name="ios-arrow-forward" class="arrow-style" style="right: 8em; opacity: 1;" *ngIf="happyArrowShowFlag">
+    </ion-icon>
+    <ion-icon name="ios-arrow-forward" class="arrow-style" style="right: 7em; opacity: 0.75;" *ngIf="happyArrowShowFlag">
+    </ion-icon>
+    <ion-icon name="ios-arrow-forward" class="arrow-style" style="right: 6em; opacity: 0.5;" *ngIf="happyArrowShowFlag">
+    </ion-icon>
+    <img src="../../../assets/imgs/happy.svg" class="sad-smile-style" *ngIf="happyImageShowFlag">
+  </ion-row>
+ -->
+
+
+</ion-content>

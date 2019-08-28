@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>History Ratings</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="backgrond">
+  <fusioncharts [width]="chartWidth" [height]="chartHeight" [type]="chartType" [dataFormat]="chartDataFormat"
+    [dataSource]="lineChartDataSource" (initialized)="initialized($event)">
+  </fusioncharts>
+</ion-content>

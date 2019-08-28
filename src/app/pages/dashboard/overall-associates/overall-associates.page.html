@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>OverAll Associates</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="twenty-five-window"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="overall-associates-window-background">
+  <ion-row>
+    <fusioncharts [width]="chartWidth" [height]="chartHeight" [type]="chartType" [dataFormat]="chartDataFormat"
+      [dataSource]="chartDataSource" (initialized)="initialized($event)">
+    </fusioncharts>
+  </ion-row>
+  <ion-list style="background: white; margin-top: 10px; margin-bottom: 10px; border-radius: 5px;">
+    <ion-row *ngFor="let data of this.dataSource.data">
+      <ion-col size="6">
+        <ion-row style="font-weight: bold;
+        font-size: 14px;">
+          {{ data.label }}
+        </ion-row>
+      </ion-col>
+      <ion-col size="6">
+        <ion-row style="font-size: 14px;">
+          {{ data.value }}
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+</ion-content>

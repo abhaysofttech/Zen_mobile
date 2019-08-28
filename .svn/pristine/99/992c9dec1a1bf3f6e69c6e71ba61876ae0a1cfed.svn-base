@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Employee Details</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background-style">
+  <ion-slides pager="true" [options]="slideOpts" class="slides-style">
+    <ion-slide>
+      <fusioncharts [width]="chartWidth" [height]="chartHeight" [type]="chartType" [dataFormat]="chartDataFormat"
+        [dataSource]="chartSolutionDataSource">
+      </fusioncharts>
+    </ion-slide>
+    <ion-slide>
+      <fusioncharts [width]="chartWidth" [height]="chartHeight" [type]="chartType" [dataFormat]="chartDataFormat"
+        [dataSource]="chartTechnicalDataSource">
+      </fusioncharts>
+    </ion-slide>
+  </ion-slides>
+  <ion-row class="employee-name-style">
+    {{ empName | uppercase }}
+  </ion-row>
+  <ion-list class="list-style">
+    <ion-item *ngFor="let data of listData">
+      <ion-col style="width: 100%; font-size: 14px;">
+        <ion-row style="width: 100%">
+          <ion-col size="4">
+            Rated By:
+          </ion-col>
+          <ion-col size="8">
+            {{ data.mgr_name }}
+          </ion-col>
+        </ion-row>
+        <ion-row style="width: 100%">
+          <ion-col size="4">
+            Project:
+          </ion-col>
+          <ion-col size="8">
+            {{ data.projectid }}
+          </ion-col>
+        </ion-row>
+        <ion-row style="width: 100%">
+          <ion-col size="4">
+            Track:
+          </ion-col>
+          <ion-col size="8">
+            {{ data.trackid }}
+          </ion-col>
+        </ion-row>
+        <ion-row style="width: 100%">
+          <ion-col size="4">
+            Rated On:
+          </ion-col>
+          <ion-col size="8">
+            {{ data.last_updatedon }}
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-item>
+  </ion-list>
+</ion-content>

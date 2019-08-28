@@ -1,0 +1,115 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Advance Search</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background">
+  <ion-row>
+    <ion-col size="12">
+      <ion-searchbar style="--background: white; padding-left: 0px; padding-right: 0px;" placeholder="Type Skill"
+        [value]="selectedSkillValue" debounce="500" (ionChange)="searchValueChange($event)"
+        (ionClear)="clearFunction()"></ion-searchbar>
+      <ion-row style="justify-content: center" *ngIf="showList">
+        <ion-list class="list-style">
+          <div style="background: white; padding-left: 5px; padding-right: 5px;"
+            *ngFor="let skill of filteredSkillsList" (click)="selectSkillFromList(skill)">
+            {{ skill }}
+          </div>
+        </ion-list>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="row-key-style">
+      Account
+    </ion-col>
+    <ion-col size="6">
+      <ion-select style="padding-left: 8px;" placeholder="Select" interface="popover" 
+      (ionChange)="getSelectedAccountDropdownValues($event.detail.value)">
+        <ion-select-option *ngFor="let account of accountList" [value]="account.accountId">{{ account.accountName }}
+        </ion-select-option>
+      </ion-select>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="row-key-style">
+      Skill Type
+    </ion-col>
+    <ion-col size="6">
+      <ion-select style="padding-left: 8px;" placeholder="Select" interface="popover"
+      (ionChange)="getSelectedSkillTypeDropdownValues($event.detail.value)">
+        <ion-select-option *ngFor="let skillType of skillTypeList" [value]="skillType">{{ skillType }}
+        </ion-select-option>
+      </ion-select>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="row-key-style">
+      Location(City)
+    </ion-col>
+    <ion-col size="6">
+      <ion-select style="padding-left: 8px;" placeholder="Select" interface="popover"
+      (ionChange)="getSelectedLocationDropdownValues($event.detail.value)">
+        <ion-select-option *ngFor="let location of locationList" [value]="location">{{ location }}
+        </ion-select-option>
+      </ion-select>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="row-key-style">
+      From Band
+    </ion-col>
+    <ion-col size="6">
+      <ion-select style="padding-left: 8px;" placeholder="Select" interface="popover"
+        (ionChange)="fromBandValueChange($event)">
+        <ion-select-option *ngFor="let fromBand of fromBandList" [value]="fromBand">{{ fromBand }}
+        </ion-select-option>
+      </ion-select>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="row-key-style">
+      To Band
+    </ion-col>
+    <ion-col size="6">
+      <ion-select [(ngModel)]="toBandModelData" style="padding-left: 8px;" placeholder="Select" interface="popover"
+      (ionChange)="toBandValueChange($event)">
+        <ion-select-option *ngFor="let toBand of toBandList" [value]="toBand">{{ toBand }}
+        </ion-select-option>
+      </ion-select>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="row-key-style">
+      Billability
+    </ion-col>
+    <ion-col size="6">
+      <ion-select style="padding-left: 8px;" placeholder="Select" interface="popover"
+      (ionChange)="getSelectedBillabilityDropdownValues($event.detail.value)">
+        <ion-select-option *ngFor="let billability of billabilityList" [value]="billability">{{ billability }}
+        </ion-select-option>
+      </ion-select>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="row-key-style">
+      Project/Pool
+    </ion-col>
+    <ion-col size="6">
+      <ion-select style="padding-left: 8px;" placeholder="Select" interface="popover"
+      (ionChange)="getSelectedProjectOrPoolDropdownValues($event.detail.value)">
+        <ion-select-option *ngFor="let projectOrPool of projectOrPoolList" [value]="projectOrPool">{{ projectOrPool }}
+        </ion-select-option>
+      </ion-select>
+    </ion-col>
+  </ion-row>
+  <ion-row style="justify-content: center">
+    <ion-button (click)="searchBtnClick()">
+      Search
+    </ion-button>
+  </ion-row>
+</ion-content>

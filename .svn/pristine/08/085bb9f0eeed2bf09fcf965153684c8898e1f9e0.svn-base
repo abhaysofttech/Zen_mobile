@@ -1,0 +1,275 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>{{ pageTitle }}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background">
+  <div *ngIf="byBusinessUnitDivFlag">
+    <ion-list *ngFor="let data of listData" style="border-radius: 5px; margin-bottom: 5px;">
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Staff Id
+        </ion-col>
+        <ion-col size="6">
+          {{ data.staff_no }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Associate Name
+        </ion-col>
+        <ion-col size="6">
+          {{ data.staff_name }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Business Unit
+        </ion-col>
+        <ion-col size="6">
+          {{ data.bu_name }}
+        </ion-col>
+      </ion-row>
+    </ion-list>
+  </div>
+  <div *ngIf="byPracticetDivFlag">
+    <ion-list *ngFor="let data of listData" style="border-radius: 5px; margin-bottom: 5px;">
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Staff Id
+        </ion-col>
+        <ion-col size="6">
+          {{ data.staff_no }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Associate Name
+        </ion-col>
+        <ion-col size="6">
+          {{ data.staff_name }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Practice
+        </ion-col>
+        <ion-col size="6">
+          {{ data.practice_name }}
+        </ion-col>
+      </ion-row>
+    </ion-list>
+  </div>
+  <div *ngIf="byBandDivFlag">
+    <ion-list *ngFor="let data of listData" style="border-radius: 5px; margin-bottom: 5px;">
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Staff Id
+        </ion-col>
+        <ion-col size="6">
+          {{ data.staff_no }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Associate Name
+        </ion-col>
+        <ion-col size="6">
+          {{ data.staff_name }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Band
+        </ion-col>
+        <ion-col size="6">
+          {{ data.band }}
+        </ion-col>
+      </ion-row>
+    </ion-list>
+  </div>
+  <div *ngIf="bySkillSetDivFlag">
+    <ion-list *ngFor="let data of listData" style="border-radius: 5px; margin-bottom: 5px;">
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Staff Id
+        </ion-col>
+        <ion-col size="6">
+          {{ data.staff_no }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Associate Name
+        </ion-col>
+        <ion-col size="6">
+          {{ data.staff_name }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Skill 1
+        </ion-col>
+        <ion-col size="6">
+          {{ data.techskills_family }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Skill 2
+        </ion-col>
+        <ion-col size="6">
+          {{ data.techskills_family1 }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Skill 3
+        </ion-col>
+        <ion-col size="6">
+          {{ data.techskills_family2 }}
+        </ion-col>
+      </ion-row>
+    </ion-list>
+  </div>
+  <div *ngIf="byRwfPipelineSkillSetDivFlag">
+    <ion-list *ngFor="let data of listData" style="border-radius: 5px; margin-bottom: 5px;">
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Staff Id
+        </ion-col>
+        <ion-col size="6">
+          {{ data.staff_no }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Associate Name
+        </ion-col>
+        <ion-col size="6">
+          {{ data.staff_name }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Skill 1
+        </ion-col>
+        <ion-col size="6">
+          {{ data.techskills }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Skill 2
+        </ion-col>
+        <ion-col size="6">
+          {{ data.techskills2 }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Skill 3
+        </ion-col>
+        <ion-col size="6">
+          {{ data.techskills3 }}
+        </ion-col>
+      </ion-row>
+    </ion-list>
+  </div>
+  <div *ngIf="byPoolAgeDivFlag">
+    <ion-list *ngFor="let data of listData" style="border-radius: 5px; margin-bottom: 5px;">
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Staff Id
+        </ion-col>
+        <ion-col size="6">
+          {{ data.staff_no }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Associate Name
+        </ion-col>
+        <ion-col size="6">
+          {{ data.staff_name }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Pool Age(days)
+        </ion-col>
+        <ion-col size="6">
+          {{ data.poolAge }}
+        </ion-col>
+      </ion-row>
+    </ion-list>
+  </div>
+  <div *ngIf="byVisaDivFlag">
+    <ion-list *ngFor="let data of listData" style="border-radius: 5px; margin-bottom: 5px;">
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Staff Id
+        </ion-col>
+        <ion-col size="6">
+          {{ data.staff_no }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Associate Name
+        </ion-col>
+        <ion-col size="6">
+          {{ data.staff_name }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Visa Type
+        </ion-col>
+        <ion-col size="6">
+          {{ data.visa_type }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Visa Status
+        </ion-col>
+        <ion-col size="6">
+          {{ data.visa_status_type }}
+        </ion-col>
+      </ion-row>
+    </ion-list>
+  </div>
+  <div *ngIf="byPoolManagerDivFlag">
+    <ion-list *ngFor="let data of listData" style="border-radius: 5px; margin-bottom: 5px;">
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Staff Id
+        </ion-col>
+        <ion-col size="6">
+          {{ data.staff_no }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Associate Name
+        </ion-col>
+        <ion-col size="6">
+          {{ data.staff_name }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" style="font-weight: bold;">
+          Manager Name
+        </ion-col>
+        <ion-col size="6">
+          {{ data.mgr_name }}
+        </ion-col>
+      </ion-row>
+    </ion-list>
+  </div>
+</ion-content>

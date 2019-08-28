@@ -1,0 +1,58 @@
+.background{
+    --background: linear-gradient(to top left, #99d6ff, #b3e0ff, #ccebff, white);
+}
+
+.image-row-style{
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.image-style{
+    width: 128px;
+    height: 128px;
+    border-radius: 100px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.7);
+}
+
+.employee-name-style{
+    margin-top: 20px;
+    width: 100%; 
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.designation-style{
+    margin-top: 10px;
+    width: 100%;
+    justify-content: center;
+    color: white;
+    font-size: 16px;
+}
+
+.key-style{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.value-style{
+    font-size: 14px;
+}
+
+.more-info-btn-style{
+    margin-top: 20px; 
+    --background:#387EF5;
+    --color:white;
+    --border-radius: 5px;
+    height: 45px;
+}
+
+.delete-btn-style{
+    margin-top: 20px; 
+    --background:#EF473A;
+    --color:white;
+    --border-radius: 5px;
+    height: 45px;
+}

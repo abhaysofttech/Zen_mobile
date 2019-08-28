@@ -1,0 +1,29 @@
+.background{
+    --background: linear-gradient(to top left, #99d6ff, #b3e0ff, #ccebff, white);
+}
+
+.search-bar-style{
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: #D3EEFF;
+}
+
+.list-style{
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.row-key-style{
+    font-size: 14px;
+    font-weight: bold;    
+}
+
+.row-value-style{
+    font-size: 14px;
+}
+
+.fiter-style{
+    margin-right: 15px;
+    width: 25px;
+    height: 25px;
+}

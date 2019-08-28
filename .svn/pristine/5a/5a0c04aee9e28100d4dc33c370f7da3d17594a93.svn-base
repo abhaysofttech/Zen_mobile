@@ -1,0 +1,95 @@
+.background{
+    --background: linear-gradient(to top left, #99d6ff, #b3e0ff, #ccebff, white);
+}
+
+.cross-icon-style{
+    color: #EA3B28;
+    width: 25px;
+    height: 25px;
+}
+
+.edit-icon-style{
+    width: 25px;
+    height: 25px;
+}
+
+.edit-icon-col-style{
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-top: 0px;
+    align-self: center;
+}
+
+.cross-icon-col-style{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    align-self: center
+}
+
+.key-style{
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.value-style{
+    font-size: 14px;
+}
+
+.list-row-style{
+    background: white; 
+    border-radius: 5px; 
+    margin-bottom: 10px;
+}
+
+.selected-candidates-detailed-view{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 94%;
+    z-index: 10;
+    background: white;
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid black;
+}
+
+.graph-div-style{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90%;
+    height: 90%;
+    z-index: 10;
+    background: white;
+    margin: 20px;
+}
+
+.rating-details-div-style{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 94%;
+    z-index: 10;
+    background: white;
+    margin: 10px;
+    border: 2px solid black;
+}
+
+.row-key-style{
+    font-size: 90%;
+    font-weight: bold;    
+}
+
+.row-value-style{
+    font-size: 14px;
+}
+
+.dropdown-style{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 0px;
+    font-size: 14px;
+}

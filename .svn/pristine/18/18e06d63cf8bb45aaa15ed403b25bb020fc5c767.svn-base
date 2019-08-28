@@ -1,0 +1,421 @@
+.welcome-card ion-img {
+  max-height: 35vh;
+  overflow: hidden;
+}
+
+.homepagecss{
+  --background : linear-gradient(to top left, #99d6ff, #b3e0ff, #ccebff, white);
+  --padding-bottom: 10px;
+}
+
+.orgview{
+  height: 50px;
+  width: 100%;
+}
+
+.select-bu-css{
+  background-color: white;
+  padding-top: 15px;
+  margin-top: 5px;
+  height: 50px;
+  border-radius: 5px;
+}
+
+.fusion-chart-css{
+  justify-content: center;
+  padding-left: 10px; 
+  padding-right: 10px;
+  margin-bottom: 10px;
+}
+
+.dashboardtilefont{
+  background-color: white;
+  color: black;
+  border: 1px solid #d3d3d3;
+  height: 100px;
+  border-radius: 5px;
+}
+
+.dashboardtilerow{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.tile-header{
+  justify-content: center;
+  font-size: 11px;
+  padding-top: 15px;
+}
+
+.blue-tile-header{
+  justify-content: center;
+  font-size: 11px;
+  padding-top: 15px;
+  color: #00A1EA;
+}
+
+.tile-value{
+  justify-content: center;
+  font-size: 24px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #000;
+  font-weight: 500;
+  font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+  line-height: 1.2;
+}
+
+.blue-tile-value{
+  justify-content: center;
+  font-size: 24px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #00A1EA;
+  font-weight: 500;
+  font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+  line-height: 1.2;
+}
+
+.yellow-tile-value{
+  justify-content: center;
+  font-size: 24px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #FFB900;
+  font-weight: 500;
+  font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+  line-height: 1.2;
+}
+
+.orange-tile-value{
+  justify-content: center;
+  font-size: 24px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #FF4900;
+  font-weight: 500;
+  font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+  line-height: 1.2;
+}
+
+.footer-tiles-row-css{
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 20px;
+  background-color: #146397;
+  color: white;
+}
+
+.footer-tiles-row-values-css{
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: #146397;
+  color: white;
+}
+
+.footer-green-tiles-row-values-css{
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: #2BC18A;
+  color: white;
+}
+
+.footer-tiles-header-css{
+  justify-content: center;
+  margin-top: 15px;
+  font-size: 12px;
+}
+
+.footer-tiles-header-second-line-css{
+  justify-content: center;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.footer-tiles-values{
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-size: 24px;
+  font-weight: 500;
+  font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+  line-height: 1.2;
+}
+
+.footer-green-tiles-row-css{
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: #2BC18A;
+  color: white;
+}
+
+.slide-title{
+  font-size: 14px;
+  margin-top: 30px;
+  color: #000;
+  font-weight: 500;
+  font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.slide-grid-style{
+  width: 100%;
+  margin-left: 7px;
+  margin-right: 7px;
+}
+
+.slide-card{
+  background-color: white;
+  height: 200px;
+  width: 100%;
+  margin-bottom: 30px;
+  border-radius: 10px;
+}
+
+.slide-sub-title{
+  line-height: 3;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.slide-badge-row{
+  justify-content: flex-end;
+}
+
+.badge-style{
+  width: 50px;
+  height: 50px;
+  line-height: 3.5;
+  margin-right: 10px;
+}
+
+.slide-sub-title-row{
+  height: 60px;
+}
+
+.underline-style{
+  background: lightgray;
+  height: 1px;
+  width: 100%;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: -20px;
+}
+
+.other-locations-style{
+  justify-content: flex-end;
+  width: 100%;
+  margin-right: 25px;
+  color: #387ef5;
+  font-size: 16px;
+}
+
+.location-text-style{
+  color: #000;
+  font-weight: 500;
+  font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+  line-height: 1.2;
+  font-size: 12px;
+  justify-content: center;
+}
+
+.location-value-style{color: #000;
+  font-weight: bold;
+  font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+  line-height: 1.2;
+  font-size: 20px;
+  justify-content: center;
+}
+
+.display-locations-row-style{
+  width: 100%;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.slides-style{
+  --bullet-background-active: black;
+  --bullet-background: black;
+}
+
+.twenty-five-window-grid-style{
+  height: 475px;
+  width: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.heading_25W{
+  margin-top: 25px;
+  color: #000;
+  font-weight: 500;
+  font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+  line-height: 1.2;
+  font-size: 16px;
+  width: 100%;
+  align-items: center;
+}
+
+.btn_25W_header {
+  font-size: 8px;
+  line-height: 90%;
+  transform: rotate(0deg);
+  padding-top: 12px;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.grey {
+  background-color: rgb(217, 217, 217);
+  border-radius: 5px;
+}
+
+.btn-grey{
+  --background: rgb(217, 217, 217);
+}
+
+.col-width-height{
+  width: 50px;
+  height: 50px;
+}
+
+.alignTechnicalExp {
+  background: linear-gradient(to top, rgba(255, 0, 0, 0), white);
+  margin-top: -100%;
+  margin-left: -4.8%;
+  margin-bottom: 75px;
+  border: 0px;
+  border-radius: 5px;
+  height: 250px;
+  width: 23px;
+}
+
+.alignSolutionExp {
+  background: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(255, 255, 255, 1));
+  margin-left: 15%;
+  border: 0px;
+  border-radius: 5px;
+  margin-top: 5px;
+  width: 200px;
+  height: 20px;
+}
+
+.btn-25-window-width-height{
+  width: 100%;
+  height: 50px;
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.btn-25-window-style{
+  margin-right: 0px;
+  margin-left: 0px;
+  width: 100%;
+  height: 50px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  --border-width: 0px;
+  --box-shadow: 0px;
+  --opacity: 1;
+  --color: #444;
+  font-size: 16px;
+  --color-activated: black;
+}
+
+.purple{
+  background-color: rgb(204, 192, 218);
+  border-radius: 5px;
+}
+
+.btn-purple{
+  --background: rgb(204, 192, 218);
+}
+
+.btn-light-green{
+  --background: rgb(102, 255, 102);
+}
+
+.btn-light-yellow{
+  --background: rgb(255, 255, 0);
+}
+
+.orange{
+  background-color: rgb(250, 191, 143);
+  border-radius: 5px;
+}
+
+.btn-orange{
+  --background: rgb(250, 191, 143);
+}
+
+.white{
+  background-color: rgba(250, 250, 250, 1);
+  border-radius: 5px;
+}
+
+.btn-white{
+  --background: rgba(250, 250, 250, 1);
+}
+
+.dark-green{
+  background-color: #92D050;
+  border-radius: 5px;
+}
+
+.btn-dark-green{
+  --background: #92D050;
+}
+
+.dark-yellow{
+  background-color: rgb(255, 192, 0);
+  border-radius: 5px;
+}
+
+.btn-dark-yellow{
+  --background: rgb(255, 192, 0);
+}
+
+.single-slide-style{
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.suppositive {
+  font-size: 9px;
+  vertical-align: top;
+  line-height: 2;
+  color: green;
+  padding-right: 5%;
+  margin-top: -15px;
+}
+
+.supnegative {
+  font-size: 9px;
+  vertical-align: top;
+  line-height: 2;
+  color: red;
+  padding-right: 5%;
+  margin-top: -15px;
+}
+
+.more-details-style{
+  justify-content: center;
+  color: #146397;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.more-details-chart-style{
+  background: white;
+  justify-content: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: #146397;
+  font-size: 14px;
+  padding-bottom: 5px;
+  width: 100%;
+}

@@ -1,0 +1,36 @@
+.employee-details-backgrond{
+    --background: linear-gradient(to top left, #99d6ff, #b3e0ff, #ccebff, white);
+}
+
+.profile-pic-style{
+    height: 100px;
+    width: 100px;
+    margin-top: 10px;
+    border-radius: 50%;
+    background-size: contain;
+}
+
+.employee-name-style{
+    margin-top: 20px;
+    width: 100%; 
+    justify-content: center;
+    color: White;
+    font-size: 20px;
+}
+
+.row-key-style{
+    font-size: 90%;
+    font-weight: bold;    
+}
+
+.row-value-style{
+    font-size: 14px;
+}
+
+.more-info-btn-style{
+    margin-top: 20px; 
+    --background:#444;
+    --color:white;
+    --border-radius: 5px;
+    height: 45px;
+}

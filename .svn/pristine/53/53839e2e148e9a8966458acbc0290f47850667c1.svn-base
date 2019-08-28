@@ -1,0 +1,499 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>My RWF Transactions</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background" #pageScroll>
+
+  <ion-grid>
+    <ion-row *ngFor="let data of listData; let position = index" class="list-row-style">
+      <ion-row>
+        <ion-col size="1" style="align-self: center">
+          <ion-checkbox *ngIf="data.AssociateData.dropdown == 'Selected'" checked="true" disabled="true"></ion-checkbox>
+          <ion-checkbox *ngIf="data.AssociateData.dropdown == 'Shortlisted'"
+            (ionChange)="shortlistedCandidateCheckboxChange($event, data, position)"></ion-checkbox>
+        </ion-col>
+        <ion-col size="9">
+          <ion-row>
+            <ion-col size="5" class="key-style">
+              ID
+            </ion-col>
+            <ion-col class="value-style">
+              {{ data.StaffNo }}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="5" class="key-style">
+              Name
+            </ion-col>
+            <ion-col class="value-style">
+              {{ data.AssociateData.staff_Name }}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="5" class="key-style">
+              Earmarking Reference
+            </ion-col>
+            <ion-col class="value-style" style="width: 200px;">
+              {{ data.AssociateData.earmarking_ref }}
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="data.AssociateRating.length > 0">
+            <ion-col size="5" class="key-style" (click)="ratingsClick(data)">
+              <u><a>Ratings</a></u>
+            </ion-col>
+            <ion-col class="value-style"
+              (click)="ratingDetailsClick(data.AssociateRating[0], data.AssociateData.staff_Name)">
+              <u><a>{{ data.AssociateRating[0]?.finalRating }}</a></u>
+            </ion-col>
+            <ion-col class="value-style"
+              (click)="ratingDetailsClick(data.AssociateRating[1], data.AssociateData.staff_Name)">
+              <u><a>{{ data.AssociateRating[1]?.finalRating }}</a></u>
+            </ion-col>
+            <ion-col class="value-style"
+              (click)="ratingDetailsClick(data.AssociateRating[2], data.AssociateData.staff_Name)">
+              <u><a>{{ data.AssociateRating[2]?.finalRating }}</a></u>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="data.AssociateRating.length == 0">
+            <ion-col size="5" class="key-style">
+              Ratings
+            </ion-col>
+            <ion-col class="value-style">
+              Ratings Not Available
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col size="1" class="edit-icon-col-style">
+          <ion-icon *ngIf="data.AssociateData.dropdown == 'Selected'" name="ios-arrow-dropdown" class="edit-icon-style"
+            (click)="detailViewForSelectedCandidates(data)">
+          </ion-icon>
+          <ion-icon *ngIf="data.AssociateData.dropdown == 'Shortlisted'" name="ios-arrow-dropdown"
+            class="edit-icon-style" (click)="detailViewForShortlistedCandidates(data, position)"></ion-icon>
+        </ion-col>
+        <ion-col size="1" class="cross-icon-col-style">
+          <ion-icon *ngIf="data.AssociateData.dropdown == 'Shortlisted'" name="md-close-circle" class="cross-icon-style"
+            (click)="cancelShortlistBtnClick(data)">
+          </ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-row>
+    <ion-row style="justify-content: center;" *ngIf="selectButtonVisible">
+      <ion-button (click)="submitBtnClick()">Submit</ion-button>
+    </ion-row>
+    <div class="selected-candidates-detailed-view" *ngIf="showDetailsViewForShortlistedCandidates">
+      <ion-row style="justify-content: flex-end;">
+        <ion-icon style="width: 30px;height: 30px;" name="md-close-circle"
+          (click)="shortlistedCandidatesDetailViewCloseButton()"></ion-icon>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Band
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          {{ shortlistedCandidatesDataObject.AssociateData.band }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Location
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          {{ shortlistedCandidatesDataObject.AssociateData.location }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Reporting Manager
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          {{ shortlistedCandidatesDataObject.AssociateData.manager_Id }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Top 3 Project Rated Skills
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          {{ shortlistedCandidatesDataObject.AssociateData.tech_skills }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          HRMS Primary Skill
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          {{ shortlistedCandidatesDataObject.AssociateData.primary_skill }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          HRMS Secondary Skill
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          {{ shortlistedCandidatesDataObject.AssociateData.secondary_skill }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          HRMS Others
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          {{ shortlistedCandidatesDataObject.AssociateData.hrmsskillOthers }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Visa Type
+        </ion-col>
+        <ion-col size="6" class="value-style" *ngIf="shortlistedCandidatesDataObject.AssociateData.visa_type != null">
+          {{ shortlistedCandidatesDataObject.AssociateData.visa_type }}
+        </ion-col>
+        <ion-col size="6" class="value-style" *ngIf="shortlistedCandidatesDataObject.AssociateData.visa_type == null">
+          NA
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Visa Status
+        </ion-col>
+        <ion-col size="6" class="value-style" *ngIf="shortlistedCandidatesDataObject.AssociateData.visa_status != null">
+          {{ shortlistedCandidatesDataObject.AssociateData.visa_status }}
+        </ion-col>
+        <ion-col size="6" class="value-style" *ngIf="shortlistedCandidatesDataObject.AssociateData.visa_status == null">
+          NA
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Total Exp (Months)
+        </ion-col>
+        <ion-col size="6" class="value-style"
+          *ngIf="shortlistedCandidatesDataObject.AssociateData.total_Experience != null">
+          {{ shortlistedCandidatesDataObject.AssociateData.total_Experience }}
+        </ion-col>
+        <ion-col size="6" class="value-style"
+          *ngIf="shortlistedCandidatesDataObject.AssociateData.total_Experience == null">
+          NA
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Release Date
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          {{ shortlistedCandidatesDataObject.AssociateData.release_DATE }}
+        </ion-col>
+      </ion-row>
+      <ion-row style="align-items: center;">
+        <ion-col size="6" class="key-style">
+          Resource Earmarking
+        </ion-col>
+        <ion-col size="6">
+          <ion-select class="dropdown-style" interface="popover">
+            <ion-select-option value="selected" selected="true">Selected</ion-select-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+      <ion-row style="align-items: center;">
+        <ion-col size="6" class="key-style">
+          Comments
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          <ion-select class="dropdown-style" interface="popover">
+            <ion-select-option value="selected" selected="true">
+              {{ shortlistedCandidatesDataObject.AssociateData.dropdown1 }}</ion-select-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+      <ion-row style="align-items: center">
+        <ion-col size="6" class="key-style">
+          Requirement Date
+        </ion-col>
+        <ion-col size="5" class="value-style">
+          <ion-datetime #picker display-format="YYYY-MM-DD" picker-format="MMMDDYYYY"
+            style="--placeholder-color: #444; padding-left: 0px;" [min]="todaysData"
+            [(ngModel)]="shortlistedCandidatesDataObject.AssociateData.date_release">
+          </ion-datetime>
+          <!-- {{ shortlistedCandidatesDataObject.AssociateData.date_release }} -->
+        </ion-col>
+        <ion-col size="1" style="padding-top: 0px; padding-right: 0px; 
+        padding-bottom: 0px; padding-left: 0px;">
+          <ion-icon name="md-calendar" style="width: 25px; height: 25px;" (click)="showDatePicker()"></ion-icon>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Earmarked By
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          {{ shortlistedCandidatesDataObject.AssociateData.manager1_Name }}
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="selected-candidates-detailed-view" *ngIf="showDetailsViewForSelectedCandidates">
+      <ion-row style="justify-content: flex-end;">
+        <ion-icon style="width: 30px;height: 30px;" name="md-close-circle"
+          (click)="selectedCandidatesDetailViewCloseButton()"></ion-icon>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Band
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          {{ selectedCandidatesDataObject.AssociateData.band }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Location
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          {{ selectedCandidatesDataObject.AssociateData.location }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Reporting Manager
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          {{ selectedCandidatesDataObject.AssociateData.manager_Id }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Top 3 Project Rated Skills
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          {{ selectedCandidatesDataObject.AssociateData.tech_skills }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          HRMS Primary Skill
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          {{ selectedCandidatesDataObject.AssociateData.primary_skill }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          HRMS Secondary Skill
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          {{ selectedCandidatesDataObject.AssociateData.secondary_skill }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          HRMS Others
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          {{ selectedCandidatesDataObject.AssociateData.hrmsskillOthers }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Visa Type
+        </ion-col>
+        <ion-col size="6" class="value-style" *ngIf="selectedCandidatesDataObject.AssociateData.visa_type != null">
+          {{ selectedCandidatesDataObject.AssociateData.visa_type }}
+        </ion-col>
+        <ion-col size="6" class="value-style" *ngIf="selectedCandidatesDataObject.AssociateData.visa_type == null">
+          NA
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Visa Status
+        </ion-col>
+        <ion-col size="6" class="value-style" *ngIf="selectedCandidatesDataObject.AssociateData.visa_status != null">
+          {{ selectedCandidatesDataObject.AssociateData.visa_status }}
+        </ion-col>
+        <ion-col size="6" class="value-style" *ngIf="selectedCandidatesDataObject.AssociateData.visa_status == null">
+          NA
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Total Exp (Months)
+        </ion-col>
+        <ion-col size="6" class="value-style"
+          *ngIf="selectedCandidatesDataObject.AssociateData.total_Experience != null">
+          {{ selectedCandidatesDataObject.AssociateData.total_Experience }}
+        </ion-col>
+        <ion-col size="6" class="value-style"
+          *ngIf="selectedCandidatesDataObject.AssociateData.total_Experience == null">
+          NA
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Release Date
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          {{ selectedCandidatesDataObject.AssociateData.release_DATE }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Resource Earmarking
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          {{ selectedCandidatesDataObject.AssociateData.dropdown }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Comments
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          {{ selectedCandidatesDataObject.AssociateData.dropdown1 }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Requirement Date
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          {{ selectedCandidatesDataObject.AssociateData.date_release }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Earmarked By
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          {{ selectedCandidatesDataObject.AssociateData.manager1_Name }}
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="graph-div-style" *ngIf="showRatingsGraph">
+      <ion-row style="justify-content: flex-end;">
+        <ion-icon style="width: 30px;height: 30px;" name="md-close-circle" (click)="graphCloseButton()"></ion-icon>
+      </ion-row>
+      <ion-row style="padding-bottom: 10px;">
+        <fusioncharts [width]="chartWidth" [height]="chartHeight" [type]="chartType" [dataFormat]="chartDataFormat"
+          [dataSource]="lineChartDataSource">
+        </fusioncharts>
+      </ion-row>
+    </div>
+    <div class="rating-details-div-style" *ngIf="showRatingDetails">
+      <ion-row style="justify-content: flex-end;">
+        <ion-icon style="width: 30px;height: 30px;" name="md-close-circle" (click)="ratingDetailsCloseButton()">
+        </ion-icon>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="row-key-style">
+          ID
+        </ion-col>
+        <ion-col size="6" class="row-value-style">
+          {{ ratingDetailsApiResponse.staffNo }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="row-key-style">
+          Name
+        </ion-col>
+        <ion-col size="6" class="row-value-style">
+          {{ ratingDetailsApiResponse.staffName }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="row-key-style">
+          Project Name
+        </ion-col>
+        <ion-col size="6" class="row-value-style">
+          {{ ratingDetailsApiResponse.projectName }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="row-key-style">
+          Track Name
+        </ion-col>
+        <ion-col size="6" class="row-value-style">
+          {{ ratingDetailsApiResponse.trackname }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="row-key-style">
+          SME Score
+        </ion-col>
+        <ion-col size="6" class="row-value-style">
+          {{ ratingDetailsApiResponse.updatedBy.rating }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="row-key-style">
+          Evaluated by
+        </ion-col>
+        <ion-col size="6" class="row-value-style">
+          {{ ratingDetailsApiResponse.updatedBy.manager }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="row-key-style">
+          Evaluated on
+        </ion-col>
+        <ion-col size="6" class="row-value-style">
+          {{ ratingDetailsApiResponse.updatedBy.timeStamp }}
+        </ion-col>
+      </ion-row>
+      <ion-row class="row-key-style" style="margin-top: 20px; margin-left: 5px;">
+        Technical Evaluation
+      </ion-row>
+      <ion-row *ngFor="let techData of technicalEvalutionData">
+        <ion-col size="4" class="row-value-style">
+          {{ techData.porjectAreaName }}
+        </ion-col>
+        <ion-col size="7" class="row-value-style">
+          <ion-row *ngFor="let technology of techData.projectAreaValuePOList">
+            {{ technology.porjectAreaValueName }}
+          </ion-row>
+        </ion-col>
+        <ion-col size="1" class="row-value-style">
+          <ion-row *ngFor="let technology of techData.projectAreaValuePOList">
+            {{ technology.rating | number:'1.1-1' }}
+          </ion-row>
+        </ion-col>
+      </ion-row>
+      <ion-row class="row-key-style" style="margin-top: 20px; margin-left: 5px;">
+        Functional Evaluation
+      </ion-row>
+      <ion-row *ngFor="let funcData of functionalEvalutionData1">
+        <ion-col size="4" class="row-value-style">
+          {{ funcData.processAreaDomainName }}
+        </ion-col>
+        <ion-col size="7" class="row-value-style">
+          <ion-row *ngFor="let domain of funcData.weightedAreaDomainValuePOList">
+            {{ domain.processAreaDomainValueName }}
+          </ion-row>
+        </ion-col>
+        <ion-col size="1" class="row-value-style">
+          <ion-row *ngFor="let domain of funcData.weightedAreaDomainValuePOList">
+            {{ domain.score | number:'1.1-1' }}
+          </ion-row>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let funcData of functionalEvalutionData2">
+        <ion-col size="4" class="row-value-style">
+          {{ funcData.processAreaDomainName }}
+        </ion-col>
+        <ion-col size="7" class="row-value-style">
+          <ion-row *ngFor="let domain of funcData.weightedAreaDomainValuePOList">
+            {{ domain.processAreaDomainValueName }}
+          </ion-row>
+        </ion-col>
+        <ion-col size="1" class="row-value-style">
+          <ion-row *ngFor="let domain of funcData.weightedAreaDomainValuePOList">
+            {{ domain.score | number:'1.1-1' }}
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+</ion-content>

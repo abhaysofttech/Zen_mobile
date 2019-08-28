@@ -1,0 +1,338 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Demand List</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="demand-list"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background">
+  <ion-row>
+    <ion-col size="6" class="key-style">
+      Demand ID
+    </ion-col>
+    <ion-col size="6" class="value-style">
+      {{data.demfcastid}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="key-style">
+      Opportunity ID
+    </ion-col>
+    <ion-col size="6" class="value-style">
+      {{data.opportunityidsfdc}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="key-style" style="align-self: center">
+      Opportunity Desc
+    </ion-col>
+    <ion-col size="6" class="value-style" *ngIf="empRole=='DH' || empRole=='BU' || empRole=='PGM' || empRole=='MGR'">
+      {{data.opportunitydesc}}
+    </ion-col>
+    <ion-col size="6" *ngIf="empRole=='EM'">
+      <ion-input type="text" style="--background:white; text-align:left;width: 100%;padding: 8px 20px;margin: 2px 0;
+        border:none;border-bottom: 1px solid blue;;box-sizing: border-box;" placeholder="{{data.opportunitydesc}}"
+        (ionChange)="opportunityDescChangeEvent($event)">
+      </ion-input>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="key-style">
+      Client Manager
+    </ion-col>
+    <ion-col size="6" class="value-style">
+      {{data.clientmanager}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="key-style">
+      Customer Dept/Program
+    </ion-col>
+    <ion-col size="6" class="value-style">
+      {{data.customerdept}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="key-style" style="align-self: center">
+      Assigned To
+    </ion-col>
+    <ion-col size="6" class="value-style">
+      {{data.assignee}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="key-style">
+      Category
+    </ion-col>
+    <ion-col size="6" class="value-style">
+      {{data.category}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="key-style">
+      Created By(EM)
+    </ion-col>
+    <ion-col size="6" class="value-style">
+      {{data.emstaffid}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="key-style">
+      Created On
+    </ion-col>
+    <ion-col size="6" class="value-style">
+      {{data.creationdate}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="key-style">
+      Offshore Delivery Center Head
+    </ion-col>
+    <ion-col size="6" class="value-style">
+      {{data.odch}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="key-style">
+      Engagement Manager
+    </ion-col>
+    <ion-col size="6" class="value-style">
+      {{data.emstaffid}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="key-style" style="align-self: center;">
+      Delivery Head
+    </ion-col>
+    <ion-col size="6" *ngIf="empRole=='BU'">
+      <ion-select placeholder="Select" interface="popover" style="padding-left: 0px;"
+        (ionChange)="onDhChange($event.target.value)">
+        <ion-select-option value="">
+          {{dhStaffID}}
+        </ion-select-option>
+        <ion-select-option *ngFor="let dh of dhListData" [value]="dh">
+          {{ dh }}
+        </ion-select-option>
+      </ion-select>
+    </ion-col>
+    <ion-col size="6" class="key-style" *ngIf="empRole=='EM' || empRole=='DH' || empRole=='PGM' || empRole=='MGR'">
+      {{dhStaffID}}
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="dhStaffID && empRole=='BU'">
+    <ion-col size="6" class="key-style">
+
+    </ion-col>
+    <ion-col size="6" class="key-style">
+      {{dhStaffID | uppercase}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="key-style" style="align-self: center;">
+      Program Manager
+    </ion-col>
+    <ion-col size="6" *ngIf="empRole=='DH' || empRole=='BU'">
+      <ion-select interface="popover" style="padding-left: 0px;" (ionChange)="onPmChange($event.target.value)">
+        <ion-select-option value="" selected="{{pgmStaffID}}">
+          Select PGM
+        </ion-select-option>
+        <ion-select-option *ngFor="let pgm of pgmListData" [value]="pgm">
+          {{ pgm }}
+        </ion-select-option>
+      </ion-select>
+    </ion-col>
+    <ion-col size="6" class="value-style" *ngIf="empRole=='EM' || empRole=='PGM' || empRole=='MGR'">
+      {{pgmStaffID}}
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="pgmStaffID && empRole=='DH' || empRole=='BU'">
+    <ion-col size="6" class="key-style">
+
+    </ion-col>
+    <ion-col size="6" class="key-style">
+      {{pgmStaffID}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="key-style">
+      Skill Family
+    </ion-col>
+    <ion-col size="6" class="value-style">
+      {{data.skillfamily}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="key-style">
+      Primary Skill
+    </ion-col>
+    <ion-col size="6" class="value-style">
+      {{data.primaryskillset}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="key-style">
+      Secondary Skill
+    </ion-col>
+    <ion-col size="6" class="value-style">
+      {{data.secondaryskillset}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="key-style">
+      Location
+    </ion-col>
+    <ion-col size="6" class="value-style">
+      {{data.location}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="key-style">
+      Date Demand Received
+    </ion-col>
+    <ion-col size="6" class="value-style">
+      {{data.demandreceiveddate}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="key-style">
+      Ramp Down(Yes/No)
+    </ion-col>
+    <ion-col size="6" class="value-style">
+      {{data.rampdown}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="key-style" style="align-self: center">
+      Demand Status
+    </ion-col>
+    <ion-col size="6" *ngIf="empRole=='EM'">
+      <ion-select interface="popover" style="padding-left: 0px;" (ionChange)="onDeamandChange($event.target.value)">
+        <ion-select-option value="" selected="{{data.demandstatus}}">Select Status</ion-select-option>
+        <ion-select-option value="Open">Open</ion-select-option>
+        <ion-select-option value="Closed">Closed</ion-select-option>
+        <ion-select-option value="Cancelled">Cancelled</ion-select-option>
+      </ion-select>
+    </ion-col>
+    <ion-col size="6" class="value-style" *ngIf="empRole=='DH' || empRole=='BU' || empRole=='PGM' || empRole=='MGR'">
+      {{data.demandstatus}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="key-style">
+
+    </ion-col>
+    <ion-col size="6" class="value-style" *ngIf="empRole=='EM'">
+      {{data.demandstatus}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="key-style" style="align-self: center">
+      Remarks
+    </ion-col>
+    <ion-col size="6" *ngIf="empRole=='EM'">
+      <ion-input type="text" style="--background:white; text-align:left;width: 100%;padding: 8px 20px;margin: 2px 0;
+          border:none;border-bottom: 1px solid blue;;box-sizing: border-box;" placeholder="{{data.remarks}}"
+        (ionChange)="remartsChangeEvent($event)">
+      </ion-input>
+    </ion-col>
+    <ion-col size="6" class="value-style" *ngIf="empRole=='DH' || empRole=='BU' || empRole=='PGM' || empRole=='MGR'">
+      {{data.remarks}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="key-style">
+      Probability (in %)
+    </ion-col>
+    <ion-col size="6" *ngIf="empRole=='EM'">
+      <ion-input type="number" min="1" max="100" style="--background:white; text-align:left;width: 100%;padding: 8px 20px;margin: 2px 0;
+            border:none;border-bottom: 1px solid blue;;box-sizing: border-box;" placeholder="{{data.probability}}"
+        (ionChange)="probabilityChangeEvent($event)">
+      </ion-input>
+    </ion-col>
+    <ion-col size="6" class="value-style" *ngIf="empRole=='DH' || empRole=='BU' || empRole=='PGM' || empRole=='MGR'">
+      {{data.probability}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="key-style">
+      No of Positions
+    </ion-col>
+    <ion-col size="6" *ngIf="empRole=='EM'">
+      <ion-input type="number" min="1" style="--background:white; text-align:left;width: 100%;padding: 8px 20px;margin: 2px 0;
+              border:none;border-bottom: 1px solid blue;;box-sizing: border-box;"
+        placeholder="{{data.numberofpositions}}" (ionChange)="numberOfPositionsChangeEvent($event)">
+      </ion-input>
+    </ion-col>
+    <ion-col size="6" class="value-style" *ngIf="empRole=='DH' || empRole=='BU' || empRole=='PGM' || empRole=='MGR'">
+      {{data.numberofpositions}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="key-style">
+      Billing Loss($)
+    </ion-col>
+    <ion-col size="6" class="value-style" *ngIf="empRole=='DH' || empRole=='BU' || empRole=='PGM' || empRole=='MGR'">
+      {{data.billingloss}}$
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="key-style">
+      Billing Loss(days)
+    </ion-col>
+    <ion-col size="6" class="value-style" *ngIf="empRole=='DH' || empRole=='BU' || empRole=='PGM' || empRole=='MGR'">
+      {{data.billing_loss_days}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="key-style">
+      Billing Rate
+    </ion-col>
+    <ion-col size="6" *ngIf="empRole=='EM'">
+      <ion-input type="number" step="0.01" min="1" style="--background:white; text-align:left;width: 100%;padding: 8px 20px;margin: 2px 0;
+                border:none;border-bottom: 1px solid blue;;box-sizing: border-box;" placeholder="{{data.billingrate}}"
+        (ionChange)="billingRateChangeEvent($event)">
+      </ion-input>
+    </ion-col>
+    <ion-col size="6" class="value-style" *ngIf="empRole=='DH' || empRole=='BU' || empRole=='PGM' || empRole=='MGR'">
+      {{data.billingrate}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="key-style">
+      Fulfilled Status
+    </ion-col>
+    <ion-col size="6" *ngIf="empRole=='EM'">
+      <ion-input type="number" step="0.01" min="1" style="--background:white; text-align:left;width: 100%;padding: 8px 20px;margin: 2px 0;
+                  border:none;border-bottom: 1px solid blue;;box-sizing: border-box;"
+        placeholder="{{data.numberofpositionsfilled}}" (ionChange)="numberOfPositionsFilledChangeEvent($event)">
+      </ion-input>
+    </ion-col>
+    <ion-col size="6" class="value-style" *ngIf="empRole=='DH' || empRole=='BU' || empRole=='PGM' || empRole=='MGR'">
+      {{data.numberofpositionsfilled}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="key-style" style="align-self: center">
+      Billing Start Date
+    </ion-col>
+    <ion-col size="6" *ngIf="empRole=='EM'">
+      <ion-datetime display-format="YYYY/MM/DD" picker-format="MMMDDYYYY" placeholder="Select Date"
+        style="--placeholder-color: #444; padding-left: 0px;" (ionChange)="billingStartDateChangeEvent($event)">
+      </ion-datetime>
+    </ion-col>
+    <ion-col size="6" class="value-style">
+      {{data.billingstartdate}}
+    </ion-col>
+  </ion-row>
+<!--  Not implemented so commenting time being 
+  <ion-row>
+    <ion-col size="6" *ngIf='probability>=75'>
+      <ion-button expand="block" style="height: 45px;" (click)="addSrfBtnClick()">Add SRF</ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button expand="block" style="height: 45px;" (click)="updateBtnClick()">Update</ion-button>
+    </ion-col>
+  </ion-row> -->
+</ion-content>

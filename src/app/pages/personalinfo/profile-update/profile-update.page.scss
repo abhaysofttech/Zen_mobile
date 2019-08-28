@@ -1,0 +1,146 @@
+.background {
+    --background: linear-gradient(to top left, #99d6ff, #b3e0ff, #ccebff, white);
+}
+
+.segment {
+    display: flex;
+    overflow-x: scroll;
+    width: auto;
+}
+
+.icon-border {
+    padding: 1px 3px 1px 3px;
+    border: 1px solid #194a72;border-radius:50%;
+}
+
+.opensansfontregular{
+    font-family: 'Open Sans';
+    font-weight: normal;
+}
+
+.image-row-style {
+    width: 100%;
+    justify-content: center;
+}
+
+.image-style {
+    width: 96px;
+    height: 96px;
+    justify-content: center;
+    border-radius: 100px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.7);
+    text-align: center;
+}
+
+
+img {
+    border:solid 2px;
+    border-bottom-color:#ffe;
+    border-left-color:#eed;
+    border-right-color:#eed;
+    border-top-color:#ccb;
+    max-height:100%;
+    max-width:100%;
+  }
+  
+  .frame {
+    background-color:#ddc;
+    border:solid 5vmin #eee;
+    border-bottom-color:#fff;
+    border-left-color:#eee;
+    border-radius:2px;
+    border-right-color:#eee;
+    border-top-color:#ddd;
+    box-shadow:0 0 5px 0 rgba(0,0,0,.25) inset, 0 5px 10px 5px rgba(0,0,0,.25);
+    box-sizing:border-box;
+    display:inline-block;
+    // margin:10vh 10vw;
+    height:15vh;
+    position:relative;
+    text-align:center;
+    &:before {
+      border-radius:2px;
+      bottom:-2vmin;
+      box-shadow:0 2px 5px 0 rgba(0,0,0,.25) inset;
+      content:"";
+      left:-2vmin;
+      position:absolute;
+      right:-2vmin;
+      top:-2vmin;
+    }
+    &:after {
+      border-radius:2px;
+      bottom:-2.5vmin;
+      box-shadow: 0 2px 5px 0 rgba(0,0,0,.25);
+      content:"";
+      left:-2.5vmin;
+      position:absolute;
+      right:-2.5vmin;
+      top:-2.5vmin;
+    }
+  }
+
+.grid-style {
+    margin-top: 50px;
+}
+
+.grid-style-visa {
+    margin-top: 20px;
+}
+
+.key-style {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.value-style {
+    font-size: 14px;
+}
+
+.row-style {
+    justify-content: center;
+    color: white;
+    font-size: 14px;
+}
+
+.row-style2 {
+    justify-content: center;
+    color: #444;
+    font-size: 14px;
+}
+
+
+.page-header-style{
+    background: #444;
+    height: 50px;
+    border-radius: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.tile-header-style{
+    align-self: center;
+    color: #444;
+}
+
+.plus-symbol-style{
+    font-size: 25px;
+    font-weight: 500;
+    color: #444;
+    align-self: center;
+}
+
+.textfontsize{
+    font-size: 12px;
+}
+
+.rowpad{
+    padding: 5px;
+}
+
+.verticalscroll{
+    max-height: 120px;
+    overflow: scroll;
+}

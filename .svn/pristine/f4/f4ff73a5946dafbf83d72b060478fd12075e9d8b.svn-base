@@ -1,0 +1,255 @@
+.background{
+    --background: linear-gradient(to top left, #99d6ff, #b3e0ff, #ccebff, white);
+}
+
+.profile-pic-style{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin-top: 10px;
+    background-size: contain;
+}
+
+.employee-name-style{
+    margin-top: 20px;
+    width: 100%; 
+    justify-content: center;
+    color: #444;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.phone-email-icon-style{
+    width: 30px;
+    height: 30px;
+    background: #1F4C8F;
+    color: white;
+    padding: 7px;
+    border-radius: 50px;
+}
+
+.text-style{
+    font-weight: bold;
+    font-size: 14px;
+    color: #444;
+}
+
+.tab-style{
+    background: #03A9F4;
+    height: 35px;
+    align-items: center;
+    padding: 10px;
+    margin-top: 10px;
+    width: fit-content;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    color: white;
+}
+
+.addition-info-div-style{
+    background: white;
+    padding: 10px;
+    height: 50px;
+    align-items: center;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: 14px;
+}
+
+.expertise-div-style{
+    background: white;
+    padding: 10px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.slide-style{
+    background:white;
+}
+
+.slides-style{
+    --bullet-background-active: black;
+    --bullet-background: black;
+    padding-bottom: 50px;
+}
+
+
+.peer-profile-pic-row-style{
+    justify-content: center;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.peer-profile-pic-style{
+    width: 100px;
+    height: 100px;
+    border: 2px solid #03A9F4;
+    object-fit: cover;
+}
+
+.peer-name-style{
+    justify-content: center;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #444;
+}
+
+.peer-designation-style{
+    justify-content: center;
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #444;
+}
+
+.peer-staffid-style{
+    justify-content: center;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #444;
+}
+
+.card-style{
+    background: white;
+    width: 200px;
+    height: 220px;
+}
+
+.list-style{
+    position: absolute;
+    width: inherit;
+    margin-right: 20px;
+    overflow-y: scroll;
+    max-height: 150%;
+    z-index: 999;
+}
+
+.user-profile {
+    margin : 0 auto;
+    max-width : 700px;
+}
+    
+.user-profile:after{
+    clear: both;
+    content: ".";
+    display: block;
+}
+    
+.inner  {
+    display:inline-block;
+}
+    
+.autoCompleteSearch{
+    /*  float :right;*/
+}
+    
+.profile-img{
+    width : 100px;
+    height : 120px;
+    border: 3px solid #03A9F4;
+}
+     
+.profile-img-band-S0{
+    border: 3px solid #990000;
+}
+    
+.profile-img-tree{
+    width : 30px;
+    height : 30px;
+    border: 2px solid #03A9F4;
+    text-align: center;
+    vertical-align: middle;
+}
+     
+.profile-img-tree-band-S0{
+border: 2px solid #990000;
+}
+   
+.div-template-tree{
+    margin: 3px;
+}
+    
+.contact-img{
+    max-width : 60px;
+    max-height: 30px;
+}
+  
+.profile-div {
+    margin-bottom: 5px;
+    border: 1px solid #D5D5D5;
+}
+    
+.profile-left-div {
+    /* margin : 2px;*/
+    text-align: center;
+    border-right: 1px solid #D5D5D5;
+}
+ 
+.user-info-div {
+    border-top: 1px solid #D5D5D5;
+}
+        
+.user-info-left-div {
+    
+}
+    
+.user-info-right-div {
+   
+}
+  
+.manager-div {
+    border-top: 1px solid #D5D5D5;
+}
+
+/*  .something {
+      width: 500px;
+      margin: 20px auto;
+      padding: 50px;
+      border: solid blue 10px;
+      -webkit-box-sizing: border-box;
+         -moz-box-sizing: border-box;
+              box-sizing: border-box;
+    }
+    */
+a.tree-click:hover{
+    cursor: pointer;
+    cursor: hand;
+}
+
+.container-tab-div {
+    border: 1px solid #D5D5D5;
+}
+    
+.container-tab-div:after{
+    clear: both;
+    content: ".";
+    display: block;
+}
+
+    
+.ui-treenode-content{
+    border-bottom: 1px solid #D5D5D5;
+}
+
+.ui-tree {
+    width: 25em;
+}
+ 
+.ui-tree .ui-treenode-children {
+     padding: 0 0 0 20px;
+}
+
+ @media (max-width: 645px) {
+ .ui-tabview.ui-tabview-top > .ui-tabview-nav li {
+         width: 100%;
+     }	
+ }
+
+

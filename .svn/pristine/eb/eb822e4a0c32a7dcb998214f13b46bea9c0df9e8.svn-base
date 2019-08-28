@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title class="opensansfontregular">Add Domain Knowledge</ion-title>
+    <ion-buttons slot="end">
+      <ion-col (click)="submitDomainDetails()" style="padding-right: 15px;"><i class="lni-save"></i>
+      </ion-col>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding class="background opensansfontregular">
+  <ion-grid class="textfontsize">
+    <ion-row no-padding>
+      <ion-col size='12' no-padding>
+          <ion-item class="opensansfontregular" (click)="toggleItem(1)">
+              <ion-label>Domain Name :{{selectedDomain.domainname}}</ion-label>
+            </ion-item>
+            <ion-list *ngIf="showGroup1" class="opensansfontregular">
+              <ion-radio-group>
+                <ion-item *ngFor="let domain of domainsData" (click)="toggleItem(1)" (click)="selectDomain($event.target.value)">
+                  <ion-label>{{domain.domainname}}</ion-label>
+                  <ion-radio slot="start" [value]="domain" checked></ion-radio>
+                </ion-item>
+              </ion-radio-group>
+            </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row no-padding>
+      <ion-col size='12' no-padding>
+        <ion-item>
+          <ion-label>Domain Exp (months) :</ion-label>
+          <ion-input style="text-align: right" type="number" (ionChange)="selectedDate(expMonths)" [(ngModel)]='expMonths'></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col offset="8" size="4" style="height:32px;font-size: 16px;text-align: right;" (click)="addDomain()">
+        <u>+Add Domain</u>
+      </ion-col>
+    </ion-row>
+    <ion-row class="page-header-style">
+      <ion-col size='6' class="column-style">Domain Name</ion-col>
+      <ion-col size='6' class="column-style">Domain Experience (In months)</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let domain of domainArr">
+      <ion-col size='6'>
+        {{domain.domainname}}
+      </ion-col>
+      <ion-col size='6' class="centeralign">
+        {{domain.domainexp}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

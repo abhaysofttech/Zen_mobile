@@ -1,0 +1,21 @@
+.background{
+    --background: linear-gradient(to top left, #99d6ff, #b3e0ff, #ccebff, white);
+}
+
+.row-key-style{
+    font-size: 90%;
+    font-weight: bold;    
+    align-self: center;
+}
+
+.list-style{
+    position: absolute;
+    width: 100%;
+    margin-right: 20px;
+    overflow-y: scroll;
+    max-height: 400%;
+    z-index: 999;
+    background: transparent;
+}
+
+.searchbar-search-icon { display:none!important; width:0; height:0; }

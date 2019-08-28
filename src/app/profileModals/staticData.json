@@ -1,0 +1,661 @@
+[
+    0: {
+        "staffNo": "24257",
+        "staffName": "MURALI MOHANREDDY GOGIREDDY",
+        "joinDate": "2008-03-03",
+        "odcJoinDate": null,
+        "industryStartDate": "2003-07-07",
+        "educationQualification": null,
+        "band": "E1",
+        "role": "BUSINESS ANALYST",
+        "billable": "Billable",
+        "location": null,
+        "projectName": "AB_AV_GSLO_GTST_BA_Q4FY18_EE",
+        "userId": "MG24257",
+        "businessTrackName": "CAS APPLICATION MANAGEMENT",
+        "tier": "4",
+        "primarySkills": null,
+        "lastUpdatedOn": null,
+        "lastUpdatedBy": null,
+        "passportNumber": "expired",
+        "passportExpiryDate": "2014-11-01",
+        "onsite": null,
+        "passportValid": null,
+        "secondarySkill": null,
+        "technicalSkill": null,
+        "domainKnowledge": null,
+        "onsiteExperience": 2.0,
+        "contactNumber": "+919028750141",
+        "emergencyContactNumber": "+919028750141",
+        "localAddress": "A-32, Karan Aashiyana, wadagaon sheri, pune- 411014",
+        "permanentAddress": "Narasaraopet, Guntur (Dt.) A.P. - 522601",
+        "travelReadiness": "Y",
+        "passportIssueDate": "2006-11-01",
+        "numberOfVisa": 1,
+        "certifications": null,
+        "desklocation": "F-1089",
+        "assetdetail": "Laptop",
+        "gender": "M",
+        "managerName": "SOWJANYA KASIBHOTLA"
+    },
+    1: [{
+        "techSkillName": "Business Writting",
+        "techSkillfamilyName": null,
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": null,
+        "lastupdatedate": null,
+        "type": null,
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "Team Management",
+        "techSkillfamilyName": null,
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": null,
+        "lastupdatedate": null,
+        "type": null,
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "Business Analysis",
+        "techSkillfamilyName": null,
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": null,
+        "lastupdatedate": null,
+        "type": null,
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "agile",
+        "techSkillfamilyName": null,
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": null,
+        "lastupdatedate": null,
+        "type": null,
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "Scrum",
+        "techSkillfamilyName": null,
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": null,
+        "lastupdatedate": null,
+        "type": null,
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "KDF",
+        "techSkillfamilyName": null,
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": null,
+        "lastupdatedate": null,
+        "type": null,
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "MongoDB",
+        "techSkillfamilyName": "DB",
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": null,
+        "lastupdatedate": null,
+        "type": null,
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "Angular JS",
+        "techSkillfamilyName": "Scripting Languages",
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": null,
+        "lastupdatedate": null,
+        "type": null,
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "Manual Testing",
+        "techSkillfamilyName": "Testing",
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": null,
+        "lastupdatedate": null,
+        "type": null,
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "Java - JavaScript",
+        "techSkillfamilyName": "Java",
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": "60",
+        "lastupdatedate": "2018-04-24",
+        "type": null,
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "Java - Struts",
+        "techSkillfamilyName": "Java",
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": "60",
+        "lastupdatedate": "2018-04-24",
+        "type": null,
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "Java - Core",
+        "techSkillfamilyName": "Java",
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": "108",
+        "lastupdatedate": "2018-04-24",
+        "type": null,
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "Java - JSP",
+        "techSkillfamilyName": "Java",
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": "60",
+        "lastupdatedate": "2018-04-24",
+        "type": null,
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "Angular JS_Java",
+        "techSkillfamilyName": "Java",
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": "15",
+        "lastupdatedate": "2018-04-24",
+        "type": "Tertiary",
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "J2EE",
+        "techSkillfamilyName": "Java",
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": "108",
+        "lastupdatedate": "2018-04-24",
+        "type": null,
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "Java - Weblogic",
+        "techSkillfamilyName": "Java",
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": "60",
+        "lastupdatedate": "2018-04-24",
+        "type": null,
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "Java - JavaScript",
+        "techSkillfamilyName": "Java",
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": "60",
+        "lastupdatedate": "2018-04-24",
+        "type": null,
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "Oracle PL/SQL",
+        "techSkillfamilyName": "AMS-Oracle",
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": "70",
+        "lastupdatedate": "2018-04-24",
+        "type": "Secondary",
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "Agile Coach",
+        "techSkillfamilyName": "Agile",
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": "20",
+        "lastupdatedate": "2018-04-24",
+        "type": "Secondary",
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "UI Testing",
+        "techSkillfamilyName": "E COMMERCE TESTING",
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": "12",
+        "lastupdatedate": "2018-04-24",
+        "type": null,
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "Java Servlets",
+        "techSkillfamilyName": "Java",
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": "108",
+        "lastupdatedate": "2018-04-24",
+        "type": null,
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "Angular JS_Java",
+        "techSkillfamilyName": "Java",
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": "15",
+        "lastupdatedate": "2018-04-24",
+        "type": "Tertiary",
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "Java - JSP",
+        "techSkillfamilyName": "Java",
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": "60",
+        "lastupdatedate": "2018-04-24",
+        "type": null,
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "J2EE",
+        "techSkillfamilyName": "Java",
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": "108",
+        "lastupdatedate": "2018-04-24",
+        "type": null,
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "Remedy",
+        "techSkillfamilyName": "Open Source",
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": "130",
+        "lastupdatedate": "2018-04-24",
+        "type": "Secondary",
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "Java Servlets",
+        "techSkillfamilyName": "Java",
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": "108",
+        "lastupdatedate": "2018-04-24",
+        "type": null,
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "Java - Weblogic",
+        "techSkillfamilyName": "Java",
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": "60",
+        "lastupdatedate": "2018-04-24",
+        "type": null,
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "Java - Core",
+        "techSkillfamilyName": "Java",
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": "108",
+        "lastupdatedate": "2018-04-24",
+        "type": null,
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "Java - Struts",
+        "techSkillfamilyName": "Java",
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": "60",
+        "lastupdatedate": "2018-04-24",
+        "type": null,
+        "primaryseconadry": null
+    }, {
+        "techSkillName": "Quality Center",
+        "techSkillfamilyName": "Testing tools",
+        "techSkillId": null,
+        "techSkillFamilyId": null,
+        "selfrating": null,
+        "selfratingPK": null,
+        "primary": null,
+        "secondary": null,
+        "category": null,
+        "certification_name": null,
+        "completion_date": null,
+        "certificateid": null,
+        "skillexpinMonth": "72",
+        "lastupdatedate": "2018-04-24",
+        "type": null,
+        "primaryseconadry": null
+    }]
+    2: [{
+            "
+            techSkillName ":null,"
+            techSkillfamilyName ":null,"
+            techSkillId ":null,"
+            techSkillFamilyId ":null,"
+            selfrating ":null,"
+            selfratingPK ":null,"
+            primary ":null,"
+            secondary ":null,"
+            category ":"
+            JAVA SE ","
+            certification_name ":"
+            OCJP ","
+            completion_date ":"
+            2019 - 05 - 13 ","
+            certificateid ":"
+            43 ","
+            skillexpinMonth ":null,"
+            lastupdatedate ":null,"
+            type ":null,"
+            primaryseconadry ":null},{"
+            tßechSkillName ":null,"
+            techSkillfamilyName ":null,"
+            techSkillId ":null,"
+            techSkillFamilyId ":null,"
+            selfrating ":null,"
+            selfratingPK ":null,"
+            primary ":null,"
+            secondary ":null,"
+            category ":"
+            JAVA EE ","
+            certification_name ":"
+            OCWCD ","
+            completion_date ":"
+            2019 - 05 - 13 ","
+            certificateid ":"
+            44 ","
+            skillexpinMonth ":null,"
+            lastupdatedate ":null,"
+            type ":null,"
+            primaryseconadry ":null}]
+        3: [],
+        4: [{
+            "domainname": "Manufacturing",
+            "domainexp": "126",
+            "domainid": "6"
+        }],
+        5: {
+            "BD": {
+                "BV": ["Visa Approved"]
+            },
+            "FI": {
+                "BV": ["Visa Approved"]
+            },
+            "CH": {
+                "BV": ["Visa Approved"]
+            },
+            "JP": {
+                "BV": ["Visa Approved"]
+            },
+            "ZA": {
+                "BV": ["Visa Approved"],
+                "WP": ["Visa Approved"]
+            },
+            "MAURITIUS": {
+                "UNKNOWN": ["Visa Approved"]
+            },
+            "CN": {
+                "BV": ["Visa Approved"]
+            },
+            "SA": {
+                "BV": ["Visa Approved"]
+            },
+            "AU": {
+                "BV": ["Visa Approved"]
+            },
+            "SG": {
+                "BV": ["Visa Approved"]
+            },
+            "TH": {
+                "BV": ["Visa Approved"]
+            },
+            "GB": {
+                "BV": ["Visa Approved"],
+                "WP": ["Visa Approved"]
+            },
+            "UNITED KINGDOM": {
+                "UNKNOWN": ["Visa Approved"]
+            },
+            "US": {
+                "B2": ["Visa Approved", "Visa Expired", "Visa Rejected"],
+                "L-1B": ["Petition Approved", "Petition Filed", "Petition Rejected", "Petition RFE", "Visa Approved", "Visa Expired", "Visa Rejected", "Visa Renewal", "Visa RFE"],
+                "L-1A": ["Petition Approved", "Petition Filed", "Petition Rejected", "Petition RFE", "Visa Approved", "Visa Expired", "Visa Rejected", "Visa Renewal", "Visa RFE"],
+                "Green Card": ["Visa Approved"],
+                "H-1B": ["Petition Approved", "Petition Filed", "Petition Rejected", "Petition RFE", "Visa Approved", "Visa Expired", "Visa Rejected", "Visa Renewal", "Visa RFE"],
+                "EAD": ["Visa Approved"],
+                "TN": ["Visa Approved"],
+                "UNKNOWN": ["Visa Approved"],
+                "US Citizen": ["Visa Approved"],
+                "B1": ["Visa Approved", "Visa Expired", "Visa Rejected"]
+            },
+            "CA": {
+                "BV": ["Visa Approved"]
+            },
+            "NL": {
+                "BV": ["Visa Approved"]
+            }
+        }
+    ]

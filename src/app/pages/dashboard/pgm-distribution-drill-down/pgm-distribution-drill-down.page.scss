@@ -1,0 +1,20 @@
+.background{
+    --background: linear-gradient(to top left, #99d6ff, #b3e0ff, #ccebff, white);
+}
+
+.page-header-style{
+    background: #444;
+    height: 50px;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.row-style{
+    justify-content: center; 
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}

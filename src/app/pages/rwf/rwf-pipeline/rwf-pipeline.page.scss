@@ -1,0 +1,73 @@
+.background{
+    --background: linear-gradient(to top left, #99d6ff, #b3e0ff, #ccebff, white);
+}
+
+.select-view-style{
+    background: white;
+    height: 40px;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.select-view-div-style{
+    margin-left: 5px;
+    margin-right: 5px;
+    background: #d3d3d3;
+}
+
+.checkbox-label-style{
+    padding-left: 5px;
+    font-size: 12px;
+}
+
+.checkbox-text-style{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    align-self: center;
+}
+
+.left-tile-style{
+    height: 120px;
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-right: 2.5px
+}
+
+.right-tile-style{
+    height: 120px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-left: 2.5px
+}
+
+.tile-image-style{
+    width: 45px;
+    height: 40px; 
+    margin-top: 5px; 
+    margin-left: 5px;
+}
+
+.tile-count-style{
+    justify-content: flex-end;
+    font-size: 20px; 
+    font-weight: 500;
+    color: white;
+}
+
+.tile-title-style{
+    margin-left: 10px;
+    margin-top: 5px;
+    font-size: 16px; 
+    color: white;
+}
+
+.graph-div-style{
+    margin: 5px;
+    padding: 10px;
+    background: #D3D3D3;
+}

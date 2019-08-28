@@ -1,0 +1,30 @@
+.details-page-background{
+    --background: linear-gradient(to top left, #99d6ff, #b3e0ff, #ccebff, white);
+}
+
+.page-header-style{
+    background: #444;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 5px;
+    height: 50px;
+}
+
+.column-style{
+    color: white;
+    font-size: 12px;
+    align-self: center;
+}
+
+.list-style{
+    background: transparent;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.list-item-style{
+    --background: transparent;
+    font-size: 12px;
+    font-weight: bold;
+}

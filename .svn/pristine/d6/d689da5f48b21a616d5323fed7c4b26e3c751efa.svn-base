@@ -1,0 +1,373 @@
+<ion-app>
+  <ion-split-pane>
+    <ion-menu>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content style="--background: linear-gradient(to top right, #4169E1, #6495ED, #87CEEB, white);">
+        <ion-grid>
+          <ion-row style="margin-top: 20px; margin-left: 5px; margin-right: 5px;
+          border-top-left-radius: 10px; border-top-right-radius: 10px; justify-content: center;
+          background: linear-gradient(to top left, #99d6ff, #b3e0ff, #ccebff, white)">
+            <img [src]="profilePicPath" onerror="this.src='../assets/icon/favicon.png'" style="margin-top: 20px; margin-bottom: 20px; width: 100px;
+            height: 100px; border-radius: 100px;">
+          </ion-row>
+          <ion-row style="background: white; margin-left: 5px; margin-right: 5px; justify-content: center;
+          font-size: 16px; font-weight: bold; padding-top: 20px; padding-bottom: 20px;">
+            {{ empName | uppercase }}
+          </ion-row>
+          <ion-row
+            style="background: white; margin-left: 5px; margin-right: 5px; padding-bottom: 10px; padding-left: 15px;">
+            Default Role : {{ defaultRole }}
+          </ion-row>
+          <ion-row *ngIf="empRoles.length > 1" style="background: white; margin-left: 5px; margin-right: 5px; padding-bottom: 10px; padding-left: 15px;
+              border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+            <ion-col size="5" style="padding-left: 0px; padding-right: 0px; padding-top: 0px; padding-bottom: 0px;">
+              Change Role :
+            </ion-col>
+            <ion-col style="padding-left: 0px; padding-right: 0px; padding-top: 0px; padding-bottom: 0px;">
+              <ion-select [(ngModel)]="changeRoleData" interface="popover" placeholder="Select One" style="padding-top: 0px; padding-left: 0px; 
+              padding-bottom: 0px; padding-right: 10px;" (ionChange)="onRoleChange($event.target.value)">
+                <ion-select-option *ngFor="let role of empRoles" [value]="role">
+                  {{ role }}</ion-select-option>
+              </ion-select>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-list style="background: transparent">
+          <ion-item (click)="homeMenuClick()" style="margin-left: 10px; margin-right: 10px;">
+            <ion-label>
+              Home
+            </ion-label>
+          </ion-item>
+          <!-- Not implemented so commenting time being          
+          <ion-item (click)="dataUploadMenuClick()" *ngIf="role=='Admin'"
+            style="margin-left: 10px; margin-right: 10px;">
+            <ion-label>
+              Data Upload <span>▼</span>
+            </ion-label>
+          </ion-item>
+          <div *ngIf=dataUploadMenuVisible
+            style="margin-right: 10px; margin-left: 10px; padding-left: 30px; background: #D9D9D9">
+            <ion-item style="--background: #D9D9D9;">
+              <ion-label>
+                Manpower Upload
+              </ion-label>
+            </ion-item>
+            <ion-item style="--background: #D9D9D9;">
+              <ion-label>
+                Demand Upload
+              </ion-label>
+            </ion-item>
+            <ion-item style="--background: #D9D9D9;">
+              <ion-label>
+                New Demand Entry
+              </ion-label>
+            </ion-item>
+          </div> -->
+          <!-- Not implemented so commenting time being          
+          <ion-item (click)="setupMenuClick()" *ngIf="role=='Admin'" style="margin-left: 10px; margin-right: 10px;">
+            <ion-label>
+              Setup <span>▼</span>
+            </ion-label>
+          </ion-item>
+          <div *ngIf="setupMenuVisible"
+            style="margin-right: 10px; margin-left: 10px; padding-left: 30px; background: #D9D9D9">
+            <ion-item style="--background: #D9D9D9;">
+              <ion-label>
+                Service Type Setup
+              </ion-label>
+            </ion-item>
+            <ion-item style="--background: #D9D9D9;">
+              <ion-label>
+                Technical Family & Skill Setup
+              </ion-label>
+            </ion-item>
+            <ion-item style="--background: #D9D9D9;">
+              <ion-label>
+                Domain Setup
+              </ion-label>
+            </ion-item>
+            <ion-item style="--background: #D9D9D9;">
+              <ion-label>
+                Domain Setup For Account
+              </ion-label>
+            </ion-item>
+          </div> -->
+          <ion-item (click)="dashBoardMenuClick()" *ngIf="role=='CEO' || role=='BU' || role=='SRMGMT' || role=='DH' 
+          || role=='PGM' || role=='MGR' || role=='EM'" style="margin-left: 10px; margin-right: 10px;">
+            <ion-label>
+              Dashboard <span>▼</span>
+            </ion-label>
+          </ion-item>
+          <div *ngIf=dashboardMenuVisible
+            style="margin-right: 10px; margin-left: 10px; padding-left: 30px; background: #D9D9D9">
+            <ion-item *ngIf="role=='BU' || role=='DH'" (click)="twentyFiveWindowMenuClick()"
+              style="--background: #D9D9D9;">
+              <ion-label>
+                25 Window
+              </ion-label>
+            </ion-item>
+            <!-- Not yet implemented so commenting time being            
+            <ion-item *ngIf="role=='CEO' || role=='SRMGMT' || role=='BU' || role=='DH' || role=='PGM' || role=='MGR'
+            || role=='EM'" style="--background: #D9D9D9;">
+              <ion-label>
+                Span of Control
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf="role=='BU' || role=='DH' || role=='PGM'" style="--background: #D9D9D9;">
+              <ion-label>
+                Dashboard Reportees
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf="role=='CEO' || role=='SRMGMT' || role=='BU' || role=='DH' || role=='PGM' || role=='MGR'
+            || role=='EM'" style="--background: #D9D9D9;">
+              <ion-label>
+                Knowledge Drain
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf="role=='CEO' || role=='SRMGMT' || role=='BU' || role=='DH' || role=='PGM' || role=='MGR'
+            || role=='EM'" style="--background: #D9D9D9;">
+              <ion-label>
+                Visa Status
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf="role=='BU' || role=='DH' || role=='EM'" style="--background: #D9D9D9;">
+              <ion-label>
+                Skill Mapping BU
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf="role=='DH' || role=='PGM' || role=='MGR' || role=='EM'" style="--background: #D9D9D9;">
+              <ion-label>
+                Skill Mapping My Team
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf="role=='BU' || role=='DH' || role=='PGM' || role=='MGR'" style="--background: #D9D9D9;">
+              <ion-label>
+                Niche Skills
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf="role=='BU' || role=='DH'" style="--background: #D9D9D9;">
+              <ion-label>
+                Log Details
+              </ion-label>
+            </ion-item> -->
+          </div>
+          <!-- Not yet implemented so commenting time being          
+          <ion-item (click)="projectManagementMenuClick()" *ngIf="role=='PGM' || role=='MGR'"
+            style="margin-left: 10px; margin-right: 10px;">
+            <ion-label>
+              Project Management <span>▼</span>
+            </ion-label>
+          </ion-item>
+          <div *ngIf=projectManagementMenuVisible
+            style="margin-right: 10px; margin-left: 10px; padding-left: 30px; background: #D9D9D9">
+            <ion-item *ngIf="role=='PGM'" style="--background: #D9D9D9;">
+              <ion-label>
+                Pending Approvals
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf="role=='MGR'" style="--background: #D9D9D9;">
+              <ion-label>
+                Project Configuration
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf="role=='MGR'" style="--background: #D9D9D9;">
+              <ion-label>
+                25W BaseLine Configuration
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf="role=='MGR'" style="--background: #D9D9D9;">
+              <ion-label>
+                Create New Track
+              </ion-label>
+            </ion-item>
+          </div> -->
+          <!-- Not yet implemented so commenting time being
+          <ion-item (click)="associatesManagementMenuClick()" *ngIf="role=='BU' || role=='DH' || role=='PGM' || role=='MGR'
+          || role=='TL' || role=='EM'" style="margin-left: 10px; margin-right: 10px;">
+            <ion-label>
+              Associates Management <span>▼</span>
+            </ion-label>
+          </ion-item>
+          <div *ngIf=associatesManagementMenuVisible
+            style="margin-right: 10px; margin-left: 10px; padding-left: 30px; background: #D9D9D9">
+            <ion-item *ngIf="role=='MGR'" style="--background: #D9D9D9;">
+              <ion-label>
+                Associate Track Mapping
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf="role=='DH' || role == 'PGM' || role=='MGR' || role=='TL' || role=='EM'"
+              style="--background: #D9D9D9;">
+              <ion-label>
+                Evaluate Associates
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf="role=='BU' || role=='DH' || role=='PGM' || role=='MGR' || role=='TL'
+            || role=='EM'" style="--background: #D9D9D9;">
+              <ion-label>
+                Release / Resignation
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf="role=='MGR'" style="--background: #D9D9D9;">
+              <ion-label>
+                Improvement Plan
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf="role=='PGM' || role=='MGR'" style="--background: #D9D9D9;">
+              <ion-label>
+                Training Status
+              </ion-label>
+            </ion-item>
+          </div>
+        -->
+          <ion-item (click)="rwfMenuClick()" *ngIf="role=='CEO' || role=='BU' || role=='SRMGMT' || role=='DH' || role=='PGM'
+           || role=='MGR' || role=='TL' || role=='EM' || role=='BU Pool' || role=='Admin'"
+            style="margin-left: 10px; margin-right: 10px;">
+            <ion-label>
+              RWF <span>▼</span>
+            </ion-label>
+          </ion-item>
+          <div *ngIf=rwfMenuVisible
+            style="margin-right: 10px; margin-left: 10px; padding-left: 30px; background: #D9D9D9">
+            <!-- Not implemented so commenting time being             
+            <ion-item *ngIf="role=='EM'" style="--background: #D9D9D9;">
+              <ion-label>
+                Create Demand
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf="role=='PGM'" style="--background: #D9D9D9;">
+              <ion-label>
+                Demand Assignment
+              </ion-label>
+            </ion-item> -->
+            <ion-item *ngIf="role=='BU' || role=='DH' || role=='PGM' || role=='MGR'
+            || role=='EM' || role=='Admin'" style="--background: #D9D9D9;" (click)="demandForecastingMenuClick()">
+              <ion-label>
+                Demand Forecasting
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf="role=='CEO' || role=='SRMGMT' || role=='BU' || role=='DH' || role=='PGM' || role=='MGR'
+            || role=='TL' || role=='EM' || role=='BU Pool' || role=='Admin'" style="--background: #D9D9D9;"
+              (click)="rwfManagementMenuClick()">
+              <ion-label>
+                RWF Management
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf="role=='CEO' || role=='SRMGMT' || role=='BU' || role=='DH' || role=='PGM' || role=='MGR'
+            || role=='TL' || role=='EM' || role=='BU Pool' || role=='Admin'" style="--background: #D9D9D9;"
+              (click)="myRwfTransactionMenuClick()">
+              <ion-label>
+                My RWF Transaction
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf="role=='CEO' || role=='SRMGMT' || role=='BU' || role=='DH' || role=='EM' || role=='BU Pool'"
+              style="--background: #D9D9D9;" (click)="rwfDashboardMenuClick()">
+              <ion-label>
+                RWF Dashboard
+              </ion-label>
+            </ion-item>
+          </div>
+           <ion-item (click)="personalInfoMenuClick()" *ngIf="role=='CEO' || role=='BU' || role=='SRMGMT' || role=='DH' 
+          || role=='PGM' || role=='MGR' || role=='TL' || role=='EM' || role=='Admin' || role=='guest'"
+            style="margin-left: 10px; margin-right: 10px;">
+            <ion-label>
+              Personal Info <span>▼</span>
+            </ion-label>
+          </ion-item>
+          <div *ngIf=personalInfoMenuVisible
+            style="margin-right: 10px; margin-left: 10px; padding-left: 30px; background: #D9D9D9">
+            <!-- <ion-item *ngIf="role=='CEO' || role=='SRMGMT' || role=='BU' || role=='DH' || role=='PGM' || role=='MGR'
+            || role=='TL' || role=='EM' || role=='Admin' || role=='guest'" style="--background: #D9D9D9;" (click)="profileUpdateMenuClick()">
+              <ion-label>
+                Profile Update
+              </ion-label>
+            </ion-item> -->
+          </div> 
+
+          <ion-item (click)="searchEngineMenuClick()" *ngIf="role=='CEO' || role=='BU' || role=='SRMGMT' || role=='DH' 
+          || role=='PGM' || role=='MGR' || role=='TL' || role=='EM' || role=='BU Pool'"
+            style="margin-left: 10px; margin-right: 10px;">
+            <ion-label>
+              Search Engine <span>▼</span>
+            </ion-label>
+          </ion-item>
+          <div *ngIf=searchEngineMenuVisibale
+            style="margin-right: 10px; margin-left: 10px; padding-left: 30px; background: #D9D9D9">
+            <ion-item *ngIf="role=='BU' || role=='DH' || role=='PGM' || role=='MGR' || role=='TL' || role=='EM'
+            || role=='BU Pool'" style="--background: #D9D9D9;" (click)="genericSearchMenuClick()">
+              <ion-label>
+                Advance Search
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf="role=='CEO' || role=='SRMGMT'" style="--background: #D9D9D9;"
+              (click)="genericSearchMenuClick()">
+              <ion-label>
+                Generic Search
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf="role=='CEO' || role=='SRMGMT' || role=='BU' || role=='DH' || role=='PGM' || role=='MGR' 
+            || role=='TL' || role=='EM' || role=='BU Pool'" style="--background: #D9D9D9;"
+              (click)="searchByAssociateMenuClick()">
+              <ion-label>
+                Search By Associate
+              </ion-label>
+            </ion-item>
+          </div>
+          <!-- <ion-item *ngIf="role=='CEO' || role=='BU' || role=='SRMGMT' || role=='DH' || role=='PGM' || role=='MGR'
+          || role=='TL' || role=='EM' || role=='guest'" style="margin-left: 10px; margin-right: 10px;"
+            (click)="directoryMenuClick()"
+            >
+            <ion-label>
+              Directory
+            </ion-label>
+          </ion-item> -->
+          <!--   Not implemented so commenting time being
+          <ion-item *ngIf="role=='BU' || role=='DH' || role=='PGM' || role=='MGR' || role=='TL' || role=='EM'
+          || role=='guest'" style="margin-left: 10px; margin-right: 10px;">
+            <ion-label>
+              Insight
+            </ion-label>
+          </ion-item>
+          <ion-item *ngIf="role=='BU Pool'" style="margin-left: 10px; margin-right: 10px;">
+            <ion-label>
+              Reports
+            </ion-label>
+          </ion-item>
+          <ion-item *ngIf="role=='Admin'" style="margin-left: 10px; margin-right: 10px;">
+            <ion-label>
+              Modify Users
+            </ion-label>
+          </ion-item>
+          <ion-item *ngIf="role=='Admin'" style="margin-left: 10px; margin-right: 10px;">
+            <ion-label>
+              Visa Status
+            </ion-label>
+          </ion-item>
+          <ion-item *ngIf="role=='Admin'" style="margin-left: 10px; margin-right: 10px;">
+            <ion-label>
+              Map Program
+            </ion-label>
+          </ion-item>
+          <ion-item *ngIf="role=='Admin'" style="margin-left: 10px; margin-right: 10px;">
+            <ion-label>
+              Training Evaluation
+            </ion-label>
+          </ion-item> -->
+        </ion-list>
+
+        <ion-item (click)="logOut()"
+          style="margin-left: 10px; margin-right: 10px; margin-bottom: 10px; --background: #ef473a">
+          <ion-row style="width: 100%; justify-content: center;">
+            <ion-label style="color: white;">
+              Log Out
+            </ion-label>
+          </ion-row>
+        </ion-item>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet main></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

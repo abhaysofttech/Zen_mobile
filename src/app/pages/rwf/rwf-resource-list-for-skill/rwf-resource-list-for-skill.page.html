@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Resource List</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="rwf-management"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+  <ion-row class="page-header-style">
+    <ion-col size="3" style="align-self: center;">
+      <ion-row class="row-style">
+        Name
+      </ion-row>
+    </ion-col>
+    <ion-col size="3" style="align-self: center;">
+      <ion-row class="row-style">
+        Location
+      </ion-row>
+    </ion-col>
+    <ion-col size="3" style="align-self: center;">
+      <ion-row class="row-style">
+        Visa
+      </ion-row>
+    </ion-col>
+    <ion-col size="3" style="align-self: center;">
+      <ion-row class="row-style">
+        Availability
+      </ion-row>
+    </ion-col>
+  </ion-row>
+  <ion-list style="background: transparent; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px;">
+    <ion-row *ngFor="let data of listData" style="margin-bottom: 5px;">
+      <ion-col size="3" style="font-size: 12px;font-weight: bold;" (click)="associateClick(data)">
+        <ion-row style="justify-content: center">
+          <a><u> {{ data.staff_Name | uppercase }}</u></a>
+        </ion-row>
+      </ion-col>
+      <ion-col size="3" style="font-size: 12px;">
+        <ion-row style="justify-content: center">
+          {{ data.location }}
+        </ion-row>
+      </ion-col>
+      <ion-col size="3" style="font-size: 12px;">
+        <ion-row style="justify-content: center" *ngIf="data.visa_status">
+          <ion-checkbox checked="true" disabled="true" style="--background: transparent;
+          --checkmark-color: black; --background-checked: transparent;
+          --border-color: transparent; --border-color-checked: transparent;"></ion-checkbox>
+        </ion-row>
+        <ion-row style="justify-content: center" *ngIf="!data.visa_status">
+          N.A.
+        </ion-row>
+      </ion-col>
+      <ion-col size="3" style="font-size: 12px;">
+        <ion-row *ngIf="data.dropdown" style="justify-content: center">
+          {{ data.dropdown }}
+        </ion-row>
+        <ion-row *ngIf="!data.dropdown" style="justify-content: center">
+          {{ data.release_DATE }}
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+</ion-content>

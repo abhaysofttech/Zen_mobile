@@ -1,0 +1,303 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Demand Details</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="demand-details"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="backgrond">
+  <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide>
+      <ion-grid class="grid-style">
+        <ion-row class="header-style">
+          Additional Demand Details
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="key-style">
+            <ion-row>
+              Demand ID
+            </ion-row>
+          </ion-col>
+          <ion-col size="6" class="value-style">
+            <ion-row>
+              {{ demandDetails.demfcastid }}
+            </ion-row>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-top: 5px;">
+          <ion-col size="6" class="key-style">
+            <ion-row>
+              Portfolio
+            </ion-row>
+          </ion-col>
+          <ion-col size="6" class="value-style">
+            <ion-row>
+              {{ demandDetails.portfolio }}
+            </ion-row>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-top: 5px;">
+          <ion-col size="6" class="key-style">
+            <ion-row>
+              #Positions
+            </ion-row>
+          </ion-col>
+          <ion-col size="6" class="value-style">
+            <ion-row>
+              {{ demandDetails.numberofpositions }}
+            </ion-row>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-top: 5px;">
+          <ion-col size="6" class="key-style">
+            <ion-row>
+              Fulfilled Status(in%)
+            </ion-row>
+          </ion-col>
+          <ion-col size="6" class="value-style">
+            <ion-row>
+              {{ demandDetails.numberofpositionsfilled }}
+            </ion-row>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-top: 5px;">
+          <ion-col size="6" class="key-style">
+            <ion-row>
+              Skill Family
+            </ion-row>
+          </ion-col>
+          <ion-col size="6" class="value-style">
+            <ion-row>
+              {{ demandDetails.skillfamily }}
+            </ion-row>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-top: 5px;">
+          <ion-col size="6" class="key-style">
+            <ion-row>
+              Primary Skill
+            </ion-row>
+          </ion-col>
+          <ion-col size="6" class="value-style">
+            <ion-row>
+              {{ demandDetails.primaryskillset }}
+            </ion-row>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-top: 5px;">
+          <ion-col size="6" class="key-style">
+            <ion-row>
+              Secondary Skill
+            </ion-row>
+          </ion-col>
+          <ion-col size="6" class="value-style">
+            <ion-row>
+              {{ demandDetails.secondaryskillset }}
+            </ion-row>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-top: 5px;">
+          <ion-col size="6" class="key-style">
+            <ion-row>
+              Location
+            </ion-row>
+          </ion-col>
+          <ion-col size="6" class="value-style">
+            <ion-row>
+              {{ demandDetails.location }}
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+    <ion-slide>
+      <ion-grid class="grid-style">
+        <ion-row class="header-style">
+          SRF Details
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="key-style">
+            <ion-row>
+              Demand Forecast ID
+            </ion-row>
+          </ion-col>
+          <ion-col size="6" class="value-style">
+            <ion-row>
+              {{ srfDetails.demfcastid }}
+            </ion-row>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-top: 5px;">
+          <ion-col size="6" class="key-style">
+            <ion-row>
+              Assigned To
+            </ion-row>
+          </ion-col>
+          <ion-col size="6" class="value-style">
+            <ion-row>
+              {{ srfDetails.assignedto }}
+            </ion-row>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-top: 5px;">
+          <ion-col size="6" class="key-style">
+            <ion-row>
+              Date Demand Assigned
+            </ion-row>
+          </ion-col>
+          <ion-col size="6" class="value-style">
+            <ion-row>
+              {{ srfDetails.demandassigneddate }}
+            </ion-row>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-top: 5px;">
+          <ion-col size="6" class="key-style">
+            <ion-row>
+              # SRFs created
+            </ion-row>
+          </ion-col>
+          <ion-col size="6" class="value-style">
+            <ion-row>
+              {{ srfDetails.noofsrfassigned }}
+            </ion-row>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-top: 5px;">
+          <ion-col size="6" class="key-style">
+            <ion-row>
+              # Shortlisted
+            </ion-row>
+          </ion-col>
+          <ion-col size="6" class="value-style">
+            <ion-row>
+              {{ srfDetails.noshortlisted }}
+            </ion-row>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-top: 5px;">
+          <ion-col size="6" class="key-style">
+            <ion-row>
+              # Selected
+            </ion-row>
+          </ion-col>
+          <ion-col size="6" class="value-style">
+            <ion-row>
+              {{ srfDetails.noselected }}
+            </ion-row>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-top: 5px;">
+          <ion-col size="6" class="key-style">
+            <ion-row>
+              # Offered
+            </ion-row>
+          </ion-col>
+          <ion-col size="6" class="value-style">
+            <ion-row>
+              {{ srfDetails.nooffered }}
+            </ion-row>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-top: 5px;">
+          <ion-col size="6" class="key-style">
+            <ion-row>
+              # Joined
+            </ion-row>
+          </ion-col>
+          <ion-col size="6" class="value-style">
+            <ion-row>
+              {{ srfDetails.nojoined }}
+            </ion-row>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-top: 5px;">
+          <ion-col size="6" class="key-style">
+            <ion-row>
+              Billing Loss($)
+            </ion-row>
+          </ion-col>
+          <ion-col size="6" class="value-style">
+            <ion-row>
+              {{ srfDetails.billingloss }}
+            </ion-row>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-top: 5px;">
+          <ion-col size="6" class="key-style">
+            <ion-row>
+              Billing Loss(days)
+            </ion-row>
+          </ion-col>
+          <ion-col size="6" class="value-style">
+            <ion-row>
+              {{ srfDetails.billing_loss_days }}
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+  </ion-slides>
+  <ion-button expand="block" class="add-srf-btn-style" (click)="addSrfBtnClick()">
+    {{ srfBtnText }}
+  </ion-button>
+  <div *ngIf="addSrfMenuVisible" style="background: white;">
+    <ion-row>
+      <ion-col size="6" class="key-style" style="align-self: center;">
+        <ion-row>
+          SRF No.
+        </ion-row>
+      </ion-col>
+      <ion-col size="6">
+        <ion-input style="padding-left: 0px;--background:white; text-align:left;width: 100%;padding: 8px 20px;margin: 2px 0;
+        border:none;border-bottom: 1px solid black;box-sizing: border-box;" (ionChange)="addSrfNoChangeEvent($event.target.value)">
+        </ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="key-style" style="align-self: center;">
+        <ion-row>
+          SRF Status
+        </ion-row>
+      </ion-col>
+      <ion-col size="6">
+        <ion-select interface="popover" style="padding-left: 0px;--background:white; text-align:left;width: 100%;padding: 8px 5px;margin: 2px 0;
+        border:none;border-bottom: 1px solid black;box-sizing: border-box;" placeholder="Select Status"
+        (ionChange)="srfStatusChangeEvent($event.target.value)">
+          <ion-select-option value="Open">Open</ion-select-option>
+          <ion-select-option value="Closed">Closed</ion-select-option>
+          <ion-select-option value="Cancelled">Cancelled</ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="key-style" style="align-self: center;">
+        <ion-row>
+          Name of Candidate
+        </ion-row>
+      </ion-col>
+      <ion-col size="6">
+        <ion-input style="padding-left: 0px;--background:white; text-align:left;width: 100%;padding: 8px 20px;margin: 2px 0;
+        border:none;border-bottom: 1px solid black;box-sizing: border-box;" (ionChange)="nameOfCandidateChangeEvent($event.target.value)">
+        </ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="key-style" style="align-self: center;">
+        <ion-row>
+          SRF Comments
+        </ion-row>
+      </ion-col>
+      <ion-col size="6">
+        <ion-input style="padding-left: 0px;--background:white; text-align:left;width: 100%;padding: 8px 20px;margin: 2px 0;
+        border:none;border-bottom: 1px solid black;box-sizing: border-box;" (ionChange)="srfCommentsChangeEvent($event.target.value)">
+        </ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-button class="save-srf-btn-style" (click)="srfSaveDetails()">
+      Save SRF Details
+    </ion-button>
+  </div>
+</ion-content>

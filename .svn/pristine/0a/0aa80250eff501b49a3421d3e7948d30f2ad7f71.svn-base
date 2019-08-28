@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>PGM Distribution</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="twenty-five-window"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="pgm-distribution-window-background">
+  <fusioncharts [width]="chartWidth" [height]="chartHeight" [type]="chartType" [dataFormat]="chartDataFormat"
+    [dataSource]="chartDataSource" (initialized)="initialized($event)">
+  </fusioncharts>
+</ion-content>

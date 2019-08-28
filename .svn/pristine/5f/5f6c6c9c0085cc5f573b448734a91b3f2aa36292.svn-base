@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Advance Search</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-icon name="ios-funnel" class="fiter-style" (click)="filterMenuClick($event)"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-searchbar class="search-bar-style" (ionClear)="clearFunction()" [(ngModel)]="query">
+  </ion-searchbar>
+</ion-header>
+
+<ion-content padding class="background">
+  <ion-list *ngFor="let data of listData | searchFilter:'staffid,staffname,pm':query" class="list-style">
+    <ion-row>
+      <ion-col size="6" class="row-key-style">
+        Staff ID
+      </ion-col>
+      <ion-col size="6" class="row-value-style" (click)="staffIdClick(data.staffname)">
+        <a><u>{{ data.staffid }}</u></a>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="row-key-style">
+        Staff Name
+      </ion-col>
+      <ion-col size="6" class="row-value-style">
+        {{ data.staffname }}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="row-key-style">
+        Manager
+      </ion-col>
+      <ion-col size="6" class="row-value-style">
+        {{ data.pm }}
+      </ion-col>
+    </ion-row>
+  </ion-list>
+</ion-content>

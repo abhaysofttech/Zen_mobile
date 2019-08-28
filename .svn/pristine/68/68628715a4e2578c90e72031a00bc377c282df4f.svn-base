@@ -1,0 +1,32 @@
+<ion-list>
+  <ion-item (click)="filterItemClick('staffIdAsc')">
+    <ion-label>
+      Staff ID(Ascending Order)
+    </ion-label>
+  </ion-item>
+  <ion-item (click)="filterItemClick('staffIdDesc')">
+    <ion-label>
+      Staff ID(Descending Order)
+    </ion-label>
+  </ion-item>
+  <ion-item (click)="filterItemClick('staffNameAsc')">
+    <ion-label>
+      Staff Name(Ascending Order)
+    </ion-label>
+  </ion-item>
+  <ion-item (click)="filterItemClick('staffNameDesc')">
+    <ion-label>
+      Staff Name(Descending Order)
+    </ion-label>
+  </ion-item>
+  <ion-item (click)="filterItemClick('pmNameAsc')">
+    <ion-label>
+      Manager Name(Ascending Order)
+    </ion-label>
+  </ion-item>
+  <ion-item (click)="filterItemClick('pmNameDesc')">
+    <ion-label>
+      Manager Name(Descending Order)
+    </ion-label>
+  </ion-item>
+</ion-list>

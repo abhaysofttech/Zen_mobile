@@ -1,0 +1,46 @@
+.backgrond{
+    --background: linear-gradient(to top left, #99d6ff, #b3e0ff, #ccebff, white);
+}
+
+.grid-style{
+    width: 100%;
+    background: white;
+    margin-top: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+}
+
+.header-style{
+    justify-content: center; 
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.key-style{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.value-style{
+    font-size: 14px;
+}
+
+.add-srf-btn-style{
+    margin-top: 10px;
+    --background: white;
+    --color: #444;
+    height: 45px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.save-srf-btn-style{
+    height: 60px;
+    width: 100%;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+

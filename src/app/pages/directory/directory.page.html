@@ -1,0 +1,155 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Directory</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background" *ngIf="directoryResponse != null" #pageScroll>
+  <ion-searchbar [value]="selectedValue" debounce="500" placeholder="Enter Associate name"
+    (ionChange)="searchValueChange($event)" (ionClear)="clearFunction()">
+  </ion-searchbar>
+  <ion-row style="justify-content: center">
+    <ion-list class="list-style">
+      <ion-item *ngFor="let data of listData" (click)="selectAssociateFromList(data)">
+        {{ data.name }}
+      </ion-item>
+    </ion-list>
+  </ion-row>
+  <ion-grid>
+    <ion-row style="width: 100%; justify-content: center;">
+      <img class="profile-pic-style" [src]="profilePicPath"
+        onerror="this.src='../../../../assets/imgs/md-person.png'" />
+    </ion-row>
+    <ion-row class="employee-name-style">
+      {{ directoryResponse.staff_name | uppercase }}
+    </ion-row>
+    <ion-row class="employee-name-style" style="margin-top: 5px">
+      {{ directoryResponse.role | uppercase }}
+    </ion-row>
+    <ion-row class="employee-name-style" style="margin-top: 5px">
+      Staff ID : {{ directoryResponse.staff_no | uppercase }}
+    </ion-row>
+    <ion-row style="justify-content: center; margin-top: 10px; margin-bottom: 10px;">
+      <ion-icon style="margin-right: 5%;" class="phone-email-icon-style" name="call"
+        (click)="callAssociate(directoryResponse.contact_number)"></ion-icon>
+      <ion-icon style="margin-left: 5%;" class="phone-email-icon-style" name="mail"
+        (click)="mailAssociate(directoryResponse.associate_email_id)">
+      </ion-icon>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="text-style">
+        Desk Location
+      </ion-col>
+      <ion-col size="6" class="text-style">
+        {{ directoryResponse.desk_loc }}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="text-style">
+        City
+      </ion-col>
+      <ion-col size="6" class="text-style">
+        {{ directoryResponse.location }}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="text-style">
+        Manager
+      </ion-col>
+      <ion-col size="6" class="text-style" *ngIf="directoryResponse.manager">
+        {{ directoryResponse.manager.name }} ({{ directoryResponse.manager.reporteeCount }})
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="text-style">
+        Project Name
+      </ion-col>
+      <ion-col size="6" class="text-style">
+        {{ directoryResponse.projectName }} - {{ directoryResponse.track_name }}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="text-style">
+        Grade
+      </ion-col>
+      <ion-col size="6" class="text-style">
+        {{ directoryResponse.band }}
+      </ion-col>
+    </ion-row>
+    <ion-row class="tab-style">
+      Reporting Structure
+    </ion-row>
+    <div *ngIf="treeNodeList">
+      <p-tree [value]="treeNodeList" (onNodeExpand)="loadNode($event)">
+        <ng-template let-node pTemplate="default">
+          <div class="hvr-grow div-template-tree">
+            <img src="{{node.data.image}}" class="profile-img-tree profile-img-tree-band-{{node.data.band}}" />
+            <a class="tree-click" style="text-decoration:none; padding-left: 5px; padding-right: 5px; font-size: 14px;"
+              (click)="loadUserProfileOnClick(node.data.id)">{{node.data.name}} - {{node.data.designation}}<span
+                *ngIf="node.data.reporteeCount"> ({{node.data.reporteeCount}})</span></a>
+          </div>
+        </ng-template>
+      </p-tree>
+    </div>
+    <ion-row class="tab-style">
+      Expertise
+    </ion-row>
+    <div class="expertise-div-style">
+      <ion-row class="text-style">
+        <ion-col size="6" style="padding-left: 0px; padding-right: 0px;">
+          Primary Skills
+        </ion-col>
+        <ion-col size="6">
+          {{ directoryResponse.primary_skills }}
+        </ion-col>
+      </ion-row>
+      <ion-row class="text-style">
+        <ion-col size="6" style="padding-left: 0px; padding-right: 0px;">
+          Secondary Skills
+        </ion-col>
+        <ion-col size="6">
+          {{ directoryResponse.secondary_skills }}
+        </ion-col>
+      </ion-row>
+      <ion-row class="text-style">
+        <ion-col size="6" style="padding-left: 0px; padding-right: 0px;">
+          Technical Skills
+        </ion-col>
+        <ion-col size="6">
+          {{ directoryResponse.technical_skills }}
+        </ion-col>
+      </ion-row>
+    </div>
+    <ion-row class="tab-style">
+      Additional Information
+    </ion-row>
+    <ion-row class="addition-info-div-style">
+      TBD
+    </ion-row>
+    <ion-row class="tab-style">
+      Peers
+    </ion-row>
+    <ion-slides pager="true" class="slides-style">
+      <ion-slide *ngFor="let peersData of directoryResponse.peers" class="slide-style">
+        <ion-card class="card-style">
+          <ion-row class="peer-profile-pic-row-style">
+            <img class="peer-profile-pic-style" [src]="(directoryImagesPath + peersData.image)"
+              onerror="this.src='../../../../assets/imgs/md-person.png'">
+          </ion-row>
+          <ion-row class="peer-name-style">
+            {{ peersData.staff_name }}
+          </ion-row>
+          <ion-row class="peer-designation-style">
+            {{ peersData.role }}
+          </ion-row>
+          <ion-row class="peer-staffid-style">
+            Staff ID : {{ peersData.staff_no }}
+          </ion-row>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>{{ pageTitle }}</ion-title>
+    <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="donut-background-style">
+  <ion-grid class="donut-page-syle">
+    <ion-row class="donut-graph-style">
+      <fusioncharts [width]="chartWidth" [height]="chartHeight" [type]="chartType" [dataFormat]="chartDataFormat"
+        [dataSource]="chartDataSource">
+      </fusioncharts>
+    </ion-row>
+  </ion-grid>
+</ion-content>

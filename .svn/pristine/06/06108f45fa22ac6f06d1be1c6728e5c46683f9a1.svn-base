@@ -1,0 +1,14 @@
+.donut-background-style{
+    --background: linear-gradient(to top left, #99d6ff, #b3e0ff, #ccebff, white);
+}
+
+.donut-page-syle{
+    width: 100%;
+    height: 100%;
+}
+
+.donut-graph-style{
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}

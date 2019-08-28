@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Employee Details</ion-title>
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="overall-associates-drilldown-one"></ion-back-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background">
+  <ion-row class="image-row-style">
+    <img class="image-style" src="../../../../assets/imgs/md-person.png" />
+  </ion-row>
+
+  <ion-grid class="grid-style">
+    <ion-row>
+      <ion-col size="6" class="key-style">
+        Staff ID
+      </ion-col>
+      <ion-col size="6" class="value-style">
+        {{ staffID }}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="key-style">
+        Staff Name
+      </ion-col>
+      <ion-col size="6" class="value-style">
+        {{ staffName | uppercase }}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="key-style">
+        Reporting Manager
+      </ion-col>
+      <ion-col size="6" class="value-style">
+        {{ reportingManager | uppercase }}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="key-style">
+        Band
+      </ion-col>
+      <ion-col size="6" class="value-style">
+        {{ band }}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

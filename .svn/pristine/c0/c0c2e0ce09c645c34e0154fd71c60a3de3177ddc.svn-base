@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>RWF Ageing</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="rwf-management"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background">
+  <table class="table align-center" width="100%" style="margin-top: 100px;">
+    <tbody>
+      <tr>
+        <td class="td heading">
+          RWF Ageing(days)
+        </td>
+        <td class="td heading">
+          Associate Count
+        </td>
+      </tr>
+      <tr>
+        <td class="td">
+          <7</td> <td class="td">
+            {{ ageLessThan7 }}
+        </td>
+      </tr>
+      <tr>
+        <td class="td">
+          7-14</td>
+        <td class="td">
+          {{ age7To14 }}
+        </td>
+      </tr>
+      <tr>
+        <td class="td">
+          14-21</td>
+        <td class="td">
+          {{ age14To21 }}
+        </td>
+      </tr>
+      <tr>
+        <td class="td">
+          21-28</td>
+        <td class="td">
+          {{ age21To28 }}
+        </td>
+      </tr>
+      <tr>
+        <td class="td">
+          28+</td>
+        <td class="td">
+          {{ age28Plus }}
+        </td>
+      </tr>
+      <tr>
+        <td class="td heading">
+          <b>Average Age</b></td>
+        <td class="td heading">
+          {{ averageAge }} days
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</ion-content>

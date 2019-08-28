@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Demand List</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="rwf-management"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+  <ion-row class="page-header-style">
+    <ion-col size="2" style="align-self: center;">
+      <ion-row class="row-style">
+        ID
+      </ion-row>
+    </ion-col>
+    <ion-col size="2" style="align-self: center;">
+      <ion-row class="row-style">
+        Description
+      </ion-row>
+    </ion-col>
+    <ion-col size="4" style="align-self: center;">
+      <ion-row class="row-style">
+        OpportuneID
+      </ion-row>
+    </ion-col>
+    <ion-col size="4" style="align-self: center;">
+      <ion-row class="row-style">
+        Creator(EM)
+      </ion-row>
+    </ion-col>
+  </ion-row>
+  <ion-list style="background: transparent; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px;">
+    <ion-row *ngFor="let data of listData; let i= index" style="margin-bottom: 5px;">
+      <ion-col size="2" style="font-size: 12px;font-weight: bold; align-self: center" (click)="idClick(i)">
+        <ion-row style="justify-content: center">
+          {{ data.demfcastid }}
+        </ion-row>
+      </ion-col>
+      <ion-col size="2" style="font-size: 12px; align-self: center;">
+        <ion-row style="justify-content: center">
+          <img style="width: 15px; height: 15px; 
+          --border-radius: 100px; --background: #444;" src="../../../../assets/imgs/info.png" (click)="infoClick(data)"/>
+        </ion-row>
+      </ion-col>
+      <ion-col size="4" style="font-size: 12px; align-self: center">
+        <ion-row style="justify-content: center">
+          {{ data.opportunityidsfdc }}
+        </ion-row>
+      </ion-col>
+      <ion-col size="4" style="font-size: 12px; align-self: center">
+        <ion-row>
+          {{ data.emstaffid }}
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+</ion-content>

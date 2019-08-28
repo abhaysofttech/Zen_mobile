@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Search</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background">
+  <ion-row class="row-style">
+    <ion-label>Search Asscociate By Name </ion-label>
+  </ion-row>
+  <ion-searchbar style="margin-top: 10px" [value]="selectedValue" debounce="500" placeholder="Name Surname" (ionChange)="searchValueChange($event)" (ionClear)="clearFunction()">
+  </ion-searchbar>
+  <ion-row style="justify-content: center">
+      <ion-list class="list-style">
+          <ion-item *ngFor="let data of listData" (click)="selectAssociateFromList(data)">
+            {{data}}
+          </ion-item>
+        </ion-list>
+  </ion-row>
+  <ion-row style="justify-content: center">
+    <ion-button class="search-button-style" (click)="searchAssociateBtnClick()">
+      Search Associate
+    </ion-button>
+  </ion-row>
+</ion-content>

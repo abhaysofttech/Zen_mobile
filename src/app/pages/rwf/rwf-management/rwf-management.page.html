@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>RWF Management</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background">
+  <ion-row class="title-row-style">
+    <ion-col size="6">
+      <ion-row class="value-style" style="justify-content: center;" (click)="ageingClick()">
+        Ageing
+      </ion-row>
+    </ion-col>
+    <ion-col size="6">
+      <ion-row *ngIf="empRole =='BU' || empRole=='DH' || empRole=='PGM' || empRole=='MGR'
+      || empRole=='EM' || empRole=='Admin'" class="value-style" style="justify-content: center;" (click)="demandForecastingClick()">
+        Demand Forecasting
+      </ion-row>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <fusioncharts [width]="chartWidth" [height]="chartHeight" [type]="chartType" [dataFormat]="chartDataFormat"
+      [dataSource]="chartDataSource" (initialized)="initialized($event)">
+    </fusioncharts>
+  </ion-row>
+  <ion-row class="counts-row-style" style="margin-top: 10px">
+    <ion-col size="6" class="key-style">
+      Non-Rated Count:
+    </ion-col>
+    <ion-col size="6" class="value-style">
+      {{ nonRatedCount }}
+    </ion-col>
+  </ion-row>
+  <ion-row class="counts-row-style">
+    <ion-col size="6" class="key-style">
+      Rated Count:
+    </ion-col>
+    <ion-col size="6" class="value-style">
+      {{ ratedCount }}
+    </ion-col>
+  </ion-row>
+  <ion-row class="counts-row-style">
+    <ion-col size="6" class="key-style">
+      Total Associates:
+    </ion-col>
+    <ion-col size="6" class="value-style">
+      {{ totalAssociatesCount }}
+    </ion-col>
+  </ion-row>
+</ion-content>

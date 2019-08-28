@@ -1,0 +1,7 @@
+{
+  "name": "ZenForte_Ionic_V4",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

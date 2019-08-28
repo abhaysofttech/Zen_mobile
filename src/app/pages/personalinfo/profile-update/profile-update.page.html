@@ -1,0 +1,808 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title class="opensansfontregular">Profile Update</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-col *ngIf="!editable" (click)="toggleeditmode()" style="padding-right: 15px;"> <i class="lni-pencil"></i>
+      </ion-col>
+      <ion-col *ngIf="editable" (click)="submitProfileInfo();uploadProfilepic()" style="padding-right: 15px;"><i class="lni-save"></i>
+      </ion-col>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background opensansfontregular">
+    <ion-fab vertical="top" horizontal="left" slot="fixed" *ngIf="editable">
+        <ion-fab-button size='small' (click)="captureImg()">
+          <ion-icon name="camera"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+  <ion-grid style="padding:0px;">
+    <ion-row>
+      <ion-col size="4" style="text-align: left;">
+        <img class="image-style" *ngIf="!currentImage" src="../../../../assets/imgs/profile-img.png" />
+        <div class="frame" *ngIf="currentImage">
+            <img [src]="currentImage" >
+          </div>
+      </ion-col>
+      <ion-col size="8" style="padding:0%;">
+        <ion-row class="rowpad">
+          <div style="padding:0px 7px 0px 0px;"><span><img src="../../../../assets/img_2215.png" height="12px"
+                width="12px"></span>
+          </div>
+          <span class="textfontsize">{{profileData.staffNo}}</span>
+        </ion-row>
+        <ion-row class="rowpad" style="margin-right: -110%;">
+          <div style="padding:0px 5px 0px 0px;"><span><i class="lni-user"></i></span></div>
+          <!-- <span class="textfontsize">{{profileData.staffName}}</span> -->
+          <span class="textfontsize ion-text-capitalize">{{ profileData.staffName | lowercase}}</span>
+        </ion-row>
+        <ion-row class="rowpad textfontsize">
+          <div style="padding:0px 5px 0px 0px;"><span><i class="lni-seo-consulting"></i></span>
+          </div>
+          <span class="textfontsize">{{profileData.role}}</span>
+        </ion-row>
+        <ion-row class="rowpad textfontsize">
+          <div style="padding:0px 5px 0px 0px;"><span><i class="lni-phone-handset"></i></span></div>
+          <span *ngIf="!editable" class="textfontsize">{{profileData.contactNumber}}</span>
+          <ion-input *ngIf="editable" no-padding clearInput style="height:15px;border-bottom:1px solid grey;"
+            [(ngModel)]="profileData.contactNumber"
+            (ionChange)="profileInfoUpdate('contactNumber', profileData.contactNumber)"></ion-input>
+        </ion-row>
+        <ion-row class="rowpad textfontsize">
+          <div style="padding:0px 5px 0px 0px;"><span><i class="lni-phone"></i></span></div>
+          <span *ngIf="!editable" class="textfontsize">{{profileData.emergencyContactNumber}}</span>
+          <ion-input *ngIf="editable" no-padding clearInput style="height:15px;border-bottom:1px solid grey;"
+            [(ngModel)]="profileData.emergencyContactNumber"
+            (ionChange)="profileInfoUpdate('emergencycontact', profileData.emergencyContactNumber)"></ion-input>
+
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row class=" textfontsize">
+      <ion-col size="4" style="font-weight:600;">
+        Band:
+      </ion-col>
+      <ion-col class="col-10">
+        {{profileData.band}}
+      </ion-col>
+    </ion-row>
+    <ion-row class=" textfontsize">
+      <ion-col size="4" style="font-weight:600;">
+        Exp yrs:
+      </ion-col>
+      <ion-col size="4">
+        {{yearsOfExp | number}}&nbsp; months
+      </ion-col>
+    </ion-row>
+    <ion-row class=" textfontsize">
+      <ion-col size="4" style="font-weight:600;">
+        Track:
+      </ion-col>
+      <ion-col class="col-10">
+        {{profileData.businessTrackName}}
+      </ion-col>
+    </ion-row>
+    <ion-row class=" textfontsize">
+      <ion-col size="4" style="font-weight:600;">
+        Manager Name:
+      </ion-col>
+      <ion-col class="col-10">
+        {{profileData.managerName}}
+      </ion-col>
+    </ion-row>
+    <ion-row class=" textfontsize">
+      <ion-col size="4" style="font-weight:600;">
+        Billable:
+      </ion-col>
+      <ion-col class="col-10">
+        {{profileData.billable}}
+      </ion-col>
+    </ion-row>
+    <ion-row class=" textfontsize">
+      <ion-col size="4" style="font-weight:600;">
+        Qualification:
+      </ion-col>
+      <ion-col class="col-10">
+        <span> {{profileData.educationQualification}}</span>
+      </ion-col>
+    </ion-row>
+    <ion-row class=" textfontsize">
+      <ion-col size="4" style="font-weight:600;">
+        Project Name:
+      </ion-col>
+      <ion-col size="8" style="word-break:break-all;">
+        {{profileData.projectName}}
+      </ion-col>
+    </ion-row>
+    <ion-row class=" textfontsize">
+      <ion-col size="4" style="font-weight:600;">
+        Passport Number:
+      </ion-col>
+      <ion-col size="8">
+        <span *ngIf="!editable" class="textfontsize"> {{profileData.passportNumber}}</span>
+        <ion-input *ngIf="editable" no-padding clearInput style="height:15px;border-bottom:1px solid grey;"
+          [(ngModel)]="profileData.passportNumber"
+          (ionChange)="profileInfoUpdate('passport', profileData.passportNumber)"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row class=" textfontsize">
+      <ion-col size="4" style="font-weight:600;">
+        Onsite Exp (in years):
+      </ion-col>
+      <ion-col size="8">
+        <span *ngIf="!editable" class="textfontsize"> {{profileData.onsiteExperience}}&nbsp; years</span>
+        <ion-input *ngIf="editable" no-padding clearInput style="height:15px;border-bottom:1px solid grey;"
+          [(ngModel)]="profileData.onsiteExperience"
+          (ionChange)="profileInfoUpdate('onsiteexp', profileData.onsiteExperience)">
+          </ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row class=" textfontsize">
+      <ion-col size="4" style="font-weight:600;">
+        Technical Skills:
+      </ion-col>
+      <ion-col size="8">
+        <div class="verticalscroll">
+          <span *ngFor="let skill of technicalSkills">{{skill.techSkillName}},&nbsp;</span>
+        </div>
+      </ion-col>
+      <!-- <ion-col *ngIf="editable" size="1" style="width:40px;text-align: right;">
+        <i class="lni-pencil"></i>
+      </ion-col> -->
+    </ion-row>
+    <ion-row class=" textfontsize">
+      <ion-col size="4" style="font-weight:600;">
+        Certificate:
+      </ion-col>
+      <ion-col size="7">
+        <div class="verticalscroll">
+          <span *ngFor="let certs of certificateDetails"
+            (click)="presentAlertConfirm(certs)">{{certs.certification_name}},&nbsp;</span>
+          <!-- <span (click)="presentAlertConfirm(cert)" >OCJP, Amazon Web Services&nbsp;</span> -->
+        </div>
+      </ion-col>
+      <ion-col *ngIf="editable" size="1" style="width:40px;text-align: right;" (click)="presentModal(1);">
+        <i class="lni-pencil"></i>
+      </ion-col>
+    </ion-row>
+    <ion-row class=" textfontsize">
+      <ion-col size="4" style="font-weight:600;">
+        Accolades:
+      </ion-col>
+      <ion-col size="7">
+        <div class="verticalscroll">
+          <span *ngFor="let accolade of accoladeDetails"
+            (click)="viewAccoladeDetails(accolade)">{{accolade.category}},&nbsp;</span>
+        </div>
+      </ion-col>
+      <ion-col *ngIf="editable" size="1" style="width:40px;text-align: right;" (click)="presentModal(2);">
+        <i class="lni-pencil"></i>
+      </ion-col>
+    </ion-row>
+    <ion-row class=" textfontsize">
+      <ion-col size="4" style="font-weight:600;">
+        Domain Knowledge:
+      </ion-col>
+      <ion-col size="7">
+        <div class="verticalscroll">
+          <span *ngFor="let domains of domainDetails"
+            (click)="viewDomainDetails(domains)">{{domains.domainname}},&nbsp;</span>
+        </div>
+      </ion-col>
+      <ion-col *ngIf="editable" size="1" style="width:40px;text-align: right;" (click)="presentModal(3);">
+        <i class="lni-pencil"></i>
+      </ion-col>
+    </ion-row>
+    <ion-row class=" textfontsize">
+      <ion-col size="4" style="font-weight:600;">
+        Visa Details:
+      </ion-col>
+      <ion-col size="7">
+      </ion-col>
+      <ion-col *ngIf="editable" size="1" style="width:40px;text-align: right;" (click)="presentModal(4);">
+        <i class="lni-pencil"></i>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
+</ion-content>
+
+
+<!-- <div class="segment">
+    <div class="segment-item" (click)="isSelectedfn('btn1')">
+      <ion-button [color]="isSelectedbtn1 ? 'secondary' : 'primary'" size="small">Profile Update</ion-button>
+    </div>
+    <div class="segment-item" (click)="isSelectedfn('btn2')">
+      <ion-button [color]="isSelectedbtn2 ? 'secondary' : 'primary'" size="small">Technical Skills</ion-button>
+    </div>
+    <div class="segment-item" (click)="isSelectedfn('btn3')">
+      <ion-button [color]="isSelectedbtn3 ? 'secondary' : 'primary'" size="small">Certificate</ion-button>
+    </div>
+    <div class="segment-item" (click)="isSelectedfn('btn4')">
+      <ion-button [color]="isSelectedbtn4 ? 'secondary' : 'primary'" size="small">Accolades</ion-button>
+    </div>
+    <div class="segment-item" (click)="isSelectedfn('btn5')">
+      <ion-button [color]="isSelectedbtn5 ? 'secondary' : 'primary'" size="small">Domain Knowledge</ion-button>
+    </div>
+    <div class="segment-item" (click)="isSelectedfn('btn6')">
+      <ion-button [color]="isSelectedbtn6 ? 'secondary' : 'primary'" size="small">Visa & Travel</ion-button>
+    </div>
+  </div>
+  <div [hidden]="!isSelectedbtn1">
+    <ion-row class="image-row-style">
+      <img class="image-style" src="../../../../assets/imgs/md-person.png" />
+    </ion-row>
+
+    <ion-grid class="grid-style">
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Staff ID
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          20473
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Staff Name
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          SANDEEP S DESHMUKH
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Cisco ID
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          SD20473
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Gender
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          M
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Zensar Band
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          B2
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Zensar Experience (Years):
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          15.94
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Associate Role:
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          DELIVERY CENTRE HEAD
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Track:
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          CAS APPLICATION MANAGEMENT
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Manager Name:
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          AVINASH PANDURANG KALE
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Billable:
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          Billable
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Education Qualification:
+        </ion-col>
+        <ion-col size="6" class="value-style">
+
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Project Name:
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          SAM_MJ_COMMERCE_B2B_OFL_NOTIFI_ON_OFF_Q4FY18_EE
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Contact Number:*
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          98220 53731
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Emergency Contact Number:*
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          98220 50430
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Passport Number:
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          H90173886
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Onsite Experience (Years):
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          <b><u>
+              <ion-input type="number" value="3.0"></ion-input>
+            </u></b>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Passport Issue Date:
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          2010-03-05
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Passport Expiry Date:
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          2017-03-04
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Travel Willingness (Y/N):
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          Yes
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Desk Location:*
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          F0001
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Local Address:*
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          <ion-item>
+            <ion-textarea placeholder="Enter address"
+              value="A 301 Rohan Tapovan Off S B Road Near VikhePatil School Gokhalenagar Pune 16">
+            </ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Permanent Address:*
+          ( Same as Local Address )
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          <ion-item>
+            <ion-textarea placeholder="Enter address"
+              value="A 301 Rohan Tapovan Off S B Road Near VikhePatil School Gokhalenagar Pune 16">
+            </ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Asset details:*
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          <ion-input style="padding: 0px !important;" placeholder="Enter Input" value="Laptop/1094"></ion-input>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div [hidden]="!isSelectedbtn2">
+    Technical Skills goes here
+  </div>
+  <div [hidden]="!isSelectedbtn3">
+    <ion-item (click)="profileDetailsItemClick()">
+      <ion-row style="width: 100%" class="tile-header-style">
+        <ion-col size="1" class="plus-symbol-style">
+          +
+        </ion-col>
+        <ion-col size="11" class="tile-header-style">
+          Add New Certificate
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <div style="background: #FFFFFF" *ngIf="profileDetailsSubMenu">
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Category
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          <ion-input style="padding: 0px !important;" placeholder="Enter Input"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Certificate Name
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          <ion-input style="padding: 0px !important;" placeholder="Enter Input"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Date of Completion
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          <ion-input class="p" placeholder="Enter Input"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-button color="primary" size="block">Add</ion-button>
+    </div>
+    <ion-row class="page-header-style">
+      <ion-col size="4" style="align-self: center;">
+        <ion-row class="row-style">
+          Category
+        </ion-row>
+      </ion-col>
+      <ion-col size="4" style="align-self: center;">
+        <ion-row class="row-style">
+          Certificate Name
+        </ion-row>
+      </ion-col>
+      <ion-col size="4" style="align-self: center;">
+        <ion-row class="row-style">
+          Date of Completion
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+  </div>
+  <div [hidden]="!isSelectedbtn4">
+    <ion-item (click)="profileDetailsItemClick()">
+      <ion-row style="width: 100%" class="tile-header-style">
+        <ion-col size="1" class="plus-symbol-style">
+          +
+        </ion-col>
+        <ion-col size="11" class="tile-header-style">
+          Add New Accolade
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <div style="background: #FFFFFF" *ngIf="profileDetailsSubMenu">
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Category
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          <ion-input style="padding: 0px !important;" placeholder="Enter Input"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Internal/External
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          <ion-input style="padding: 0px !important;" placeholder="Enter Input"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Accolade Received Date
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          <ion-input class="p" placeholder="Enter Input"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Accolade Details
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          <ion-textarea placeholder="Max 1000 Characters">
+          </ion-textarea>
+        </ion-col>
+      </ion-row>
+      <ion-button color="primary" size="block">Add</ion-button>
+    </div>
+    <ion-row class="page-header-style">
+      <ion-col size="3" style="align-self: center;">
+        <ion-row class="row-style">
+          Category
+        </ion-row>
+      </ion-col>
+      <ion-col size="3" style="align-self: center;">
+        <ion-row class="row-style">
+          Internal/ External
+        </ion-row>
+      </ion-col>
+      <ion-col size="3" style="align-self: center;">
+        <ion-row class="row-style">
+          Accolade Received Date
+        </ion-row>
+      </ion-col>
+      <ion-col size="3" style="align-self: center;">
+        <ion-row class="row-style">
+          Account Details
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+  </div>
+  <div [hidden]="!isSelectedbtn5">
+    <ion-item (click)="profileDetailsItemClick()">
+      <ion-row style="width: 100%" class="tile-header-style">
+        <ion-col size="1" class="plus-symbol-style">
+          +
+        </ion-col>
+        <ion-col size="11" class="tile-header-style">
+          Add New Domain
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <div style="background: #FFFFFF" *ngIf="profileDetailsSubMenu">
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Domain
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          <ion-input style="padding: 0px !important;" placeholder="Enter Input"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Experience
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          <ion-input style="padding: 0px !important;" placeholder="Enter Input"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-button color="primary" size="block">Add</ion-button>
+    </div>
+    <div style="background:#FFFFFF;">
+    <ion-row class="page-header-style">
+      <ion-col size="4" style="align-self: center;">
+        <ion-row class="row-style">
+          Domain
+        </ion-row>
+      </ion-col>
+      <ion-col size="4" style="align-self: center;">
+        <ion-row class="row-style">
+          Experience (in Months)
+        </ion-row>
+      </ion-col>
+      <ion-col size="4" style="align-self: center;">
+        <ion-row class="row-style">
+          Check to Delete
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row style="background: #FFFFFF">
+        <ion-col size="4" style="align-self: center;">
+          <ion-row class="row-style2">
+            Commerce
+          </ion-row>
+        </ion-col>
+        <ion-col size="4" style="align-self: center;">
+          <ion-row class="row-style2">
+            168
+          </ion-row>
+        </ion-col>
+        <ion-col size="4" style="align-self: center;">
+          <ion-row class="row-style2">
+            <input type="checkbox">
+          </ion-row>
+        </ion-col>
+      </ion-row>
+</div>
+  </div>
+  <div [hidden]="!isSelectedbtn6">
+      <ion-item (click)="profileDetailsItemClick()">
+          <ion-row style="width: 100%" class="tile-header-style">
+            <ion-col size="1" class="plus-symbol-style">
+              +
+            </ion-col>
+            <ion-col size="11" class="tile-header-style">
+              Add New Visa
+            </ion-col>
+          </ion-row>
+        </ion-item>
+        <div style="background: #FFFFFF" *ngIf="profileDetailsSubMenu">
+            <ion-row>
+              <ion-col size="6" class="key-style">
+                Domain
+              </ion-col>
+              <ion-col size="6" class="value-style">
+                <ion-input style="padding: 0px !important;" placeholder="Enter Input"></ion-input>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6" class="key-style">
+                Experience
+              </ion-col>
+              <ion-col size="6" class="value-style">
+                <ion-input style="padding: 0px !important;" placeholder="Enter Input"></ion-input>
+              </ion-col>
+            </ion-row>
+            <ion-button color="primary" size="block">Add</ion-button>
+          </div>
+   <span style="font-weight: 600;padding:20px 10px 20px 10px"> Visas Avavilable:</span>
+      <div class="segment">
+          <div class="segment-item" (click)="isSelectedfn('btn1')">
+            <ion-button color="secondary" size="small">US</ion-button>
+          </div>
+          <div class="segment-item" (click)="isSelectedfn('btn2')">
+            <ion-button [color]="isSelectedbtn2 ? 'secondary' : 'primary'" size="small">Africa</ion-button>
+          </div>
+          <div class="segment-item" (click)="isSelectedfn('btn3')">
+            <ion-button [color]="isSelectedbtn3 ? 'secondary' : 'primary'" size="small">UK</ion-button>
+          </div>
+          <!-- <div class="segment-item" (click)="isSelectedfn('btn4')">
+            <ion-button [color]="isSelectedbtn4 ? 'secondary' : 'primary'" size="small">Accolades</ion-button>
+          </div>
+          <div class="segment-item" (click)="isSelectedfn('btn5')">
+            <ion-button [color]="isSelectedbtn5 ? 'secondary' : 'primary'" size="small">Domain Knowledge</ion-button>
+          </div>
+          <div class="segment-item" (click)="isSelectedfn('btn6')">
+            <ion-button [color]="isSelectedbtn6 ? 'secondary' : 'primary'" size="small">Visa & Travel</ion-button>
+          </div> 
+        </div>
+    <ion-grid class="grid-style-visa">
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Sr No.
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          1
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+         Country
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          US
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Visa Type:
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          B1
+        </ion-col>
+      </ion-row>
+      <ion-row>
+          <ion-col size="6" class="key-style">
+            Status:
+          </ion-col>
+          <ion-col size="6" class="value-style">
+            Visa Approved
+          </ion-col>
+        </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Petition File Date
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Petition Number
+        </ion-col>
+        <ion-col size="6" class="value-style">
+         
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Petition Start Date:
+        </ion-col>
+        <ion-col size="6" class="value-style">
+         
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Petition End Date:
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Visa Number
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Visa Start Date
+        </ion-col>
+        <ion-col size="6" class="value-style">
+         
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Visa End Date
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Onsite Travel:
+        </ion-col>
+        <ion-col size="6" class="value-style">
+          Yes
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Sponsored By:
+        </ion-col>
+        <ion-col size="6" class="value-style">
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          Rejected Reason:
+        </ion-col>
+        <ion-col size="6" class="value-style">
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" class="key-style">
+          RFE:
+        </ion-col>
+        <ion-col size="6" class="value-style">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <ion-button color="primary" size="block">Save/Update</ion-button> -->

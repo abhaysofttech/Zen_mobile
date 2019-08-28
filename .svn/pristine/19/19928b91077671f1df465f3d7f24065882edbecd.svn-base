@@ -1,0 +1,23 @@
+.background{
+    --background: linear-gradient(to top left, #99d6ff, #b3e0ff, #ccebff, white)
+}
+
+.title-row-style{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}    
+
+.key-style{
+    font-weight: bold;
+    font-size: 90%;
+}
+
+.value-style{
+    font-size: 90%;
+}
+
+.counts-row-style{
+    background-color: white;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}

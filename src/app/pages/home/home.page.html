@@ -1,0 +1,1239 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="homepagecss">
+  <ion-row style="padding: 5px;">
+    <ion-col size="6">
+      <ion-button *ngIf="empRole =='CEO' || empRole =='SRMGMT' || empRole == 'BU' || empRole =='DH'" class="orgview"
+        (click)="orgViewButtonCilck()">ORG View</ion-button>
+    </ion-col>
+    <ion-col size="6" *ngIf="empRole =='CEO' || empRole =='SRMGMT'">
+      <ion-select class="select-bu-css" placeholder="Select BU" interface="popover"
+        (ionChange)="onBuChange($event.target.value)">
+        <ion-select-option *ngFor="let bu of buList" [value]="bu">{{ bu }}</ion-select-option>
+      </ion-select>
+    </ion-col>
+    <ion-col size="6" *ngIf="empRole == 'BU' || empRole =='DH'">
+      <ion-button class="orgview" (click)="onBuChange(accountName)">
+        My Dashboard
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="empRole =='CEO' || empRole =='SRMGMT' || empRole == 'BU' || empRole =='DH'" class="fusion-chart-css">
+    <fusioncharts [width]="width" [height]="height" [type]="type" [dataFormat]="dataFormat" [dataSource]="dataSource">
+    </fusioncharts>
+  </ion-row>
+  <ion-row *ngIf="empRole =='CEO' || empRole =='SRMGMT' || empRole == 'BU' || empRole =='DH'" class="dashboardtilerow">
+    <ion-col class="dashboardtilefont" size="6" (click)="totalAssociatesTileClick(userSelectedBU)">
+      <ion-row class="tile-header">
+        TOTAL ASSOCIATES<br>
+      </ion-row>
+      <ion-row class="tile-value">
+        {{totalAssociatesCount}}
+      </ion-row>
+    </ion-col>
+    <ion-col class="dashboardtilefont" size="6" (click)="deliveryBillableTileClick(userSelectedBU)">
+      <ion-row class="tile-header">
+        DELIVERY BILLABLE<br>
+      </ion-row>
+      <ion-row class="tile-value">
+        {{totalBillableCount}}
+      </ion-row>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="empRole =='CEO' || empRole =='SRMGMT' || empRole == 'BU' || empRole =='DH'" class="dashboardtilerow">
+    <ion-col class="dashboardtilefont" size="6" (click)="nonBillableTileClick(userSelectedBU)">
+      <ion-row class="tile-header">
+        NON-BILLABLE<br>
+      </ion-row>
+      <ion-row class="blue-tile-value">
+        {{totalNonBillableCount}}
+      </ion-row>
+    </ion-col>
+    <ion-col class="dashboardtilefont" size="6" (click)="inTransitTileClick(userSelectedBU)">
+      <ion-row class="tile-header">
+        IN TRANSIT<br>
+      </ion-row>
+      <ion-row class="blue-tile-value">
+        {{totalInTransitCount}}
+      </ion-row>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="empRole =='CEO' || empRole =='SRMGMT' || empRole == 'BU' || empRole =='DH'" class="dashboardtilerow">
+    <ion-col class="dashboardtilefont" size="6" (click)="ebrTileClick(userSelectedBU)">
+      <ion-row class="tile-header">
+        EBR<br>
+      </ion-row>
+      <ion-row class="yellow-tile-value">
+        {{totalEbrCount}}
+      </ion-row>
+    </ion-col>
+    <ion-col class="dashboardtilefont" size="6" (click)="inPoolTileClick(userSelectedBU)">
+      <ion-row class="tile-header">
+        IN POOL<br>
+      </ion-row>
+      <ion-row class="orange-tile-value">
+        {{totalInPollCount}}
+      </ion-row>
+    </ion-col>
+  </ion-row>
+  <ion-slides *ngIf="empRole =='CEO' || empRole =='SRMGMT' || empRole == 'BU' || empRole =='DH'" pager="true"
+    [options]="slideOpts" class="slides-style">
+    <ion-slide>
+      <ion-grid class="slide-grid-style">
+        <ion-row class="slide-title">
+          ASSOCIATE LOCATION:
+        </ion-row>
+        <ion-row class="slide-card">
+          <ion-col class="slide-sub-title-row">
+            <ion-row class="slide-sub-title">
+              Onshore:
+            </ion-row>
+          </ion-col>
+          <ion-col class="slide-sub-title-row">
+            <ion-row class="slide-badge-row">
+              <ion-badge class="badge-style">{{ totalOnshoreCount }}</ion-badge>
+            </ion-row>
+          </ion-col>
+          <ion-row class="underline-style">
+          </ion-row>
+          <ion-row class="display-locations-row-style">
+            <ion-row style="width: 100%;">
+              <ion-col size="4">
+                <ion-row class="location-text-style">
+                  {{ onShoreUniqueLocations["0"] }}
+                </ion-row>
+              </ion-col>
+              <ion-col size="4">
+                <ion-row class="location-text-style">
+                  {{ onShoreUniqueLocations["1"] }}
+                </ion-row>
+              </ion-col>
+              <ion-col size="4">
+                <ion-row class="location-text-style">
+                  {{ onShoreUniqueLocations["2"] }}
+                </ion-row>
+              </ion-col>
+            </ion-row>
+            <ion-row style="width: 100%;">
+              <ion-col size="4">
+                <ion-row class="location-value-style">
+                  {{ onShoreLocation1Count }}
+                </ion-row>
+              </ion-col>
+              <ion-col size="4">
+                <ion-row class="location-value-style">
+                  {{ onShoreLocation2Count }}
+                </ion-row>
+              </ion-col>
+              <ion-col size="4">
+                <ion-row class="location-value-style">
+                  {{ onShoreLocation3Count }}
+                </ion-row>
+              </ion-col>
+            </ion-row>
+          </ion-row>
+          <ion-row class="other-locations-style" (click)="onShoreOtherLocationClick(userSelectedBU)">
+            Other Locations
+          </ion-row>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+    <ion-slide>
+      <ion-grid class="slide-grid-style">
+        <ion-row class="slide-title">
+          ASSOCIATE LOCATION:
+        </ion-row>
+        <ion-row class="slide-card">
+          <ion-col class="slide-sub-title-row">
+            <ion-row class="slide-sub-title">
+              Offshore:
+            </ion-row>
+          </ion-col>
+          <ion-col class="slide-sub-title-row">
+            <ion-row class="slide-badge-row">
+              <ion-badge class="badge-style">{{ totalOffshoreCount }}</ion-badge>
+            </ion-row>
+          </ion-col>
+          <ion-row class="underline-style">
+          </ion-row>
+          <ion-row class="display-locations-row-style">
+            <ion-row style="width: 100%;">
+              <ion-col size="4">
+                <ion-row class="location-text-style">
+                  {{ offShoreUniqueLocations["0"] }}
+                </ion-row>
+              </ion-col>
+              <ion-col size="4">
+                <ion-row class="location-text-style">
+                  {{ offShoreUniqueLocations["1"] }}
+                </ion-row>
+              </ion-col>
+              <ion-col size="4">
+                <ion-row class="location-text-style">
+                  {{ offShoreUniqueLocations["2"] }}
+                </ion-row>
+              </ion-col>
+            </ion-row>
+            <ion-row style="width: 100%;">
+              <ion-col size="4">
+                <ion-row class="location-value-style">
+                  {{ offShoreLocation1Count }}
+                </ion-row>
+              </ion-col>
+              <ion-col size="4">
+                <ion-row class="location-value-style">
+                  {{ offShoreLocation2Count }}
+                </ion-row>
+              </ion-col>
+              <ion-col size="4">
+                <ion-row class="location-value-style">
+                  {{ offShoreLocation3Count }}
+                </ion-row>
+              </ion-col>
+            </ion-row>
+          </ion-row>
+          <ion-row class="other-locations-style" (click)="offShoreOtherLocationClick(userSelectedBU)">
+            Other Locations
+          </ion-row>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+    <ion-slide>
+      <ion-grid class="slide-grid-style">
+        <ion-row class="slide-title">
+          UNUSED VISA HOLDER DETAILS:
+        </ion-row>
+        <ion-row class="slide-card">
+          <ion-col class="slide-sub-title-row">
+            <ion-row class="slide-sub-title">
+              Visa Talent Unused:
+            </ion-row>
+          </ion-col>
+          <ion-col class="slide-sub-title-row">
+            <ion-row class="slide-badge-row">
+              <ion-badge class="badge-style">{{ totalVisaUnusedCount }}</ion-badge>
+            </ion-row>
+          </ion-col>
+          <ion-row class="underline-style">
+          </ion-row>
+          <ion-row class="display-locations-row-style">
+            <ion-row style="width: 100%;">
+              <ion-col size="6">
+                <ion-row class="location-text-style">
+                  Visa Ready
+                </ion-row>
+              </ion-col>
+              <ion-col size="6">
+                <ion-row class="location-text-style">
+                  Pool Visa Ready
+                </ion-row>
+              </ion-col>
+            </ion-row>
+            <ion-row style="width: 100%;">
+              <ion-col size="6">
+                <ion-row class="location-value-style">
+                  {{ totalVisaUnusedCount }}
+                </ion-row>
+              </ion-col>
+              <ion-col size="6">
+                <ion-row class="location-value-style">
+                  NA
+                </ion-row>
+              </ion-col>
+            </ion-row>
+          </ion-row>
+          <ion-row style="visibility: hidden;" class="other-locations-style">
+            Other Locations
+          </ion-row>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+  </ion-slides>
+  <ion-button *ngIf="empRole =='CEO' || empRole =='SRMGMT' || empRole == 'BU' || empRole =='DH'" expand="block" style="margin-left: 10px;
+  margin-right: 10px;" (click)="moreDetailsBtnClick()">
+    More Details
+  </ion-button>
+  <!-- Below UI for PGM & MGR Roles -->
+  <ion-slides pager="true" [options]="slideOpts" class="slides-style" *ngIf="empRole =='PGM' || empRole == 'MGR'">
+    <ion-slide class="single-slide-style" *ngIf="tfwWithWeightageData && tfwWithWeightageData.length > 0">
+      <span>
+        <img src="../../../assets/imgs/technical_expertise_.png" width="6%" class="alignTechnicalExp">
+      </span>
+      <ion-grid class="twenty-five-window-grid-style">
+        <ion-row>
+          <h5 class="heading_25W">25W Rating With Weightage</h5>
+        </ion-row>
+        <ion-row style="margin-top: 10px;">
+          <ion-col size="2" class="btn_25W_header grey col-width-height">
+            Expert
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightageData[0].value1==''"
+              (click)="withWeightageTileClick(1, 5)">
+              {{ tfwWithWeightageData[0].value1 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-grey" [disabled]="tfwWithWeightageData[0].value2==''"
+              (click)="withWeightageTileClick(2, 5)">
+              {{ tfwWithWeightageData[0].value2 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-light-yellow" [disabled]="tfwWithWeightageData[0].value3==''"
+              (click)="withWeightageTileClick(3, 5)">
+              {{ tfwWithWeightageData[0].value3 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightageData[0].value4==''"
+              (click)="withWeightageTileClick(4, 5)">
+              {{ tfwWithWeightageData[0].value4 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-light-green" [disabled]="tfwWithWeightageData[0].value5==''"
+              (click)="withWeightageTileClick(5, 5)">
+              {{ tfwWithWeightageData[0].value5 }}
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="2" class="btn_25W_header purple col-width-height">
+            Valuable Contributor
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightageData[1].value1==''"
+              (click)="withWeightageTileClick(1, 4)">
+              {{ tfwWithWeightageData[1].value1 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightageData[1].value2==''"
+              (click)="withWeightageTileClick(2, 4)">
+              {{ tfwWithWeightageData[1].value2 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-orange" [disabled]="tfwWithWeightageData[1].value3==''"
+              (click)="withWeightageTileClick(3, 4)">
+              {{ tfwWithWeightageData[1].value3 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-purple" [disabled]="tfwWithWeightageData[1].value4==''"
+              (click)="withWeightageTileClick(4, 4)">
+              {{ tfwWithWeightageData[1].value4 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightageData[1].value5==''"
+              (click)="withWeightageTileClick(5, 4)">
+              {{ tfwWithWeightageData[1].value5 }}
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="2" class="btn_25W_header orange col-width-height">
+            Independent Worker
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightageData[2].value1==''"
+              (click)="withWeightageTileClick(1, 3)">
+              {{ tfwWithWeightageData[1].value1 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightageData[2].value2==''"
+              (click)="withWeightageTileClick(2, 3)">
+              {{ tfwWithWeightageData[2].value2 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-orange" [disabled]="tfwWithWeightageData[2].value3==''"
+              (click)="withWeightageTileClick(3, 3)">
+              {{ tfwWithWeightageData[2].value3 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-orange" [disabled]="tfwWithWeightageData[2].value4==''"
+              (click)="withWeightageTileClick(4, 3)">
+              {{ tfwWithWeightageData[2].value4 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightageData[2].value5==''"
+              (click)="withWeightageTileClick(5, 3)">
+              {{ tfwWithWeightageData[2].value5 }}
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="2" class="btn_25W_header dark-green col-width-height">
+            Need Handholding
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightageData[3].value1==''"
+              (click)="withWeightageTileClick(1, 2)">
+              {{ tfwWithWeightageData[3].value1 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-dark-green" [disabled]="tfwWithWeightageData[3].value2==''"
+              (click)="withWeightageTileClick(2, 2)">
+              {{ tfwWithWeightageData[3].value2 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightageData[3].value3==''"
+              (click)="withWeightageTileClick(3, 2)">
+              {{ tfwWithWeightageData[3].value3 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightageData[3].value4==''"
+              (click)="withWeightageTileClick(4, 2)">
+              {{ tfwWithWeightageData[3].value4 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightageData[3].value5==''"
+              (click)="withWeightageTileClick(5, 2)">
+              {{ tfwWithWeightageData[3].value5 }}
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="2" class="btn_25W_header dark-yellow col-width-height">
+            Under Watch
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-dark-yellow" [disabled]="tfwWithWeightageData[4].value1==''"
+              (click)="withWeightageTileClick(1, 1)">
+              {{ tfwWithWeightageData[4].value1 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightageData[4].value2==''"
+              (click)="withWeightageTileClick(2, 1)">
+              {{ tfwWithWeightageData[4].value2 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightageData[4].value3==''"
+              (click)="withWeightageTileClick(3, 1)">
+              {{ tfwWithWeightageData[4].value3 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightageData[4].value4==''"
+              (click)="withWeightageTileClick(4, 1)">
+              {{ tfwWithWeightageData[4].value4 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-grey" [disabled]="tfwWithWeightageData[4].value5==''"
+              (click)="withWeightageTileClick(5, 1)">
+              {{ tfwWithWeightageData[4].value5 }}
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="2" class="col-width-height">
+          </ion-col>
+          <ion-col size="2" class="btn_25W_header dark-yellow col-width-height">
+            Under Watch
+          </ion-col>
+          <ion-col size="2" class="btn_25W_header dark-green col-width-height">
+            Need Handholding
+          </ion-col>
+          <ion-col size="2" class="btn_25W_header orange col-width-height">
+            Independent Worker
+          </ion-col>
+          <ion-col size="2" class="btn_25W_header purple col-width-height">
+            Valuable Contributor
+          </ion-col>
+          <ion-col size="2" class="btn_25W_header grey col-width-height">
+            Expert
+          </ion-col>
+        </ion-row>
+        <span>
+          <img src="../../../assets/imgs/solution_expertise_.png" class="alignSolutionExp">
+        </span>
+        <ion-row class="more-details-style" (click)="twentyFiveWindowWithWeightageMoreDetails()">
+          More details
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+
+    <ion-slide class="single-slide-style"
+      *ngIf="tfwWithWeightagePercentageData && tfwWithWeightagePercentageData.length > 0">
+      <span>
+        <img src="../../../assets/imgs/technical_expertise_.png" width="6%" class="alignTechnicalExp">
+      </span>
+      <ion-grid class="twenty-five-window-grid-style">
+        <ion-row>
+          <h5 class="heading_25W">25W Rating With Weightage %</h5>
+        </ion-row>
+        <ion-row style="margin-top: 10px;">
+          <ion-col size="2" class="btn_25W_header grey col-width-height">
+            Expert
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightagePercentageData[0].value1==''"
+              (click)="withoutWeightageTileClick(1, 5)">
+              {{ tfwWithWeightagePercentageData[0].value1 }}<sup [ngClass]="{suppositive: tfwWithWeightagePercentageData[0].deviationval1>=0 ? true  : false,
+                       supnegative: tfwWithWeightagePercentageData[0].deviationval1<0 ? true  : false}">
+                {{ tfwWithWeightagePercentageData[0].deviationval1 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-grey" [disabled]="tfwWithWeightagePercentageData[0].value2==''"
+              (click)="withoutWeightageTileClick(2, 5)">
+              {{ tfwWithWeightagePercentageData[0].value2 }}<sup [ngClass]="{suppositive: tfwWithWeightagePercentageData[0].deviationval2>=0 ? true  : false, 
+                      supnegative: tfwWithWeightagePercentageData[0].deviationval2<0 ? true  : false}">
+                {{ tfwWithWeightagePercentageData[0].deviationval2 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-light-yellow"
+              [disabled]="tfwWithWeightagePercentageData[0].value3==''" (click)="withoutWeightageTileClick(3, 5)">
+              {{ tfwWithWeightagePercentageData[0].value3 }}<sup [ngClass]="{suppositive: tfwWithWeightagePercentageData[0].deviationval3>=0 ? true  : false, 
+                    supnegative: tfwWithWeightagePercentageData[0].deviationval3<0 ? true  : false}">
+                {{ tfwWithWeightagePercentageData[0].deviationval3 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightagePercentageData[0].value4==''"
+              (click)="withoutWeightageTileClick(4, 5)">
+              {{ tfwWithWeightagePercentageData[0].value4 }}<sup [ngClass]="{suppositive: tfwWithWeightagePercentageData[0].deviationval4>=0 ? true  : false, 
+                    supnegative: tfwWithWeightagePercentageData[0].deviationval4<0 ? true  : false}">
+                {{ tfwWithWeightagePercentageData[0].deviationval4 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-light-green"
+              [disabled]="tfwWithWeightagePercentageData[0].value5==''" (click)="withoutWeightageTileClick(5, 5)">
+              {{ tfwWithWeightagePercentageData[0].value5 }}<sup [ngClass]="{suppositive: tfwWithWeightagePercentageData[0].deviationval5>=0 ? true  : false, 
+                    supnegative: tfwWithWeightagePercentageData[0].deviationval5<0 ? true  : false}">
+                {{ tfwWithWeightagePercentageData[0].deviationval5 }}</sup>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="2" class="btn_25W_header purple col-width-height">
+            Valuable Contributor
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightagePercentageData[1].value1==''"
+              (click)="withoutWeightageTileClick(1, 4)">
+              {{ tfwWithWeightagePercentageData[1].value1 }}<sup [ngClass]="{suppositive: tfwWithWeightagePercentageData[1].deviationval1>=0 ? true  : false, 
+                    supnegative: tfwWithWeightagePercentageData[1].deviationval1<0 ? true  : false}">
+                {{ tfwWithWeightagePercentageData[1].deviationval1 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightagePercentageData[1].value2==''"
+              (click)="withoutWeightageTileClick(2, 4)">
+              {{ tfwWithWeightagePercentageData[1].value2 }}<sup [ngClass]="{suppositive: tfwWithWeightagePercentageData[1].deviationval2>=0 ? true  : false, 
+                    supnegative: tfwWithWeightagePercentageData[1].deviationval2<0 ? true  : false}">
+                {{ tfwWithWeightagePercentageData[1].deviationval2 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-orange" [disabled]="tfwWithWeightagePercentageData[1].value3==''"
+              (click)="withoutWeightageTileClick(3, 4)">
+              {{ tfwWithWeightagePercentageData[1].value3 }}<sup [ngClass]="{suppositive: tfwWithWeightagePercentageData[1].deviationval3>=0 ? true  : false, 
+                    supnegative: tfwWithWeightagePercentageData[1].deviationval3<0 ? true  : false}">
+                {{ tfwWithWeightagePercentageData[1].deviationval3 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-purple" [disabled]="tfwWithWeightagePercentageData[1].value4==''"
+              (click)="withoutWeightageTileClick(4, 4)">
+              {{ tfwWithWeightagePercentageData[1].value4 }}<sup [ngClass]="{suppositive: tfwWithWeightagePercentageData[1].deviationval4>=0 ? true  : false, 
+                    supnegative: tfwWithWeightagePercentageData[1].deviationval4<0 ? true  : false}">
+                {{ tfwWithWeightagePercentageData[1].deviationval4 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightagePercentageData[1].value5==''"
+              (click)="withoutWeightageTileClick(5, 4)">
+              {{ tfwWithWeightagePercentageData[1].value5 }}<sup [ngClass]="{suppositive: tfwWithWeightagePercentageData[1].deviationval5>=0 ? true  : false, 
+                    supnegative: tfwWithWeightagePercentageData[1].deviationval5<0 ? true  : false}">
+                {{ tfwWithWeightagePercentageData[1].deviationval5 }}</sup>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="2" class="btn_25W_header orange col-width-height">
+            Independent Worker
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightagePercentageData[2].value1==''"
+              (click)="withoutWeightageTileClick(1, 3)">
+              {{ tfwWithWeightagePercentageData[2].value1 }}<sup [ngClass]="{suppositive: tfwWithWeightagePercentageData[2].deviationval1>=0 ? true  : false, 
+                    supnegative: tfwWithWeightagePercentageData[2].deviationval1<0 ? true  : false}">
+                {{ tfwWithWeightagePercentageData[2].deviationval1 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightagePercentageData[2].value2==''"
+              (click)="withoutWeightageTileClick(2, 3)">
+              {{ tfwWithWeightagePercentageData[2].value2 }}<sup [ngClass]="{suppositive: tfwWithWeightagePercentageData[2].deviationval2>=0 ? true  : false, 
+                    supnegative: tfwWithWeightagePercentageData[2].deviationval2<0 ? true  : false}">
+                {{ tfwWithWeightagePercentageData[2].deviationval2 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-orange" [disabled]="tfwWithWeightagePercentageData[2].value3==''"
+              (click)="withoutWeightageTileClick(3, 3)">
+              {{ tfwWithWeightagePercentageData[2].value3 }}<sup [ngClass]="{suppositive: tfwWithWeightagePercentageData[2].deviationval3>=0 ? true  : false, 
+                    supnegative: tfwWithWeightagePercentageData[2].deviationval3<0 ? true  : false}">
+                {{ tfwWithWeightagePercentageData[2].deviationval3 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-orange" [disabled]="tfwWithWeightagePercentageData[2].value4==''"
+              (click)="withoutWeightageTileClick(4, 3)">
+              {{ tfwWithWeightagePercentageData[2].value4 }}<sup [ngClass]="{suppositive: tfwWithWeightagePercentageData[2].deviationval4>=0 ? true  : false, 
+                    supnegative: tfwWithWeightagePercentageData[2].deviationval4<0 ? true  : false}">
+                {{ tfwWithWeightagePercentageData[2].deviationval4 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightagePercentageData[2].value5==''"
+              (click)="withoutWeightageTileClick(5, 3)">
+              {{ tfwWithWeightagePercentageData[2].value5 }}<sup [ngClass]="{suppositive: tfwWithWeightagePercentageData[2].deviationval5>=0 ? true  : false, 
+                    supnegative: tfwWithWeightagePercentageData[2].deviationval5<0 ? true  : false}">
+                {{ tfwWithWeightagePercentageData[2].deviationval5 }}</sup>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="2" class="btn_25W_header dark-green col-width-height">
+            Need Handholding
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightagePercentageData[3].value1==''"
+              (click)="withoutWeightageTileClick(1, 2)">
+              {{ tfwWithWeightagePercentageData[3].value1 }}<sup [ngClass]="{suppositive: tfwWithWeightagePercentageData[3].deviationval1>=0 ? true  : false, 
+                    supnegative: tfwWithWeightagePercentageData[3].deviationval1<0 ? true  : false}">
+                {{ tfwWithWeightagePercentageData[3].deviationval1 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-dark-green"
+              [disabled]="tfwWithWeightagePercentageData[3].value2==''" (click)="withoutWeightageTileClick(2, 2)">
+              {{ tfwWithWeightagePercentageData[3].value2 }}<sup [ngClass]="{suppositive: tfwWithWeightagePercentageData[3].deviationval2>=0 ? true  : false, 
+                    supnegative: tfwWithWeightagePercentageData[3].deviationval2<0 ? true  : false}">
+                {{ tfwWithWeightagePercentageData[3].deviationval2 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightagePercentageData[3].value3==''"
+              (click)="withoutWeightageTileClick(3, 2)">
+              {{ tfwWithWeightagePercentageData[3].value3 }}<sup [ngClass]="{suppositive: tfwWithWeightagePercentageData[3].deviationval3>=0 ? true  : false, 
+                    supnegative: tfwWithWeightagePercentageData[3].deviationval3<0 ? true  : false}">
+                {{ tfwWithWeightagePercentageData[3].deviationval3 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightagePercentageData[3].value4==''"
+              (click)="withoutWeightageTileClick(4, 2)">
+              {{ tfwWithWeightagePercentageData[3].value4 }}<sup [ngClass]="{suppositive: tfwWithWeightagePercentageData[3].deviationval4>=0 ? true  : false, 
+                    supnegative: tfwWithWeightagePercentageData[3].deviationval4<0 ? true  : false}">
+                {{ tfwWithWeightagePercentageData[3].deviationval4 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightagePercentageData[3].value5==''"
+              (click)="withoutWeightageTileClick(5, 2)">
+              {{ tfwWithWeightagePercentageData[3].value5 }}<sup [ngClass]="{suppositive: tfwWithWeightagePercentageData[3].deviationval5>=0 ? true  : false, 
+                    supnegative: tfwWithWeightagePercentageData[3].deviationval5<0 ? true  : false}">{{
+                        tfwWithWeightagePercentageData[3].deviationval5 }}</sup>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="2" class="btn_25W_header dark-yellow col-width-height">
+            Under Watch
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-dark-yellow"
+              [disabled]="tfwWithWeightagePercentageData[4].value1==''" (click)="withoutWeightageTileClick(1, 1)">
+              {{ tfwWithWeightagePercentageData[4].value1 }}<sup [ngClass]="{suppositive: tfwWithWeightagePercentageData[4].deviationval1>=0 ? true  : false, 
+                    supnegative: tfwWithWeightagePercentageData[4].deviationval1<0 ? true  : false}">
+                {{ tfwWithWeightagePercentageData[4].deviationval1 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightagePercentageData[4].value2==''"
+              (click)="withoutWeightageTileClick(2, 1)">
+              {{ tfwWithWeightagePercentageData[4].value2 }}<sup [ngClass]="{suppositive: tfwWithWeightagePercentageData[4].deviationval2>=0 ? true  : false, 
+                    supnegative: tfwWithWeightagePercentageData[4].deviationval2<0 ? true  : false}">
+                {{ tfwWithWeightagePercentageData[4].deviationval2 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightagePercentageData[4].value3==''"
+              (click)="withoutWeightageTileClick(3, 1)">
+              {{ tfwWithWeightagePercentageData[4].value3 }}<sup [ngClass]="{suppositive: tfwWithWeightagePercentageData[4].deviationval3>=0 ? true  : false, 
+                    supnegative: tfwWithWeightagePercentageData[4].deviationval3<0 ? true  : false}">
+                {{ tfwWithWeightagePercentageData[4].deviationval3 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithWeightagePercentageData[4].value4==''"
+              (click)="withoutWeightageTileClick(4, 1)">
+              {{ tfwWithWeightagePercentageData[4].value4 }}<sup [ngClass]="{suppositive: tfwWithWeightagePercentageData[4].deviationval4>=0 ? true  : false, 
+                    supnegative: tfwWithWeightagePercentageData[4].deviationval4<0 ? true  : false}">
+                {{ tfwWithWeightagePercentageData[4].deviationval4 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-grey" [disabled]="tfwWithWeightagePercentageData[4].value5==''"
+              (click)="withoutWeightageTileClick(5, 1)">
+              {{ tfwWithWeightagePercentageData[4].value5 }}<sup [ngClass]="{suppositive: tfwWithWeightagePercentageData[4].deviationval5>=0 ? true  : false, 
+                    supnegative: tfwWithWeightagePercentageData[4].deviationval5<0 ? true  : false}">
+                {{ tfwWithWeightagePercentageData[4].deviationval5 }}</sup>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="2" class="col-width-height">
+          </ion-col>
+          <ion-col size="2" class="btn_25W_header dark-yellow col-width-height">
+            Under Watch
+          </ion-col>
+          <ion-col size="2" class="btn_25W_header dark-green col-width-height">
+            Need Handholding
+          </ion-col>
+          <ion-col size="2" class="btn_25W_header orange col-width-height">
+            Independent Worker
+          </ion-col>
+          <ion-col size="2" class="btn_25W_header purple col-width-height">
+            Valuable Contributor
+          </ion-col>
+          <ion-col size="2" class="btn_25W_header grey col-width-height">
+            Expert
+          </ion-col>
+        </ion-row>
+        <span>
+          <img src="../../../assets/imgs/solution_expertise_.png" class="alignSolutionExp">
+        </span>
+      </ion-grid>
+    </ion-slide>
+
+    <ion-slide class="single-slide-style" *ngIf="tfwWithoutWeightageData && tfwWithoutWeightageData.length > 0">
+      <span>
+        <img src="../../../assets/imgs/technical_expertise_.png" width="6%" class="alignTechnicalExp">
+      </span>
+      <ion-grid class="twenty-five-window-grid-style">
+        <ion-row>
+          <h5 class="heading_25W">25W Rating Without Weightage</h5>
+        </ion-row>
+        <ion-row style="margin-top: 10px;">
+          <ion-col size="2" class="btn_25W_header grey col-width-height">
+            Expert
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithoutWeightageData[0].value1==''"
+              (click)="withoutWeightageTileClick(1, 5)">
+              {{ tfwWithoutWeightageData[0].value1 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-grey" [disabled]="tfwWithoutWeightageData[0].value2==''"
+              (click)="withoutWeightageTileClick(2, 5)">
+              {{ tfwWithoutWeightageData[0].value2 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-light-yellow" [disabled]="tfwWithoutWeightageData[0].value3==''"
+              (click)="withoutWeightageTileClick(3, 5)">
+              {{ tfwWithoutWeightageData[0].value3 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithoutWeightageData[0].value4==''"
+              (click)="withoutWeightageTileClick(4, 5)">
+              {{ tfwWithoutWeightageData[0].value4 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-light-green" [disabled]="tfwWithoutWeightageData[0].value5==''"
+              (click)="withoutWeightageTileClick(5, 5)">
+              {{ tfwWithoutWeightageData[0].value5 }}
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="2" class="btn_25W_header purple col-width-height">
+            Valuable Contributor
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithoutWeightageData[1].value1==''"
+              (click)="withoutWeightageTileClick(1, 4)">
+              {{ tfwWithoutWeightageData[1].value1 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithoutWeightageData[1].value2==''"
+              (click)="withoutWeightageTileClick(2, 4)">
+              {{ tfwWithoutWeightageData[1].value2 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-orange" [disabled]="tfwWithoutWeightageData[1].value3==''"
+              (click)="withoutWeightageTileClick(3, 4)">
+              {{ tfwWithoutWeightageData[1].value3 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-purple" [disabled]="tfwWithoutWeightageData[1].value4==''"
+              (click)="withoutWeightageTileClick(4, 4)">
+              {{ tfwWithoutWeightageData[1].value4 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithoutWeightageData[1].value5==''"
+              (click)="withoutWeightageTileClick(5, 4)">
+              {{ tfwWithoutWeightageData[1].value5 }}
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="2" class="btn_25W_header orange col-width-height">
+            Independent Worker
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithoutWeightageData[2].value1==''"
+              (click)="withoutWeightageTileClick(1, 3)">
+              {{ tfwWithoutWeightageData[1].value1 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithoutWeightageData[2].value2==''"
+              (click)="withoutWeightageTileClick(2, 3)">
+              {{ tfwWithoutWeightageData[2].value2 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-orange" [disabled]="tfwWithoutWeightageData[2].value3==''"
+              (click)="withoutWeightageTileClick(3, 3)">
+              {{ tfwWithoutWeightageData[2].value3 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-orange" [disabled]="tfwWithoutWeightageData[2].value4==''"
+              (click)="withoutWeightageTileClick(4, 3)">
+              {{ tfwWithoutWeightageData[2].value4 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithoutWeightageData[2].value5==''"
+              (click)="withoutWeightageTileClick(5, 3)">
+              {{ tfwWithoutWeightageData[2].value5 }}
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="2" class="btn_25W_header dark-green col-width-height">
+            Need Handholding
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithoutWeightageData[3].value1==''"
+              (click)="withoutWeightageTileClick(1, 2)">
+              {{ tfwWithoutWeightageData[3].value1 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-dark-green" [disabled]="tfwWithoutWeightageData[3].value2==''"
+              (click)="withoutWeightageTileClick(2, 2)">
+              {{ tfwWithoutWeightageData[3].value2 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithoutWeightageData[3].value3==''"
+              (click)="withoutWeightageTileClick(3, 2)">
+              {{ tfwWithoutWeightageData[3].value3 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithoutWeightageData[3].value4==''"
+              (click)="withoutWeightageTileClick(4, 2)">
+              {{ tfwWithoutWeightageData[3].value4 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithoutWeightageData[3].value5==''"
+              (click)="withoutWeightageTileClick(5, 2)">
+              {{ tfwWithoutWeightageData[3].value5 }}
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="2" class="btn_25W_header dark-yellow col-width-height">
+            Under Watch
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-dark-yellow" [disabled]="tfwWithoutWeightageData[4].value1==''"
+              (click)="withoutWeightageTileClick(1, 1)">
+              {{ tfwWithoutWeightageData[4].value1 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithoutWeightageData[4].value2==''"
+              (click)="withoutWeightageTileClick(2, 1)">
+              {{ tfwWithoutWeightageData[4].value2 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithoutWeightageData[4].value3==''"
+              (click)="withoutWeightageTileClick(3, 1)">
+              {{ tfwWithoutWeightageData[4].value3 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white" [disabled]="tfwWithoutWeightageData[4].value4==''"
+              (click)="withoutWeightageTileClick(4, 1)">
+              {{ tfwWithoutWeightageData[4].value4 }}
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-grey" [disabled]="tfwWithoutWeightageData[4].value5==''"
+              (click)="withoutWeightageTileClick(5, 1)">
+              {{ tfwWithoutWeightageData[4].value5 }}
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="2" class="col-width-height">
+          </ion-col>
+          <ion-col size="2" class="btn_25W_header dark-yellow col-width-height">
+            Under Watch
+          </ion-col>
+          <ion-col size="2" class="btn_25W_header dark-green col-width-height">
+            Need Handholding
+          </ion-col>
+          <ion-col size="2" class="btn_25W_header orange col-width-height">
+            Independent Worker
+          </ion-col>
+          <ion-col size="2" class="btn_25W_header purple col-width-height">
+            Valuable Contributor
+          </ion-col>
+          <ion-col size="2" class="btn_25W_header grey col-width-height">
+            Expert
+          </ion-col>
+        </ion-row>
+        <span>
+          <img src="../../../assets/imgs/solution_expertise_.png" class="alignSolutionExp">
+        </span>
+        <ion-row class="more-details-style" (click)="twentyFiveWindowWithoutWeightageMoreDetails()">
+          More details
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+
+    <ion-slide class="single-slide-style"
+      *ngIf="tfwWithoutWeightagePercentageData && tfwWithoutWeightagePercentageData.length > 0">
+      <span>
+        <img src="../../../assets/imgs/technical_expertise_.png" width="6%" class="alignTechnicalExp">
+      </span>
+      <ion-grid class="twenty-five-window-grid-style">
+        <ion-row>
+          <h5 class="heading_25W">25W Rating Without Weightage %</h5>
+        </ion-row>
+        <ion-row style="margin-top: 10px;">
+          <ion-col size="2" class="btn_25W_header grey col-width-height">
+            Expert
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white"
+              [disabled]="tfwWithoutWeightagePercentageData[0].value1==''" (click)="withoutWeightageTileClick(1, 5)">
+              {{ tfwWithoutWeightagePercentageData[0].value1 }}<sup [ngClass]="{suppositive: tfwWithoutWeightagePercentageData[0].deviationval1>=0 ? true  : false,
+                   supnegative: tfwWithoutWeightagePercentageData[0].deviationval1<0 ? true  : false}">
+                {{ tfwWithoutWeightagePercentageData[0].deviationval1 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-grey"
+              [disabled]="tfwWithoutWeightagePercentageData[0].value2==''" (click)="withoutWeightageTileClick(2, 5)">
+              {{ tfwWithoutWeightagePercentageData[0].value2 }}<sup [ngClass]="{suppositive: tfwWithoutWeightagePercentageData[0].deviationval2>=0 ? true  : false, 
+                  supnegative: tfwWithoutWeightagePercentageData[0].deviationval2<0 ? true  : false}">
+                {{ tfwWithoutWeightagePercentageData[0].deviationval2 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-light-yellow"
+              [disabled]="tfwWithoutWeightagePercentageData[0].value3==''" (click)="withoutWeightageTileClick(3, 5)">
+              {{ tfwWithoutWeightagePercentageData[0].value3 }}<sup [ngClass]="{suppositive: tfwWithoutWeightagePercentageData[0].deviationval3>=0 ? true  : false, 
+                supnegative: tfwWithoutWeightagePercentageData[0].deviationval3<0 ? true  : false}">
+                {{ tfwWithoutWeightagePercentageData[0].deviationval3 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white"
+              [disabled]="tfwWithoutWeightagePercentageData[0].value4==''" (click)="withoutWeightageTileClick(4, 5)">
+              {{ tfwWithoutWeightagePercentageData[0].value4 }}<sup [ngClass]="{suppositive: tfwWithoutWeightagePercentageData[0].deviationval4>=0 ? true  : false, 
+                supnegative: tfwWithoutWeightagePercentageData[0].deviationval4<0 ? true  : false}">
+                {{ tfwWithoutWeightagePercentageData[0].deviationval4 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-light-green"
+              [disabled]="tfwWithoutWeightagePercentageData[0].value5==''" (click)="withoutWeightageTileClick(5, 5)">
+              {{ tfwWithoutWeightagePercentageData[0].value5 }}<sup [ngClass]="{suppositive: tfwWithoutWeightagePercentageData[0].deviationval5>=0 ? true  : false, 
+                supnegative: tfwWithoutWeightagePercentageData[0].deviationval5<0 ? true  : false}">
+                {{ tfwWithoutWeightagePercentageData[0].deviationval5 }}</sup>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="2" class="btn_25W_header purple col-width-height">
+            Valuable Contributor
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white"
+              [disabled]="tfwWithoutWeightagePercentageData[1].value1==''" (click)="withoutWeightageTileClick(1, 4)">
+              {{ tfwWithoutWeightagePercentageData[1].value1 }}<sup [ngClass]="{suppositive: tfwWithoutWeightagePercentageData[1].deviationval1>=0 ? true  : false, 
+                supnegative: tfwWithoutWeightagePercentageData[1].deviationval1<0 ? true  : false}">
+                {{ tfwWithoutWeightagePercentageData[1].deviationval1 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white"
+              [disabled]="tfwWithoutWeightagePercentageData[1].value2==''" (click)="withoutWeightageTileClick(2, 4)">
+              {{ tfwWithoutWeightagePercentageData[1].value2 }}<sup [ngClass]="{suppositive: tfwWithoutWeightagePercentageData[1].deviationval2>=0 ? true  : false, 
+                supnegative: tfwWithoutWeightagePercentageData[1].deviationval2<0 ? true  : false}">
+                {{ tfwWithoutWeightagePercentageData[1].deviationval2 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-orange"
+              [disabled]="tfwWithoutWeightagePercentageData[1].value3==''" (click)="withoutWeightageTileClick(3, 4)">
+              {{ tfwWithoutWeightagePercentageData[1].value3 }}<sup [ngClass]="{suppositive: tfwWithoutWeightagePercentageData[1].deviationval3>=0 ? true  : false, 
+                supnegative: tfwWithoutWeightagePercentageData[1].deviationval3<0 ? true  : false}">
+                {{ tfwWithoutWeightagePercentageData[1].deviationval3 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-purple"
+              [disabled]="tfwWithoutWeightagePercentageData[1].value4==''" (click)="withoutWeightageTileClick(4, 4)">
+              {{ tfwWithoutWeightagePercentageData[1].value4 }}<sup [ngClass]="{suppositive: tfwWithoutWeightagePercentageData[1].deviationval4>=0 ? true  : false, 
+                supnegative: tfwWithoutWeightagePercentageData[1].deviationval4<0 ? true  : false}">
+                {{ tfwWithoutWeightagePercentageData[1].deviationval4 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white"
+              [disabled]="tfwWithoutWeightagePercentageData[1].value5==''" (click)="withoutWeightageTileClick(5, 4)">
+              {{ tfwWithoutWeightagePercentageData[1].value5 }}<sup [ngClass]="{suppositive: tfwWithoutWeightagePercentageData[1].deviationval5>=0 ? true  : false, 
+                supnegative: tfwWithoutWeightagePercentageData[1].deviationval5<0 ? true  : false}">
+                {{ tfwWithoutWeightagePercentageData[1].deviationval5 }}</sup>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="2" class="btn_25W_header orange col-width-height">
+            Independent Worker
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white"
+              [disabled]="tfwWithoutWeightagePercentageData[2].value1==''" (click)="withoutWeightageTileClick(1, 3)">
+              {{ tfwWithoutWeightagePercentageData[2].value1 }}<sup [ngClass]="{suppositive: tfwWithoutWeightagePercentageData[2].deviationval1>=0 ? true  : false, 
+                supnegative: tfwWithoutWeightagePercentageData[2].deviationval1<0 ? true  : false}">
+                {{ tfwWithoutWeightagePercentageData[2].deviationval1 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white"
+              [disabled]="tfwWithoutWeightagePercentageData[2].value2==''" (click)="withoutWeightageTileClick(2, 3)">
+              {{ tfwWithoutWeightagePercentageData[2].value2 }}<sup [ngClass]="{suppositive: tfwWithoutWeightagePercentageData[2].deviationval2>=0 ? true  : false, 
+                supnegative: tfwWithoutWeightagePercentageData[2].deviationval2<0 ? true  : false}">
+                {{ tfwWithoutWeightagePercentageData[2].deviationval2 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-orange"
+              [disabled]="tfwWithoutWeightagePercentageData[2].value3==''" (click)="withoutWeightageTileClick(3, 3)">
+              {{ tfwWithoutWeightagePercentageData[2].value3 }}<sup [ngClass]="{suppositive: tfwWithoutWeightagePercentageData[2].deviationval3>=0 ? true  : false, 
+                supnegative: tfwWithoutWeightagePercentageData[2].deviationval3<0 ? true  : false}">
+                {{ tfwWithoutWeightagePercentageData[2].deviationval3 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-orange"
+              [disabled]="tfwWithoutWeightagePercentageData[2].value4==''" (click)="withoutWeightageTileClick(4, 3)">
+              {{ tfwWithoutWeightagePercentageData[2].value4 }}<sup [ngClass]="{suppositive: tfwWithoutWeightagePercentageData[2].deviationval4>=0 ? true  : false, 
+                supnegative: tfwWithoutWeightagePercentageData[2].deviationval4<0 ? true  : false}">
+                {{ tfwWithoutWeightagePercentageData[2].deviationval4 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white"
+              [disabled]="tfwWithoutWeightagePercentageData[2].value5==''" (click)="withoutWeightageTileClick(5, 3)">
+              {{ tfwWithoutWeightagePercentageData[2].value5 }}<sup [ngClass]="{suppositive: tfwWithoutWeightagePercentageData[2].deviationval5>=0 ? true  : false, 
+                supnegative: tfwWithoutWeightagePercentageData[2].deviationval5<0 ? true  : false}">
+                {{ tfwWithoutWeightagePercentageData[2].deviationval5 }}</sup>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="2" class="btn_25W_header dark-green col-width-height">
+            Need Handholding
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white"
+              [disabled]="tfwWithoutWeightagePercentageData[3].value1==''" (click)="withoutWeightageTileClick(1, 2)">
+              {{ tfwWithoutWeightagePercentageData[3].value1 }}<sup [ngClass]="{suppositive: tfwWithoutWeightagePercentageData[3].deviationval1>=0 ? true  : false, 
+                supnegative: tfwWithoutWeightagePercentageData[3].deviationval1<0 ? true  : false}">
+                {{ tfwWithoutWeightagePercentageData[3].deviationval1 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-dark-green"
+              [disabled]="tfwWithoutWeightagePercentageData[3].value2==''" (click)="withoutWeightageTileClick(2, 2)">
+              {{ tfwWithoutWeightagePercentageData[3].value2 }}<sup [ngClass]="{suppositive: tfwWithoutWeightagePercentageData[3].deviationval2>=0 ? true  : false, 
+                supnegative: tfwWithoutWeightagePercentageData[3].deviationval2<0 ? true  : false}">
+                {{ tfwWithoutWeightagePercentageData[3].deviationval2 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white"
+              [disabled]="tfwWithoutWeightagePercentageData[3].value3==''" (click)="withoutWeightageTileClick(3, 2)">
+              {{ tfwWithoutWeightagePercentageData[3].value3 }}<sup [ngClass]="{suppositive: tfwWithoutWeightagePercentageData[3].deviationval3>=0 ? true  : false, 
+                supnegative: tfwWithoutWeightagePercentageData[3].deviationval3<0 ? true  : false}">
+                {{ tfwWithoutWeightagePercentageData[3].deviationval3 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white"
+              [disabled]="tfwWithoutWeightagePercentageData[3].value4==''" (click)="withoutWeightageTileClick(4, 2)">
+              {{ tfwWithoutWeightagePercentageData[3].value4 }}<sup [ngClass]="{suppositive: tfwWithoutWeightagePercentageData[3].deviationval4>=0 ? true  : false, 
+                supnegative: tfwWithoutWeightagePercentageData[3].deviationval4<0 ? true  : false}">
+                {{ tfwWithoutWeightagePercentageData[3].deviationval4 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white"
+              [disabled]="tfwWithoutWeightagePercentageData[3].value5==''" (click)="withoutWeightageTileClick(5, 2)">
+              {{ tfwWithoutWeightagePercentageData[3].value5 }}<sup [ngClass]="{suppositive: tfwWithoutWeightagePercentageData[3].deviationval5>=0 ? true  : false, 
+                supnegative: tfwWithoutWeightagePercentageData[3].deviationval5<0 ? true  : false}">{{
+                    tfwWithoutWeightagePercentageData[3].deviationval5 }}</sup>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="2" class="btn_25W_header dark-yellow col-width-height">
+            Under Watch
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-dark-yellow"
+              [disabled]="tfwWithoutWeightagePercentageData[4].value1==''" (click)="withoutWeightageTileClick(1, 1)">
+              {{ tfwWithoutWeightagePercentageData[4].value1 }}<sup [ngClass]="{suppositive: tfwWithoutWeightagePercentageData[4].deviationval1>=0 ? true  : false, 
+                supnegative: tfwWithoutWeightagePercentageData[4].deviationval1<0 ? true  : false}">
+                {{ tfwWithoutWeightagePercentageData[4].deviationval1 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white"
+              [disabled]="tfwWithoutWeightagePercentageData[4].value2==''" (click)="withoutWeightageTileClick(2, 1)">
+              {{ tfwWithoutWeightagePercentageData[4].value2 }}<sup [ngClass]="{suppositive: tfwWithoutWeightagePercentageData[4].deviationval2>=0 ? true  : false, 
+                supnegative: tfwWithoutWeightagePercentageData[4].deviationval2<0 ? true  : false}">
+                {{ tfwWithoutWeightagePercentageData[4].deviationval2 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white"
+              [disabled]="tfwWithoutWeightagePercentageData[4].value3==''" (click)="withoutWeightageTileClick(3, 1)">
+              {{ tfwWithoutWeightagePercentageData[4].value3 }}<sup [ngClass]="{suppositive: tfwWithoutWeightagePercentageData[4].deviationval3>=0 ? true  : false, 
+                supnegative: tfwWithoutWeightagePercentageData[4].deviationval3<0 ? true  : false}">
+                {{ tfwWithoutWeightagePercentageData[4].deviationval3 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-white"
+              [disabled]="tfwWithoutWeightagePercentageData[4].value4==''" (click)="withoutWeightageTileClick(4, 1)">
+              {{ tfwWithoutWeightagePercentageData[4].value4 }}<sup [ngClass]="{suppositive: tfwWithoutWeightagePercentageData[4].deviationval4>=0 ? true  : false, 
+                supnegative: tfwWithoutWeightagePercentageData[4].deviationval4<0 ? true  : false}">
+                {{ tfwWithoutWeightagePercentageData[4].deviationval4 }}</sup>
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" class="btn-25-window-width-height">
+            <ion-button class="btn-25-window-style btn-grey"
+              [disabled]="tfwWithoutWeightagePercentageData[4].value5==''" (click)="withoutWeightageTileClick(5, 1)">
+              {{ tfwWithoutWeightagePercentageData[4].value5 }}<sup [ngClass]="{suppositive: tfwWithoutWeightagePercentageData[4].deviationval5>=0 ? true  : false, 
+                supnegative: tfwWithoutWeightagePercentageData[4].deviationval5<0 ? true  : false}">
+                {{ tfwWithoutWeightagePercentageData[4].deviationval5 }}</sup>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="2" class="col-width-height">
+          </ion-col>
+          <ion-col size="2" class="btn_25W_header dark-yellow col-width-height">
+            Under Watch
+          </ion-col>
+          <ion-col size="2" class="btn_25W_header dark-green col-width-height">
+            Need Handholding
+          </ion-col>
+          <ion-col size="2" class="btn_25W_header orange col-width-height">
+            Independent Worker
+          </ion-col>
+          <ion-col size="2" class="btn_25W_header purple col-width-height">
+            Valuable Contributor
+          </ion-col>
+          <ion-col size="2" class="btn_25W_header grey col-width-height">
+            Expert
+          </ion-col>
+        </ion-row>
+        <span>
+          <img src="../../../assets/imgs/solution_expertise_.png" class="alignSolutionExp">
+        </span>
+      </ion-grid>
+    </ion-slide>
+  </ion-slides>
+  <ion-row *ngIf="empRole =='PGM' || empRole == 'MGR'">
+    <ion-row style="padding-left: 10px; margin-top: 10px;"
+      *ngIf="leadWiseDistributionDataSource.dataset && leadWiseDistributionDataSource.dataset.length > 0">
+      <fusioncharts [width]="genderChartWidth" [height]="genderChartWHeight" [type]="leadWiseDistributionChartType"
+        [dataFormat]="genderChartWDataFormat" [dataSource]="leadWiseDistributionDataSource">
+      </fusioncharts>
+    </ion-row>
+    <ion-row *ngIf="leadWiseDistributionDataSource.dataset && leadWiseDistributionDataSource.dataset.length > 0"
+      class="more-details-chart-style" (click)="leadwiseDistributionMoreDetails()">
+      More details
+    </ion-row>
+  </ion-row>
+  <ion-row *ngIf="empRole =='PGM' || empRole == 'MGR'">
+    <ion-row style="padding-left: 10px; margin-top: 10px;"
+      *ngIf="overAllAssociatesDataSource.data && overAllAssociatesDataSource.data.length > 0">
+      <fusioncharts [width]="genderChartWidth" [height]="genderChartWHeight" [type]="genderChartType"
+        [dataFormat]="genderChartWDataFormat" [dataSource]="overAllAssociatesDataSource">
+      </fusioncharts>
+    </ion-row>
+    <ion-row *ngIf="overAllAssociatesDataSource.data && overAllAssociatesDataSource.data.length > 0"
+      class="more-details-chart-style" (click)="overAllAssociatesMoreDetails()">
+      More details
+    </ion-row>
+  </ion-row>
+  <ion-row *ngIf="empRole =='PGM' || empRole == 'MGR'">
+    <ion-row style="padding-left: 10px; margin-top: 10px;"
+      *ngIf="genderChartWDataSource.data && genderChartWDataSource.data.length > 0">
+      <fusioncharts [width]="genderChartWidth" [height]="genderChartWHeight" [type]="genderChartType"
+        [dataFormat]="genderChartWDataFormat" [dataSource]="genderChartWDataSource">
+      </fusioncharts>
+    </ion-row>
+  </ion-row>
+</ion-content>

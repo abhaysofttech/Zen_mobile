@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Dashboard Associates</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background">
+  <ion-row>
+    <ion-col size="6" class="row-key-style">
+      Staff Id
+    </ion-col>
+    <ion-col size="6" class="row-value-style">
+      {{ moreDetailsData.staff_Number }}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="row-key-style">
+      Staff Name
+    </ion-col>
+    <ion-col size="6" class="row-value-style">
+      {{ moreDetailsData.staff_Name }}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="row-key-style">
+      Reporting Manager
+    </ion-col>
+    <ion-col size="6" class="row-value-style">
+      {{ moreDetailsData.manager_Id }}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="row-key-style">
+      Program Manager
+    </ion-col>
+    <ion-col size="6" class="row-value-style">
+      {{ moreDetailsData.pgm_Manager }}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="row-key-style">
+      Total Experience(In Months)
+    </ion-col>
+    <ion-col size="6" class="row-value-style">
+      {{ moreDetailsData.total_Experience }}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="row-key-style">
+      Band
+    </ion-col>
+    <ion-col size="6" class="row-value-style">
+      {{ moreDetailsData.band }}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="row-key-style">
+      Technical Rating
+    </ion-col>
+    <ion-col size="6" class="row-value-style">
+      {{ moreDetailsData.technical_rating }}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="row-key-style">
+      Technical Expertise
+    </ion-col>
+    <ion-col size="6" class="row-value-style">
+      {{ moreDetailsData.technologies }}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="row-key-style">
+      Solution Rating
+    </ion-col>
+    <ion-col size="6" class="row-value-style">
+      {{ moreDetailsData.functional_rating }}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6" class="row-key-style">
+      Solution Expertise
+    </ion-col>
+    <ion-col size="6" class="row-value-style">
+      {{ moreDetailsData.functionalities }}
+    </ion-col>
+  </ion-row>
+</ion-content>

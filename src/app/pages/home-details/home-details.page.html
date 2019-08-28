@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>More Details</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background">
+  <ion-row>
+    <ion-col class="dark-blue-left-tile-title">
+      <ion-row style="justify-content: center">
+        RATED
+      </ion-row>
+      <ion-row class="value-style" style="margin-top: 25px;">
+        {{ totalRatedCount }}
+      </ion-row>
+    </ion-col>
+    <ion-col class="dark-blue-right-tile-title">
+      <ion-row style="justify-content: center">
+        NICHE SKILLS
+      </ion-row>
+      <ion-row class="value-style" style="margin-top: 25px;">
+        {{ totalNicheSkillsCount }}
+      </ion-row>
+    </ion-col>
+  </ion-row>
+  <ion-row style="margin-top: 20px">
+    <ion-col class="light-blue-left-tile-title">
+      <ion-row style="justify-content: center">
+        SME
+      </ion-row>
+      <ion-row class="value-style" style="margin-top: 25px;">
+        {{ totalSmeCount }}
+      </ion-row>
+    </ion-col>
+    <ion-col class="light-blue-right-tile-title">
+      <ion-row style="justify-content: center">
+        RELEASE
+      </ion-row>
+      <ion-row style="justify-content: center; margin-top: 5px">
+        PIPELINE
+      </ion-row>
+      <ion-row class="value-style">
+        {{ totalPipeLineCount }}
+      </ion-row>
+    </ion-col>
+  </ion-row>
+  <ion-row style="margin-top: 20px">
+    <ion-col class="green-left-tile-title">
+      <ion-row style="justify-content: center">
+        OPEN
+      </ion-row>
+      <ion-row style="justify-content: center; margin-top: 5px">
+        POSITIONS
+      </ion-row>
+      <ion-row class="value-style" style="margin-top: 5px">
+        {{ totalOpenPositionsCount }}
+      </ion-row>
+    </ion-col>
+    <ion-col class="green-right-tile-title">
+      <ion-row style="justify-content: center">
+        BILLING LOSS
+      </ion-row>
+      <ion-row style="justify-content: center; margin-top: 5px">
+        (in $)
+      </ion-row>
+      <ion-row class="value-style" style="margin-top: 5px">
+        {{ totalBillingInLoss }}
+      </ion-row>
+    </ion-col>
+  </ion-row>
+</ion-content>

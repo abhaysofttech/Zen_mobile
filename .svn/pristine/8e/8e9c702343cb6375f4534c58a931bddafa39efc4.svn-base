@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Dashboard Associates</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+  <ion-row class="page-header-style">
+    <ion-col size="3" style="align-self: center;">
+      <ion-row class="row-style">
+        Staff Id
+      </ion-row>
+    </ion-col>
+    <ion-col size="9" style="align-self: center;">
+      <ion-row class="row-style">
+        Staff Name
+      </ion-row>
+    </ion-col>
+  </ion-row>
+  <ion-list style="background: transparent; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px;">
+    <ion-row *ngFor="let data of listData" style="margin-bottom: 5px;">
+      <ion-col size="3" style="font-size: 12px;" (click)="associateStaffNumberClick(data)">
+        <ion-row style="margin-left: 15px;">
+          <a><u> {{ data.staff_Number }} </u></a>
+        </ion-row>
+      </ion-col>
+      <ion-col size="9" style="font-size: 12px;font-weight: bold;">
+        <ion-row style="margin-left: 15px;">
+          {{ data.staff_Name | uppercase }}
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+</ion-content>
